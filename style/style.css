@@ -2,3 +2,12 @@ body {
 	padding-bottom: 40px; /* for the fixed nav bar*/
 	background-image: url('../images/background-pngs/dark5.png');
 }
+
+.map-container {
+	width: 100%;
+
+}
+
+li.option-catagory {
+	width: 200px;
+}

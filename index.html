@@ -15,23 +15,57 @@
 	
 </head>
 <body>
-	<div id="primary" class=".container">
+	<div id="primary" class="container">
 		<div id="app">
-			<div id="map">
+			<div id="map" class="container map-container">
 				<!-- put map here -->
+			</div><!-- #map -->
+		</div><!-- #app -->
+		
+		<div class="navbar navbar-fixed-top">
+			<div class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Type of Trip</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li class="A"></li>
+						<li class="B"></li>
+						<li class="C"></li>
+					</ul>
 			</div>
+			<div class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Destination</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li class="A"></li>
+						<li class="B"></li>
+						<li class="C"></li>
+					</ul>
+			</div>
+			<div class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">To Do</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li class="A"></li>
+						<li class="B"></li>
+						<li class="C"></li>
+					</ul>
+			</div>
+			
+		</div><!-- .navbar -->
+
+
+
+		<div class="navbar navbar-fixed-bottom">
 			<div class="navbar-inner">
-    			<ul class="nav">
-					<li class="active"><a href="#">Type Of Trip</a></li>
-					<li><a href="#">Destination</a></li>
-					<li><a href="#">Things To Do</a></li>
+				<ul class="nav">
+					<li class="option-catagory"><a href="#">Type Of Trip</a></li>
+					<li class="divider-vertical"></li>
+					<li class="option-catagory"><a href="#">Destination</a></li>
+					<li class="divider-vertical"></li>
+					<li class="option-catagory"><a href="#">Things To Do</a></li>
     			</ul><!-- .nav -->
-    			<a class="brand pull-right" href="#">App Name</a>
   			</div><!-- .navbar-inner -->
 		</div><!-- .navbar -->
-		</div>
-		<div class="navbar navbar-fixed-bottom">
-  					
 	</div><!-- #primary -->
 </body>
+<script type="text.javascript">
+	$('.dropdown-toggle').dropdown()
+</script>
 </html>
