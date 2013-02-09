@@ -123,7 +123,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'cities',
     'jsonfield',
-    'django_extensions'
+    'django_extensions',
+    'foursquare',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -154,3 +155,6 @@ LOGGING = {
         },
     }
 }
+
+FSQ_CLIENT_ID = 'FY44KE10XHBA1GZC00W45HKWH0RSKZAUOY4150PVXZI5KOVZ'
+FSQ_CLIENT_SECRET = 'R031W1WWY5XPT13V20SXFDOEFINSI31WZAJWMQTGAIAL5Z4R'
