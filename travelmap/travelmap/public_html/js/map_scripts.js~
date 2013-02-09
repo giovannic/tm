@@ -32,7 +32,7 @@ function updateHeatMap() {
 		var cityLocation = locations[i];
 		var longitude = cityLocation.lng();
 		var latitude = cityLocation.lat();
-		makeCircumference(longitude, latitude, scores[i], heatmapData);
+		makeCircumference(longitude, latitude, 0.05*scores[i], heatmapData);
 	}
 	log(heatmapData);
 	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData });
@@ -78,7 +78,7 @@ function recieveCities() {
 			var allText = xmlreq.responseText;
 			log(allText);
 			cities = xmlreq.responseText.split("\n"); // Will separate each line into an array
-			//cities.pop();
+			cities.pop();
 			xmlreq2 = new XMLHttpRequest();
 			fileLocation = getBaseURL() + "resources/city_longlats.txt";
 			xmlreq2.open("GET", fileLocation, true);
