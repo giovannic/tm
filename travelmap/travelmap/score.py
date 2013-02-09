@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 import json
+import random
 
 raw = """Amsterdam
 Andorra la Vella
@@ -56,9 +57,18 @@ names = raw.split('\n')
 
 
 def get_scores():
+    random.seed(123)
     scores = {}
     for i, name in enumerate(names):
-        scores[name] = i
+        d = {
+            'food': random.random(),
+            'outdoors': random.random(),
+            'art': random.random(),
+            'shop': random.random(),
+            'nightlife': random.random()
+            }
+
+        scores[name] = d
     return scores
 
 def view(request):
