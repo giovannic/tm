@@ -1,6 +1,7 @@
 body {
-	padding-bottom: 40px; /* for the fixed nav bar*/
+	padding-top: 40px; /* for the fixed nav bar*/
 	background-image: url('../images/background-pngs/dark5.png');
+	color: white;
 }
 
 .map-container {
@@ -10,4 +11,13 @@ body {
 
 li.option-catagory {
 	width: 200px;
+}
+
+footer.navbar .container {
+	height:50px;
+	padding-top:10px;
+}
+
+footer.navbar .brand {
+	font-size: 2.0em;
 }
