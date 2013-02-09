@@ -4,6 +4,7 @@ from cities.api import CityResource, AirportResource, HotelResource, FlightResou
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import redirect_to
 from django.shortcuts import redirect
+import score
 
 v1_api = Api(api_name='v1')
 v1_api.register(CityResource())
@@ -23,6 +24,7 @@ def resource_view(request, name):
 urlpatterns = patterns('',
     url(r'^$', redirect_to, {'url':'/static/index.html'}),
     url(r'^resources/(?P<name>\w+\.\w+)$', resource_view),
+    url(r'^scores$', score.view),
 
     url(r'^api/', include(v1_api.urls)),
     # Examples:
