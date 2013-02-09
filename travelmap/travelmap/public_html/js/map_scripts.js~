@@ -16,7 +16,7 @@ function initialiseMap() {
 
 	var mapOptions = {
 		center: point,
-		zoom: 3.5,
+		zoom: 4,
     		disableDefaultUI: true,
 		mapTypeId: google.maps.MapTypeId.HYBRID
 	};
@@ -54,13 +54,19 @@ function recieveLLs() {
 		if (xmlreq2.status == 200) {  // Makes sure it's found the file.
 			var allText = xmlreq2.responseText;
 			var LLs = xmlreq2.responseText.split("\n"); // Will separate each line into an array
-			for (var i = 0; i < LLs.length; i++) {
+			var heatmapData = new Array();
+			for (var i = 0; i < LLs.length - 1; i++) {
 				var LLArray = LLs[i].split(",");
 				var latitude = LLArray[0];
 				var longitude = LLArray[1];
 
 				addMarker(longitude, latitude, cities[i]);
+
+				var mylatlng = new google.maps.LatLng(latitude, longitude);
+				heatmapData.push(mylatlng);
 			}
+			var heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData });
+			heatmap.setMap(map);
 		}
 	}
 }
@@ -80,9 +86,9 @@ function getBaseURL () {
       (location.port && ":" + location.port) + "/";
 }
 
-/*
+
 function updateMap() {
-    myOptions={
+/*    myOptions={
     center: latlon,zoom:10,
     mapTypeId:google.maps.MapTypeId.ROADMAP,
     mapTypeControl:false,
@@ -90,6 +96,6 @@ function updateMap() {
     };
     var map=new google.maps.Map(document.getElementById("map_canvas"),myOptions);
     var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
-	
+*/	
 }
-*/
+
