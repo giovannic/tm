@@ -1,51 +1,51 @@
 Amsterdam
-Andorra la Vella 
+Andorra la Vella
 Athens
 Belgrade
-Berlin 
-Bern 
+Berlin
+Bern
 Bratislava
-Brussels 
-Bucharest 
-Budapest 
-Chisinau 
-Copenhagen 
-Douglas 
-Dublin 
-Gibraltar 
+Brussels
+Bucharest
+Budapest
+Chisinau
+Copenhagen
+Douglas
+Dublin
+Gibraltar
 Helsinki
-Kiev 
+Kiev
 Lisbon
 Ljubljana
 London
 Longyearbyen
 Luxemburg
-Madrid 
-Minsk 
+Madrid
+Minsk
 Monaco-Ville
-Nicosia 
-Oslo 
+Nicosia
+Oslo
 Paris
-Podgorica 
+Podgorica
 Prague
-Pristina 
+Pristina
 Reykjavik
 Riga
 Rome
-Saint Helier 
-Saint Peter Port 
-San Marino 
+Saint Helier
+Saint Peter Port
+San Marino
 Sarajevo
-Skopje 
+Skopje
 Sofia
-Stockholm 
+Stockholm
 Tallinn
-Tirana 
+Tirana
 Torshavn
-Vaduz 
-Valletta 
-Vatican City 
-Vienna 
+Vaduz
+Valletta
+Vatican City
+Vienna
 Vilnius
 Warsaw
 Zagreb
