@@ -1,0 +1,6 @@
+Django==1.4.3
+django-extensions==1.0.3
+foursquare==20130131
+httplib2==0.7.7
+poster==0.8.1
+wsgiref==0.1.2
