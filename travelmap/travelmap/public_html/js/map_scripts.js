@@ -69,7 +69,8 @@ function updateHeatMapForZoomLevel(zoom) {
 		var cityLocation = locations[i];
 		var longitude = cityLocation.lng();
 		var latitude = cityLocation.lat();
-		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : scores[i] };
+		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : Math.max(0.01,scores[i]) };
+		log(scores);
 		heatmapData.push(latlong);
 	}
     if (heatmap) {
