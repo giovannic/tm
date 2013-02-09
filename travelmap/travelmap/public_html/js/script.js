@@ -70,16 +70,16 @@ $(document).ready(function() {
 		
 		var type = {};
 
-		$('#todo-prefs .tab-pane').each(function() {
-			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
-		});
+//		$('#todo-prefs .tab-pane').each(function() {
+//			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
+//		});
 
 
 		var flights = {};
 
-		$('#todo-prefs .tab-pane').each(function() {
-			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
-		});
+//		$('#todo-prefs .tab-pane').each(function() {
+//			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
+//		});
 
 
 		var todo = {};
