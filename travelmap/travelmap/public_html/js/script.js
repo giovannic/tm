@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	//Setup Map
+	initialiseMap();
 
 //initialise some bootstrap javascript
 	$('.dropdown-toggle').dropdown();
