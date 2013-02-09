@@ -1,6 +1,11 @@
 Django==1.4.3
+distribute==0.6.31
 django-extensions==1.0.3
+django-tastypie==0.9.11
 foursquare==20130131
 httplib2==0.7.7
+jsonfield==0.9.4
+mimeparse==0.1.3
 poster==0.8.1
+python-dateutil==1.5
 wsgiref==0.1.2
