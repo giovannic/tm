@@ -3,9 +3,10 @@ body {
 	background-image: url('../images/background-pngs/dark5.png');
 	color: white;
 }
-.map-container {
-	width: 100%;
 
+#app {
+	width: 100%;
+	height: 530px;	
 }
 
 #map_canvas {
