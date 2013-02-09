@@ -11,8 +11,8 @@
 	<script src="./js/jquery.js" type="text/javascript"></script>
 	<script src="./js/jquery-ui.js" type="text/javascript"></script>
 	<script src="./js/bootstrap.js" type="text/javascript"></script>
-	<script src="./js/script.js" type="text/javascript"></script>
 	<script src="./js/location.js" type="text/javascript"></script>
+	<script src="./js/script.js" type="text/javascript"></script>
 	<!-- Google Maps Javascript API v3 -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyADkJKuWEou2-gPAgZoHB-y6tll-7C86ys&sensor=false"></script>
 	<script type="text/javascript" src="./js/map_scripts.js"></script> 
@@ -31,9 +31,9 @@
 				<ul class="nav">
 					<a class="brand" href="#">This will be awesome</a>
 					<li class="divider-vertical"></li>
-					<li id="select-one" index=0 class="option-select pull-right active"><a href="#">Type</a></li>
-					<li id="select-two" index=1 class="option-select pull-right"><a href="#">Flights</a></li>
-					<li id="select-three" index=2 class="option-select pull-right"><a href="#">To Do</a></li>
+					<li id="select-one" index=0 class="option-select active"><a href="#">Type</a></li>
+					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
+					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
 				</ul><!-- .nav -->
 				</div><!-- .container -->
 			</div><!-- .navbar-inner -->
@@ -46,19 +46,62 @@
 		<div id="option-carousel" class="hero-unit carousel slide ">
 			<!-- Carousel items -->
 			<div class="carousel-inner">
-				<div id="type" index=0 class="active item user-options well">
+				<div id="type" index=0 class="item user-options well">
 					<h2>Type</h2>
 				</div>
 				<div id="flights" index=1 class="item user-options well">
 					<h2>Flights</h2>
+					<div class="container all-prefs-container">
+						<p>Which aspects your trip would you like optimised?</p>
+						<button class="btn btn-primary update">Update your trip map</button>
+						
+					</div><!-- .all-prefs-container -->
 				</div>
-				<div id="to-do" index=2 class="item user-options well">
+				<div id="to-do" index=2 class="active item user-options well">
 					<h2>To Do</h2>
+					<div class="container all-prefs-container">
+						<p>Which aspects your trip would you like optimised?</p>
+						<button class="btn btn-primary update">Update your trip map</button>
+						<div> <!-- Only required for left/right tabs -->
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#tab1" data-toggle="tab">Food</a></li>
+								<li><a href="#tab2" data-toggle="tab">Arts & Entertainment</a></li>
+								<li><a href="#tab3" data-toggle="tab">Outdoor Pursuits</a></li>
+								<li><a href="#tab4" data-toggle="tab">Shopping</a></li>
+								<li><a href="#tab5" data-toggle="tab">Nightlife</a></li>
+							</ul>
+							<div class="tab-content" pref-cat=todo>
+								<div class="tab-pane active" id="tab1">
+									<div id="food-slider" class="slider" pref=food ></div>
+									<p class="amount">50%</p>
+								</div>
+								<div class="tab-pane" id="tab2">
+									<div id="arts-slider" class="slider" pref=arts ></div>
+									<p class="amount">50%</p>
+								</div>
+								<div class="tab-pane" id="tab3">
+									<div id="outdoor-slider" class="slider" pref=outdoor ></div>
+									<p class="amount">50%</p>
+								</div>
+								<div class="tab-pane" id="tab4">
+									<div id="shopping-slider" class="slider" pref=shopping ></div>
+									<p class="amount">50%</p>
+								</div>
+								<div class="tab-pane" id="tab5">
+									<div id="nightlife-slider" class="slider" pref=nightlife ></div>
+									<p class="amount">50%</p>
+								</div>
+							</div><!-- .tab-content -->
+						</div>	
+					</div><!-- .all-prefs-container -->
 				</div>
-			</div>
+			</div><!-- .carousel-inner -->
 		</div><!-- #option-carousel -->
 
 		
 	</div><!-- #primary -->
 </body>
+<script>
+
+</script>
 </html>
