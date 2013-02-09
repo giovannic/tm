@@ -1,0 +1,5 @@
+#swap
+*.swp
+
+#compiled
+*.pyc
