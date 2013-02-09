@@ -16,7 +16,7 @@ function initialiseMap() {
 
 	var mapOptions = {
 		center: point,
-		zoom: 4,
+		zoom: 3.5,
     		disableDefaultUI: true,
 		mapTypeId: google.maps.MapTypeId.HYBRID
 	};
