@@ -12,12 +12,15 @@ class CityScoreResource(ModelResource):
       fields = ['name','weighed_scores']
       always_return_data = True
       filtering = {'name' : ALL}
+      max_limit = None
+      limit = 100
 
-
-class CityVenuesResource(ModelResource):
+class CityLocationResource(ModelResource):
     class Meta:
       queryset = CityScore.objects.all()
       authorization = Authorization()
-      fields = ['name','venues']
+      fields = ['name','longitude', 'latitude', 'country_code']
       always_return_data = True
-      filtering = {'name' : ALL}      
+      filtering = {'name' : ALL}   
+      max_limit = None   
+      limit = 100
