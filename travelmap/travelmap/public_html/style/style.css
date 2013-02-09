@@ -1,12 +1,17 @@
 body {
-	padding-top: 40px; /* for the fixed nav bar*/
+	padding-top: 40px;
+	padding-bottom: 40px; /* for the fixed nav bar*/
 	background-image: url('../images/background-pngs/dark5.png');
-	color: white;
+}
+
+.navbar .brand {
+	font-size: 2.0em;
 }
 
 #app {
 	width: 100%;
-	height: 530px;	
+	height: 530px;
+	margin-top: 40px;
 }
 
 #map_canvas {
@@ -14,15 +19,26 @@ body {
 	height: 100%;
 }
 
+#option-carousel {
+	padding: 20px;
+	margin-top: 20px;
+}
+
+#option-carousel .carousel-inner .item {
+	height: 150px;
+	width: 80%;
+	margin: 0 auto;
+}
+
 li.option-catagory {
 	width: 200px;
 }
 
-footer.navbar .container {
-	height:50px;
-	padding-top:10px;
+.navbar .mode-select { /* keep */
 }
 
-footer.navbar .brand {
-	font-size: 2.0em;
+.navbar .container {
+	height:50px;
+	padding-top:10px;
+	font-size: 1.3em;
 }
