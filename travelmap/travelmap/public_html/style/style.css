@@ -11,7 +11,7 @@ body {
 
 #app {
 	width: 100%;
-	height: 560px;
+	height: 530px;
 	margin-top: 40px;
 }
 
@@ -23,6 +23,7 @@ body {
 #option-carousel {
 	padding: 20px;
 	margin-top: 20px;
+	overflow: hidden;
 }
 
 #option-carousel .carousel-inner .item {
@@ -38,12 +39,35 @@ body {
 
 .carousel-inner {
 	display: inline;
+	overflow: hidden;
+}
+
+.all-prefs-container {
+	width: 100%;
 }
 
 .user-options h2 {
 	margin: 0;
 }
 
+button.update {
+	float: right;
+}
+
+.tab-pane {
+	height: 100px;
+}
+
+.slider {
+	width: 300px;
+	height: 10px;
+}
+/*
+.ui-slider-handle {
+	width: 15px !important;
+	height: 20px !important;
+}
+*/
 .navbar .mode-select {
 	display: inline;
 	width: 115px;
