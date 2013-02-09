@@ -61,13 +61,28 @@ function recieveLLs() {
 				var longitude = LLArray[1];
 
 				//addMarker(longitude, latitude, cities[i]);
-
-				var mylatlng = new google.maps.LatLng(latitude, longitude);
-				heatmapData.push(mylatlng);
+				
+				//var mylatlng = {location : new google.maps.LatLng(latitude, longitude), weight : i};
+				//heatmapData.push(mylatlng);
+				makeCircumference(longitude, latitude, 0.05*i, heatmapData);
 			}
 			var heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData });
 			heatmap.setMap(map);
 		}
+	}
+}
+
+function makeCircumference(cx,cy, rTemp, array) {
+	var r = 0.05;
+	while ( r < rTemp ) {
+		for (var i = 0; i < 40; i++) {
+			var a = (Math.PI / 20) * i;
+			var x = parseFloat(cx) + r * Math.cos(a);
+			var y = parseFloat(cy) + r * Math.sin(a);
+			var latlong = new google.maps.LatLng(y, x);
+			array.push(latlong);
+		}
+		r = r + 0.05
 	}
 }
 
