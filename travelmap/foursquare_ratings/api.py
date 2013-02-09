@@ -12,3 +12,12 @@ class CityScoreResource(ModelResource):
       fields = ['name','weighed_scores']
       always_return_data = True
       filtering = {'name' : ALL}
+
+
+class CityVenuesResource(ModelResource):
+    class Meta:
+      queryset = CityScore.objects.all()
+      authorization = Authorization()
+      fields = ['name','venues']
+      always_return_data = True
+      filtering = {'name' : ALL}      
