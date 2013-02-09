@@ -23,6 +23,7 @@ $(document).ready(function() {
 		slide: function( event, ui ) {
 			//console.log($(this).parent().children('p'));
 			$(this).parent().children('p').html(ui.value + '%');
+			$(this).parent().children('p').attr({"data": ui.value});
 		}
 	});
 
@@ -34,11 +35,17 @@ $(document).ready(function() {
 		var flights = {};
 		var todo = {};
 
-//		todo[] = '';
+		$('#todo-prefs .tab-pane').each(function() {
+			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
+		});
+
+		console.log(todo);
 
 		allprefs[0] = type;
 		allprefs[1] = flights;
 		allprefs[2] = todo;
+
+		console.log(allprefs);
 	})
 
 });

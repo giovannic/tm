@@ -54,14 +54,14 @@
 					<div class="container all-prefs-container">
 						<p>Which aspects your trip would you like optimised?</p>
 						<button class="btn btn-primary update">Update your trip map</button>
-						
+
 					</div><!-- .all-prefs-container -->
 				</div>
 				<div id="to-do" index=2 class="active item user-options well">
 					<h2>To Do</h2>
 					<div class="container all-prefs-container">
 						<p>Which aspects your trip would you like optimised?</p>
-						<button class="btn btn-primary update">Update your trip map</button>
+						<button id="submit" class="btn btn-primary update">Update your trip map</button>
 						<div> <!-- Only required for left/right tabs -->
 							<ul class="nav nav-tabs">
 								<li class="active"><a href="#tab1" data-toggle="tab">Food</a></li>
@@ -70,26 +70,26 @@
 								<li><a href="#tab4" data-toggle="tab">Shopping</a></li>
 								<li><a href="#tab5" data-toggle="tab">Nightlife</a></li>
 							</ul>
-							<div class="tab-content" pref-cat=todo>
+							<div id="todo-prefs" class="tab-content" pref-cat=todo>
 								<div class="tab-pane active" id="tab1">
 									<div id="food-slider" class="slider" pref=food ></div>
-									<p class="amount">50%</p>
+									<p class="amount" data=50 >50%</p>
 								</div>
 								<div class="tab-pane" id="tab2">
 									<div id="arts-slider" class="slider" pref=arts ></div>
-									<p class="amount">50%</p>
+									<p class="amount" data=50  >50%</p>
 								</div>
 								<div class="tab-pane" id="tab3">
 									<div id="outdoor-slider" class="slider" pref=outdoor ></div>
-									<p class="amount">50%</p>
+									<p class="amount" data=50 >50%</p>
 								</div>
 								<div class="tab-pane" id="tab4">
 									<div id="shopping-slider" class="slider" pref=shopping ></div>
-									<p class="amount">50%</p>
+									<p class="amount" data=50 >50%</p>
 								</div>
 								<div class="tab-pane" id="tab5">
 									<div id="nightlife-slider" class="slider" pref=nightlife ></div>
-									<p class="amount">50%</p>
+									<p class="amount" data=50 >50%</p>
 								</div>
 							</div><!-- .tab-content -->
 						</div>	
