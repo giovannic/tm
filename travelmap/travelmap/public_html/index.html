@@ -30,6 +30,10 @@
 				<div class="container">
 				<ul class="nav">
 					<a class="brand" href="#">This will be awesome</a>
+					<li class="divider-vertical"></li>
+					<li id="select-one" index=0 class="option-select pull-right active"><a href="#">Type</a></li>
+					<li id="select-two" index=1 class="option-select pull-right"><a href="#">Flights</a></li>
+					<li id="select-three" index=2 class="option-select pull-right"><a href="#">To Do</a></li>
 				</ul><!-- .nav -->
 				</div><!-- .container -->
 			</div><!-- .navbar-inner -->
@@ -42,31 +46,19 @@
 		<div id="option-carousel" class="hero-unit carousel slide ">
 			<!-- Carousel items -->
 			<div class="carousel-inner">
-				<div id="type" index=0 class="active item well">
+				<div id="type" index=0 class="active item user-options well">
 					<h2>Type</h2>
 				</div>
-				<div id="flights" index=1 class="item well">
-					<h2>Flight</h2>
+				<div id="flights" index=1 class="item user-options well">
+					<h2>Flights</h2>
 				</div>
-				<div id="to-do" index=2 class="item well">
+				<div id="to-do" index=2 class="item user-options well">
 					<h2>To Do</h2>
 				</div>
 			</div>
+		</div><!-- #option-carousel -->
 
-			<!-- Carousel nav -->
-			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-		</div>
-
-		<div id="navbar" class="navbar  navbar-fixed-bottom">
-			<div class="navbar-inner mode-select">
-				<ul class="nav">
-					<li id="select-one" index=0 class="option-select active"><a href="#">Type</a></li>
-					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
-					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
-				</ul>
-			</div><!-- .navbar-inner -->
-		</div><!-- #navbar -->
+		
 	</div><!-- #primary -->
 </body>
 </html>

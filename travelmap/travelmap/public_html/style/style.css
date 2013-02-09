@@ -2,6 +2,7 @@ body {
 	padding-top: 40px;
 	padding-bottom: 40px; /* for the fixed nav bar*/
 	background-image: url('../images/background-pngs/dark5.png');
+	overflow: hidden;
 }
 
 .navbar .brand {
@@ -25,16 +26,27 @@ body {
 }
 
 #option-carousel .carousel-inner .item {
-	height: 150px;
+	height: 200px;
 	width: 80%;
 	margin: 0 auto;
 }
 
-li.option-catagory {
-	width: 200px;
+#carousel-navbar {
+	margin: 0;
+	padding-top: 20px;
 }
 
-.navbar .mode-select { /* keep */
+.carousel-inner {
+	display: inline;
+}
+
+.user-options h2 {
+	margin: 0;
+}
+
+.navbar .mode-select {
+	display: inline;
+	width: 115px;
 }
 
 .navbar .container {

@@ -8,6 +8,7 @@ $(document).ready(function() {
 
 
 	$('.option-select').click(function() {
+		console.log('hi');
 		$('.option-select').removeClass('active');
 		$(this).addClass('active');
 
