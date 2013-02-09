@@ -50,14 +50,15 @@ function updateHeatMapForZoomLevel(zoom) {
 		var cityLocation = locations[i];
 		var longitude = cityLocation.lng();
 		var latitude = cityLocation.lat();
-		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : scores[i] };
+		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : 0.01 };
+		log(scores);
 		heatmapData.push(latlong);
 	}
     if (heatmap) {
         heatmap.setMap(null);
         delete heatmap;
     }
-	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData, dissipating : false, radius : 2 });
+	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData, dissipating : false, radius : 1 });
 	heatmap.setMap(map);
 }
 
