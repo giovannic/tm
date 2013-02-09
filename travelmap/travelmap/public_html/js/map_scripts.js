@@ -26,8 +26,14 @@ function setScoreForCity(city, score) {
 }
 
 function update(mult) {
-    $.getJSON(getBaseURL() + 'api/v1/cityscores/?format=json', function(data) {
-        $.each(data, function(city, scores) {
+    $.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function(all) {
+        var data = all.objects;
+        $.each(data, function(index, thing) {
+            var city = thing.name;
+            var scores = thing.weighed_scores;
+            var scores = scores.replace(/u/g, "");
+            var scores = scores.replace(/'/g, "\"");
+            var scores = jQuery.parseJSON(scores);
             var heat = 0;
             $.each(scores, function(name, value) {
                 heat += value * mult;
