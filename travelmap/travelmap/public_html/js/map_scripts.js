@@ -23,7 +23,19 @@ function setScoreForCity(city, score) {
 	}
 	scores[i] = score;
 
-	updateHeatMap();
+}
+
+function update(mult) {
+    $.getJSON(getBaseURL() + 'api/v1/cityscores/?format=json', function(data) {
+        $.each(data, function(city, scores) {
+            var heat = 0;
+            $.each(scores, function(name, value) {
+                heat += value * mult;
+            });
+            setScoreForCity(city, heat);
+        });
+	    updateHeatMap();
+    });
 }
 
 function updateHeatMapForZoomLevel(zoom) {
@@ -35,7 +47,10 @@ function updateHeatMapForZoomLevel(zoom) {
 		var latitude = cityLocation.lat();
 		makeCircumference(longitude, latitude, temp*scores[i], heatmapData);
 	}
-	if (heatmap) heatmap.setMap(null);
+    if (heatmap) {
+        heatmap.setMap(null);
+        delete heatmap;
+    }
 	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData });
 	heatmap.setMap(map);
 }
