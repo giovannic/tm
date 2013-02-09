@@ -27,26 +27,13 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#price-range-slider").slider({
-		range: true,
-		values: [ 350, 1000 ],
-		min: 150,
-		max: 1500,
-		slide: function( event, ui ) {
-			$(this).parent().children('p').html("Min: &#163;"+ui.values[0]+"<br/>Max: &#163;"+ui.values[1]);
-			$(this).parent().children('p').attr({"data-min": ui.values[0]});
-			$(this).parent().children('p').attr({"data-max": ui.value[1]});
-		}
-	});
-
-
 	$("#hotel-rating-slider").slider({
-		//range: true,
-		//values: [ 2, 4 ],
+		range: true,
+		values: [ 2, 4 ],
 		min: 1,
 		max: 5,
 		slide: function( event, ui ) {
-			$(this).parent().children('p').html("Min: &#42;"+ui.values[0]+"<br/>Max: &#42;"+ui.values[1]);
+			$(this).parent().children('p').html("Min: "+ui.values[0]+" <i class='icon-star'></i><br/>Max: "+ui.values[1]+" <i class='icon-star'></i>");
 			$(this).parent().children('p').attr({"data-min": ui.values[0]});
 			$(this).parent().children('p').attr({"data-max": ui.value[1]});
 		}
@@ -64,13 +51,53 @@ $(document).ready(function() {
 		}
 	});
 
+	$("#stay-dur-slider").slider({
+		range: true,
+		values: [ 3, 8 ],
+		min: 1,
+		max: 14,
+		slide: function( event, ui ) {
+			$(this).parent().children('p').html("Min: "+ui.values[0]+" days"+"<br/>Max: "+ui.values[1]+" days");
+			$(this).parent().children('p').attr({"data-min": ui.values[0]});
+			$(this).parent().children('p').attr({"data-max": ui.value[1]});
+		}
+	});
+
+	$("#flight-price-slider").slider({
+		range: true,
+		values: [ 350, 1000 ],
+		min: 150,
+		max: 1500,
+		step: 25,
+		slide: function( event, ui ) {
+			$(this).parent().children('p').html("Min: &#163;"+ui.values[0]+"<br/>Max: &#163;"+ui.values[1]);
+			$(this).parent().children('p').attr({"data-min": ui.values[0]});
+			$(this).parent().children('p').attr({"data-max": ui.value[1]});
+		}
+	});
+
+	$("#flight-time-slider").slider({
+		range: true,
+		values: [ 2, 3 ],
+		min: 1,
+		max: 8,
+		slide: function( event, ui ) {
+			$(this).parent().children('p').html("Min: "+ui.values[0]+" hours<br/>Max: "+ui.values[1]+" hours");
+			$(this).parent().children('p').attr({"data-min": ui.values[0]});
+			$(this).parent().children('p').attr({"data-max": ui.value[1]});
+		}
+	});
+
+	
+
+
 //submit button
 	$('.update').click(function() {
 		var allprefs = {};
 		
-		var type = {};
+		var accom = {};
 
-//		$('#todo-prefs .tab-pane').each(function() {
+//		$('#accom-prefs .tab-pane').each(function() {
 //			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
 //		});
 
@@ -90,7 +117,7 @@ $(document).ready(function() {
 
 		console.log(todo);
 
-		allprefs[0] = type;
+		allprefs[0] = accom;
 		allprefs[1] = flights;
 		allprefs[2] = todo;
 
