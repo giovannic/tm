@@ -27,11 +27,36 @@ $(document).ready(function() {
 		}
 	});
 
-	$( ".range-slider" ).slider({
+	$("#price-range-slider").slider({
 		range: true,
 		values: [ 350, 1000 ],
 		min: 150,
 		max: 1500,
+		slide: function( event, ui ) {
+			$(this).parent().children('p').html("Min: &#163;"+ui.values[0]+"<br/>Max: &#163;"+ui.values[1]);
+			$(this).parent().children('p').attr({"data-min": ui.values[0]});
+			$(this).parent().children('p').attr({"data-max": ui.value[1]});
+		}
+	});
+
+
+	$("#hotel-rating-slider").slider({
+		//range: true,
+		//values: [ 2, 4 ],
+		min: 1,
+		max: 5,
+		slide: function( event, ui ) {
+			$(this).parent().children('p').html("Min: &#42;"+ui.values[0]+"<br/>Max: &#42;"+ui.values[1]);
+			$(this).parent().children('p').attr({"data-min": ui.values[0]});
+			$(this).parent().children('p').attr({"data-max": ui.value[1]});
+		}
+	});
+
+	$("#room-rate-slider").slider({
+		range: true,
+		values: [ 50, 200 ],
+		min: 10,
+		max: 800,
 		slide: function( event, ui ) {
 			$(this).parent().children('p').html("Min: &#163;"+ui.values[0]+"<br/>Max: &#163;"+ui.values[1]);
 			$(this).parent().children('p').attr({"data-min": ui.values[0]});
@@ -45,19 +70,19 @@ $(document).ready(function() {
 		
 		var type = {};
 
+//		$('#todo-prefs .tab-pane').each(function() {
+//			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
+//		});
+
 
 		var flights = {};
 
+//		$('#todo-prefs .tab-pane').each(function() {
+//			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
+//		});
+
 
 		var todo = {};
-
-		$('#todo-prefs .tab-pane').each(function() {
-			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
-		});
-
-		$('#todo-prefs .tab-pane').each(function() {
-			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
-		});
 
 		$('#todo-prefs .tab-pane').each(function() {
 			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
