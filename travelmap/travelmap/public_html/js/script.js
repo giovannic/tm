@@ -40,11 +40,15 @@ $(document).ready(function() {
 	});
 
 //submit button
-	$('#submit').click(function() {
+	$('.update').click(function() {
 		var allprefs = {};
 		
 		var type = {};
+
+
 		var flights = {};
+
+
 		var todo = {};
 
 		$('#todo-prefs .tab-pane').each(function() {
@@ -66,6 +70,8 @@ $(document).ready(function() {
 		allprefs[2] = todo;
 
 		console.log(allprefs);
+
+		update(allprefs);
 
 
 	})
