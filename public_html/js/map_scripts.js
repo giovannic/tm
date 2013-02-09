@@ -5,6 +5,7 @@ var cities;
 var geocoder;
 
 function initialiseMap() {
+<<<<<<< HEAD
 
 	var point = new google.maps.LatLng(52.536273,13.623047);
 
@@ -60,4 +61,27 @@ function addMarker(results,status) {
 function getBaseURL () {
    return location.protocol + "//" + location.hostname + 
       (location.port && ":" + location.port) + "/";
+=======
+    var myOptions={
+    center: new google.maps.LatLng(30,30),zoom:4,
+    mapTypeId:google.maps.MapTypeId.ROADMAP,
+    mapTypeControl:false,
+    navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+    };
+    var map=new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+    //var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+	
+>>>>>>> 238ecda0b42bad9b72dcd4c7d1da0b8c9afbd7cf
+}
+
+function updateMap() {
+    myOptions={
+    center: latlon,zoom:10,
+    mapTypeId:google.maps.MapTypeId.ROADMAP,
+    mapTypeControl:false,
+    navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+    };
+    var map=new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+    var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+	
 }
