@@ -3,3 +3,6 @@
 
 #compiled
 *.pyc
+
+#env
+.env
