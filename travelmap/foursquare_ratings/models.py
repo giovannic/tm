@@ -85,3 +85,4 @@ class CityScore(models.Model):
 		self.get_total_checkins()
 		for key in self.raw_scores:
 			self.weighed_scores[key] = self.raw_scores[key]/self.total_checkins
+		self.save()	
