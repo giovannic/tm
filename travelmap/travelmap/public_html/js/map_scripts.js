@@ -46,18 +46,18 @@ function update(mult) {
 
 function updateHeatMapForZoomLevel(zoom) {
 	var heatmapData = new Array();
-	var scale = Math.pow(0.5,zoom);
 	for (var i = 0; i < cities.length; i++) {
 		var cityLocation = locations[i];
 		var longitude = cityLocation.lng();
 		var latitude = cityLocation.lat();
-		makeCircumference(longitude, latitude, scale*scores[i], heatmapData, zoom);
+		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : scores[i] };
+		heatmapData.push(latlong);
 	}
     if (heatmap) {
         heatmap.setMap(null);
         delete heatmap;
     }
-	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData });
+	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData, dissipating : false, radius : 1 });
 	heatmap.setMap(map);
 }
 
@@ -127,28 +127,11 @@ function recieveLLs() {
 				var thing = new google.maps.LatLng(latitude,longitude);
 				locations.push(thing);
 				
-				//addMarker(longitude, latitude, cities[i]);
+				addMarker(longitude, latitude, cities[i]);
 
 			}
 			updateHeatMap();
 		}
-	}
-}
-
-function makeCircumference(cx,cy, rTemp, array, zoom) {
-	var noOfPoints = 40;
-	var increment = Math.pow(0.5,zoom);
-	var r = increment;
-	var rTemp = rTemp;
-	while ( r < rTemp ) {
-		for (var i = 0; i < noOfPoints; i++) {
-			var a = (2*Math.PI / noOfPoints) * i;
-			var x = cx + r * Math.cos(a);
-			var y = cy + r * Math.sin(a);
-			var latlong = new google.maps.LatLng(y, x);
-			array.push(latlong);
-		}
-		r = r + increment;
 	}
 }
 
