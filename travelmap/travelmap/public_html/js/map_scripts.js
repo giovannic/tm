@@ -23,17 +23,34 @@ function setScoreForCity(city, score) {
 	}
 	scores[i] = score;
 
-	updateHeatMap();
+}
+
+function update(mult) {
+    $.getJSON(getBaseURL() + 'api/v1/cityscores/?format=json', function(data) {
+        $.each(data, function(city, scores) {
+            var heat = 0;
+            $.each(scores, function(name, value) {
+                heat += value * mult;
+            });
+            setScoreForCity(city, heat);
+        });
+	    updateHeatMap();
+    });
 }
 
 function updateHeatMapForZoomLevel(zoom) {
 	var heatmapData = new Array();
+	var temp = Math.pow(0.5,zoom);
 	for (var i = 0; i < cities.length; i++) {
 		var cityLocation = locations[i];
 		var longitude = cityLocation.lng();
 		var latitude = cityLocation.lat();
-		makeCircumference(longitude, latitude, 0.05*scores[i], heatmapData);
+		makeCircumference(longitude, latitude, temp*scores[i], heatmapData);
 	}
+    if (heatmap) {
+        heatmap.setMap(null);
+        delete heatmap;
+    }
 	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData });
 	heatmap.setMap(map);
 }
@@ -49,7 +66,6 @@ function log(msg) {
 }
 
 function initialiseMap() {
-
 	//Initiallisation of global variables
 	markers = new Array();
 	scores = new Array();
@@ -65,19 +81,18 @@ function initialiseMap() {
 	};
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
+	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
 	xmlreq = new XMLHttpRequest();
 	var fileLocation = getBaseURL() + "resources/city_list.txt";
 	xmlreq.open("GET", fileLocation, true);
 	xmlreq.onreadystatechange = recieveCities;
 	xmlreq.send();
-	
 }
 
 function recieveCities() {
 	if (xmlreq.readyState == 4) {  // Makes sure the document is ready to parse.
 		if (xmlreq.status == 200) {  // Makes sure it's found the file.
-
 			var allText = xmlreq.responseText;
 			cities = xmlreq.responseText.split("\n"); // Will separate each line into an array
 			cities.pop();

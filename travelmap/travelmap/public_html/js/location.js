@@ -1,7 +1,6 @@
 function getLocation()
     {
 		mapholder=document.getElementById('map_canvas')
-		initialiseMap();
 		
     if (navigator.geolocation)
       {
