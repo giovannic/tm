@@ -2,6 +2,7 @@ body {
 	padding-top: 40px;
 	padding-bottom: 40px; /* for the fixed nav bar*/
 	background-image: url('../images/background-pngs/dark5.png');
+	overflow: hidden;
 }
 
 .navbar .brand {
@@ -34,7 +35,26 @@ li.option-catagory {
 	width: 200px;
 }
 
-.navbar .mode-select { /* keep */
+#carousel-navbar {
+	margin: 0;
+	padding-top: 20px;
+}
+
+.user-options {
+	padding: 10px;
+}
+
+.user-options h2 {
+	margin: 0;
+}
+
+.navbar .mode-select {
+	width: 224px;
+	margin: 0 auto;
+}
+
+.navbar .mode-select ul {
+	margin:0 auto;
 }
 
 .navbar .container {
