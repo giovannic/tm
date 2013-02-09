@@ -60,6 +60,8 @@ class CityScore(models.Model):
 	total_checkins = models.FloatField()
 	venues = JSONField()
 	weighed_scores = JSONField()
+	latitude = models.FloatField()
+	longitude = models.FloatField()
 
 	def update_score(self, city_scores, categories):
 		if not self.raw_scores:
