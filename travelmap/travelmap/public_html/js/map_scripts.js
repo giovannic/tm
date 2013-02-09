@@ -16,6 +16,21 @@ var locations;
 // Global heatmap layer
 var heatmap;
 
+function mapping(name) {
+    if (name === "Food") {
+        return "food";
+    } else if (name === "Shop & Service") {
+        return "shopping";
+    } else if (name === "Nightlife Spot") {
+        return "nightlife";
+    } else if (name === "Otdoors & Recreation") {
+        return "outdoor";
+    } else if (name === "Arts & Entertainment") {
+        return "arts";
+    }
+    log(name);
+}
+
 function setScoreForCity(city, score) {
 	var i = 0;
 	for (i = 0; i < cities.length; i ++) {
@@ -25,9 +40,12 @@ function setScoreForCity(city, score) {
 
 }
 
+
 function update(mult) {
     $.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function(all) {
         var data = all.objects;
+        var todo = mult[2];
+
         $.each(data, function(index, thing) {
             var city = thing.name;
             var scores = thing.weighed_scores;
@@ -36,9 +54,10 @@ function update(mult) {
             var scores = jQuery.parseJSON(scores);
             var heat = 0;
             $.each(scores, function(name, value) {
-                heat += value * mult;
+                heat += 10 * value * parseInt(todo[mapping(name)]);
             });
             setScoreForCity(city, heat);
+            console.log(heat);
         });
 	    updateHeatMap();
     });
