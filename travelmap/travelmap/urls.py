@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from tastypie.api import Api
 from cities.api import CityResource, AirportResource, HotelResource, FlightResource
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic.simple import redirect_to
 
 v1_api = Api(api_name='v1')
 v1_api.register(CityResource())
@@ -14,7 +15,8 @@ v1_api.register(FlightResource())
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^', 'cities.views.index'),
+    url(r'^$', redirect_to, {'url':'/static/index.html'}),
+
     url(r'^api/', include(v1_api.urls)),
     # Examples:
     # url(r'^$', 'travelmap.views.home', name='home'),
