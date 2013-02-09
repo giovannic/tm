@@ -26,13 +26,9 @@ body {
 }
 
 #option-carousel .carousel-inner .item {
-	height: 150px;
+	height: 200px;
 	width: 80%;
 	margin: 0 auto;
-}
-
-li.option-catagory {
-	width: 200px;
 }
 
 #carousel-navbar {
@@ -40,8 +36,8 @@ li.option-catagory {
 	padding-top: 20px;
 }
 
-.user-options {
-	padding: 10px;
+.carousel-inner {
+	display: inline;
 }
 
 .user-options h2 {
@@ -49,12 +45,8 @@ li.option-catagory {
 }
 
 .navbar .mode-select {
-	width: 224px;
-	margin: 0 auto;
-}
-
-.navbar .mode-select ul {
-	margin:0 auto;
+	display: inline;
+	width: 115px;
 }
 
 .navbar .container {
