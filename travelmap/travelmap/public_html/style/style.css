@@ -1,7 +1,7 @@
 body {
 	padding-top: 40px;
 	padding-bottom: 40px; /* for the fixed nav bar*/
-	background-image: url('../images/background-pngs/dark5.png');
+	background-image: url('../img/background-pngs/dark5.png');
 }
 
 .navbar .brand {
