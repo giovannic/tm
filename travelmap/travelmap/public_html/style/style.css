@@ -62,12 +62,26 @@ button.update {
 	width: 300px;
 	height: 10px;
 }
-/*
+
 .ui-slider-handle {
-	width: 15px !important;
-	height: 20px !important;
+	-webkit-transform: rotate(45deg);
+	top: -13px !important;
 }
-*/
+
+.ui-slider-handle:hover {
+	cursor: pointer;
+}
+
+.ui-slider-handle.ui-state-active {
+	background-color: #006dcc !important;
+}
+
+p.amount {
+	margin: 20px;
+	line-height: 25px;
+
+}
+
 .navbar .mode-select {
 	display: inline;
 	width: 115px;
