@@ -1,7 +1,7 @@
 body {
+	padding-top: 40px;
 	padding-bottom: 40px; /* for the fixed nav bar*/
 	background-image: url('../images/background-pngs/dark5.png');
-	color: white;
 }
 
 .navbar .brand {
@@ -20,10 +20,6 @@ body {
 }
 
 #option-carousel {
-	/*hacky styles - to be removed* /
-	background-color: yellow;
-	/* end hacky styles*/
-
 	padding: 20px;
 	margin-top: 20px;
 }
@@ -32,16 +28,6 @@ body {
 	height: 150px;
 	width: 80%;
 	margin: 0 auto;
-}
-
-#type {
-	background-color: red;
-}
-#flights {
-	background-color: blue;
-}
-#to-do {
-	background-color: green;
 }
 
 li.option-catagory {
