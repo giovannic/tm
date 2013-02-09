@@ -41,9 +41,9 @@
 		<div id="option-carousel" class="hero-unit carousel slide ">
 			<!-- Carousel items -->
 			<div class="carousel-inner">
-				<div id="type" class="active item well"></div>
-				<div id="flights" class="item well"></div>
-				<div id="to-do" class="item well"></div>
+				<div id="type" index=0 class="active item well"></div>
+				<div id="flights" index=1 class="item well"></div>
+				<div id="to-do" index=2 class="item well"></div>
 			</div>
 
 			<!-- Carousel nav -->
@@ -54,9 +54,9 @@
 		<div id="navbar" class="navbar  navbar-fixed-bottom">
 			<div class="navbar-inner mode-select">
 				<ul class="nav">
-					<li class="option-select active"><a href="#">Type</a></li>
-					<li class="option-select"><a href="#">Flights</a></li>
-					<li class="option-select"><a href="#">To Do</a></li>
+					<li id="select-one" index=0 class="option-select active"><a href="#">Type</a></li>
+					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
+					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
 				</ul>
 			</div><!-- .navbar-inner -->
 		</div><!-- #navbar -->
