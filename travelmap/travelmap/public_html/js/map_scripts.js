@@ -1,8 +1,43 @@
+// Global Map
 var map;
+
+// Global XML Requests
 var xmlreq;
 var xmlreq2;
+
+// Global array of markers
 var markers;
+
+// Info on each city for heat map
 var cities;
+var scores;
+var locations;
+
+// Global heatmap layer
+var heatmap;
+
+function setScoreForCity(city, score) {
+	var i = 0;
+	for (i = 0; i < cities.length; i ++) {
+		if (cities[i] == city) break;
+	}
+	scores[i] = score;
+
+	updateHeatMap();
+}
+
+function updateHeatMap() {
+	var heatmapData = new Array();
+	for (var i = 0; i < cities.length; i++) {
+		var cityLocation = locations[i];
+		var longitude = cityLocation.lng();
+		var latitude = cityLocation.lat();
+		makeCircumference(longitude, latitude, scores[i], heatmapData);
+	}
+	log(heatmapData);
+	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData });
+	heatmap.setMap(map);
+}
 
 function log(msg) {
     setTimeout(function() {
@@ -11,6 +46,11 @@ function log(msg) {
 }
 
 function initialiseMap() {
+
+	//Initiallisation of global variables
+	markers = new Array();
+	scores = new Array();
+	locations = new Array();
 
 	var point = new google.maps.LatLng(52.536273,13.623047);
 
@@ -22,7 +62,6 @@ function initialiseMap() {
 	};
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
-	markers = new Array();
 
 	xmlreq = new XMLHttpRequest();
 	var fileLocation = getBaseURL() + "resources/city_list.txt";
@@ -37,8 +76,9 @@ function recieveCities() {
 		if (xmlreq.status == 200) {  // Makes sure it's found the file.
 
 			var allText = xmlreq.responseText;
+			log(allText);
 			cities = xmlreq.responseText.split("\n"); // Will separate each line into an array
-
+			//cities.pop();
 			xmlreq2 = new XMLHttpRequest();
 			fileLocation = getBaseURL() + "resources/city_longlats.txt";
 			xmlreq2.open("GET", fileLocation, true);
@@ -57,17 +97,17 @@ function recieveLLs() {
 			var heatmapData = new Array();
 			for (var i = 0; i < LLs.length - 1; i++) {
 				var LLArray = LLs[i].split(",");
-				var latitude = LLArray[0];
-				var longitude = LLArray[1];
+				var latitude = parseFloat(LLArray[0]);
+				var longitude = parseFloat(LLArray[1]);
 
-				//addMarker(longitude, latitude, cities[i]);
+				scores.push(i);
+				var thing = new google.maps.LatLng(latitude,longitude);
+				locations.push(thing);
 				
-				//var mylatlng = {location : new google.maps.LatLng(latitude, longitude), weight : i};
-				//heatmapData.push(mylatlng);
-				makeCircumference(longitude, latitude, 0.05*i, heatmapData);
+				//addMarker(longitude, latitude, cities[i]);
+
 			}
-			var heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData });
-			heatmap.setMap(map);
+			updateHeatMap();
 		}
 	}
 }
@@ -77,8 +117,8 @@ function makeCircumference(cx,cy, rTemp, array) {
 	while ( r < rTemp ) {
 		for (var i = 0; i < 40; i++) {
 			var a = (Math.PI / 20) * i;
-			var x = parseFloat(cx) + r * Math.cos(a);
-			var y = parseFloat(cy) + r * Math.sin(a);
+			var x = cx + r * Math.cos(a);
+			var y = cy + r * Math.sin(a);
 			var latlong = new google.maps.LatLng(y, x);
 			array.push(latlong);
 		}
