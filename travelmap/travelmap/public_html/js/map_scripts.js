@@ -26,7 +26,7 @@ function setScoreForCity(city, score) {
 	updateHeatMap();
 }
 
-function updateHeatMap() {
+function updateHeatMapForZoomLevel(zoom) {
 	var heatmapData = new Array();
 	for (var i = 0; i < cities.length; i++) {
 		var cityLocation = locations[i];
@@ -34,9 +34,12 @@ function updateHeatMap() {
 		var latitude = cityLocation.lat();
 		makeCircumference(longitude, latitude, 0.05*scores[i], heatmapData);
 	}
-	log(heatmapData);
 	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData });
 	heatmap.setMap(map);
+}
+
+function updateHeatMap() {
+	updateHeatMapForZoomLevel(map.getZoom());
 }
 
 function log(msg) {
@@ -76,7 +79,6 @@ function recieveCities() {
 		if (xmlreq.status == 200) {  // Makes sure it's found the file.
 
 			var allText = xmlreq.responseText;
-			log(allText);
 			cities = xmlreq.responseText.split("\n"); // Will separate each line into an array
 			cities.pop();
 			xmlreq2 = new XMLHttpRequest();

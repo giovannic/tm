@@ -26,7 +26,7 @@ function setScoreForCity(city, score) {
 	updateHeatMap();
 }
 
-function updateHeatMap() {
+function updateHeatMapForZoomLevel(zoom) {
 	var heatmapData = new Array();
 	for (var i = 0; i < cities.length; i++) {
 		var cityLocation = locations[i];
@@ -37,6 +37,10 @@ function updateHeatMap() {
 	log(heatmapData);
 	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData });
 	heatmap.setMap(map);
+}
+
+function updateHeatMap() {
+	updateHeatMapForZoomLevel(map.getZoom());
 }
 
 function log(msg) {
