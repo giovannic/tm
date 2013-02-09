@@ -3,6 +3,7 @@ from tastypie.api import Api
 from cities.api import CityResource, AirportResource, HotelResource, FlightResource
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import redirect_to
+from django.shortcuts import redirect
 
 v1_api = Api(api_name='v1')
 v1_api.register(CityResource())
@@ -14,8 +15,14 @@ v1_api.register(FlightResource())
 # from django.contrib import admin
 # admin.autodiscover()
 
+
+#hack
+def resource_view(request, name):
+    return redirect('/static/resources/' + name)
+
 urlpatterns = patterns('',
     url(r'^$', redirect_to, {'url':'/static/index.html'}),
+    url(r'^resources/(?P<name>\w+\.\w+)$', resource_view),
 
     url(r'^api/', include(v1_api.urls)),
     # Examples:
