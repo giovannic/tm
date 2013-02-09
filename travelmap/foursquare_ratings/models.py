@@ -32,7 +32,8 @@ class all_city_scores(models.Model):
 
 	def get_city_scores(self, cities, categories):
 		self.cities = cities
-		self.all_scores = {}
+		if not self.all_scores:
+			self.all_scores = {}
 		client = foursquare.Foursquare(client_id= settings.FSQ_CLIENT_ID, client_secret = settings.FSQ_CLIENT_SECRET)
 		params ={'near':'city', 'limit':50, 'intent': 'browse', 'categoryId' : '','radius': 100000}
 		res = {}
