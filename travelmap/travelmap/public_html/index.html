@@ -31,7 +31,7 @@
 				<ul class="nav">
 					<a class="brand" href="#">This will be awesome</a>
 					<li class="divider-vertical"></li>
-					<li id="select-one" index=0 class="option-select active"><a href="#">Type</a></li>
+					<li id="select-one" index=0 class="option-select active"><a href="#">Accomodation</a></li>
 					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
 					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
 				</ul><!-- .nav -->
@@ -46,28 +46,23 @@
 		<div id="option-carousel" class="hero-unit carousel slide ">
 			<!-- Carousel items -->
 			<div class="carousel-inner">
-				<div id="type" index=0 class="active item user-options well">
-					<h2>Type</h2>
+				<div id="accom" index=0 class="active item user-options well">
+					<h2>Accomodation</h2>
 					<div class="container all-prefs-container">
-						<p>Something about type</p>
+						<p>Something about accomodation</p>
 						<button class="btn btn-primary update">Update your trip map</button>
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#0tab1" data-toggle="tab">T1</a></li>
-							<li><a href="#0tab2" data-toggle="tab">T2</a></li>
-							<li><a href="#0tab3" data-toggle="tab">T3</a></li>
+							<li class="active"><a href="#0tab1" data-toggle="tab">Hotel Star Rating</a></li>
+							<li><a href="#0tab2" data-toggle="tab">Room Rate</a></li>
 						</ul>
-						<div id="type-prefs" class="tab-content" pref-cat=flight>
-								<div class="tab-pane active" id="1tab1">
-									<div id="t1-slider" class="slider standard-slider" pref=t1 ></div>
-									<p class="amount" data=50 >50%</p>
+						<div id="accom-prefs" class="tab-content" pref-cat=flight>
+								<div class="tab-pane active" id="0tab1">
+									<div id="hotel-rating-slider" class="slider standard-slider" pref=t1 ></div>
+									<p class="amount" data=50 >Min: 2 &#42;<br/>Max: 4 &#42;</p>
 								</div>
-								<div class="tab-pane" id="1tab2">
-									<div id="t2-slider" class="slider standard-slider" pref=t2 ></div>
-									<p class="amount" data=50  >50%</p>
-								</div>
-								<div class="tab-pane" id="1tab3">
-									<div id="t3-slider" class="slider standard-slider" pref=t3 ></div>
-									<p class="amount" data=50 >50%</p>
+								<div class="tab-pane" id="0tab2">
+									<div id="room-rate-slider" class="slider range-slider" pref=price-range ></div>
+									<p class="amount" data=50 >Min: &#163;50<br/>Max: &#163;200</p>
 								</div>
 							</div><!-- .tab-content -->
 					</div><!-- .all-prefs-container -->
