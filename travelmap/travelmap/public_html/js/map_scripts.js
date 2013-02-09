@@ -40,12 +40,12 @@ function update(mult) {
 
 function updateHeatMapForZoomLevel(zoom) {
 	var heatmapData = new Array();
-	var temp = Math.pow(0.5,zoom);
+	var scale = Math.pow(0.5,zoom);
 	for (var i = 0; i < cities.length; i++) {
 		var cityLocation = locations[i];
 		var longitude = cityLocation.lng();
 		var latitude = cityLocation.lat();
-		makeCircumference(longitude, latitude, temp*scores[i], heatmapData);
+		makeCircumference(longitude, latitude, scale*scores[i], heatmapData, zoom);
 	}
     if (heatmap) {
         heatmap.setMap(null);
@@ -76,7 +76,7 @@ function initialiseMap() {
 	var mapOptions = {
 		center: point,
 		zoom: 4,
-    		disableDefaultUI: true,
+    	//disableDefaultUI: true,
 		mapTypeId: google.maps.MapTypeId.HYBRID
 	};
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -129,17 +129,20 @@ function recieveLLs() {
 	}
 }
 
-function makeCircumference(cx,cy, rTemp, array) {
-	var r = 0.05;
+function makeCircumference(cx,cy, rTemp, array, zoom) {
+	var noOfPoints = 40;
+	var increment = Math.pow(0.5,zoom);
+	var r = increment;
+	var rTemp = rTemp;
 	while ( r < rTemp ) {
-		for (var i = 0; i < 40; i++) {
-			var a = (Math.PI / 20) * i;
+		for (var i = 0; i < noOfPoints; i++) {
+			var a = (2*Math.PI / noOfPoints) * i;
 			var x = cx + r * Math.cos(a);
 			var y = cy + r * Math.sin(a);
 			var latlong = new google.maps.LatLng(y, x);
 			array.push(latlong);
 		}
-		r = r + 0.05
+		r = r + increment;
 	}
 }
 
