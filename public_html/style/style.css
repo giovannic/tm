@@ -16,3 +16,12 @@ body {
 li.option-catagory {
 	width: 200px;
 }
+
+footer.navbar .container {
+	height:50px;
+	padding-top:10px;
+}
+
+footer.navbar .brand {
+	font-size: 2.0em;
+}

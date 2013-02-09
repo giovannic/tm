@@ -19,51 +19,62 @@
 </head>
 <body onload="initialiseMap()">
 	<div id="primary" class="container">
+
+		<div id="navbar" class="navbar  navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+				<ul class="nav" role="navigation">
+					<li class="dropdown">
+						<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://google.com">A</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#anotherAction">B</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">C</a></li>
+							<li role="presentation" class="divider"></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">D</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Dropdown 2 <b class="caret"></b></a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">A</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">B</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">C</a></li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">D</a></li>
+							</ul>
+					</li>
+					</ul>
+					<ul class="nav">
+						<li id="fat-menu" class="dropdown">
+						<a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Dropdown 3 <b class="caret"></b></a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">A</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">B</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">C</a></li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">D</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div><!-- .container -->
+			</div><!-- .navbar-inner -->
+		</div><!-- #navbar -->
+		
 		<div id="app">
 			<div id="map_canvas" style="height:540px"></div>
 		</div><!-- #app -->
-		
-		<div class="navbar navbar-fixed-top">
-			<div class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Type of Trip</a>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						<li class="A"></li>
-						<li class="B"></li>
-						<li class="C"></li>
-					</ul>
-			</div>
-			<div class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Destination</a>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						<li class="A"></li>
-						<li class="B"></li>
-						<li class="C"></li>
-					</ul>
-			</div>
-			<div class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">To Do</a>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						<li class="A"></li>
-						<li class="B"></li>
-						<li class="C"></li>
-					</ul>
-			</div>
-			
-		</div><!-- .navbar -->
 
-
-
-		<div class="navbar navbar-fixed-bottom">
+		<footer class="navbar navbar-fixed-bottom">
 			<div class="navbar-inner">
-				<ul class="nav">
-					<li class="option-catagory"><a href="#">Type Of Trip</a></li>
-					<li class="divider-vertical"></li>
-					<li class="option-catagory"><a href="#">Destination</a></li>
-					<li class="divider-vertical"></li>
-					<li class="option-catagory"><a href="#">Things To Do</a></li>
-    			</ul><!-- .nav -->
-  			</div><!-- .navbar-inner -->
-		</div><!-- .navbar -->
+				<div class="container">
+					<ul class="nav pull-right">
+						<a class="brand" href="#">This will be awesome</a>
+					</ul><!-- .nav -->
+				</div><!-- .container -->
+			</div><!-- .navbar-inner -->
+		</footer><!-- .navbar -->
+
 	</div><!-- #primary -->
 </body>
 <script type="text.javascript">
