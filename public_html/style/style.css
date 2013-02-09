@@ -1,5 +1,5 @@
 body {
-	padding-top: 40px; /* for the fixed nav bar*/
+	padding-bottom: 40px; /* for the fixed nav bar*/
 	background-image: url('../images/background-pngs/dark5.png');
 	color: white;
 }
