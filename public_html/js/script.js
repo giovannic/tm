@@ -1,3 +1,4 @@
 $(document).ready(function() {
-	//code
+	$('.dropdown-toggle').dropdown();
+	$('.carousel').carousel();
 })
