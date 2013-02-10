@@ -7,3 +7,6 @@
 
 #env
 .env*
+
+#db
+travelmap/travelmap/travelmap.db
