@@ -10,7 +10,7 @@ var markers;
 
 // Info on each city for heat map
 var cities;
-var city_locations = {}
+var hotels;
 
 // Global heatmap layer
 var heatmap;
@@ -42,7 +42,7 @@ function setScoreForCity(city, score) {
 
 function get_compatibilityScore(weights_object){
 
-	$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json&&', function(stuff){
+	$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function(stuff){
 
 		city_objects = stuff.objects
 		console.log('city_objects', city_objects)
@@ -102,11 +102,20 @@ function updateHeatMapForZoomLevel(zoom) {
 		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : Math.max(0.01,value.score) };
 		heatmapData.push(latlong);
 	});
+
+	for (var i = 0; i < hotels.length; i++) {
+		heatmapData.push(hotels[i]);
+	}
+
     if (heatmap) {
         heatmap.setMap(null);
         delete heatmap;
     }
-	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData, dissipating : false, radius : 1 });
+	var radius = 0;
+	if (zoom < 4) radius = 1.8;
+	else if (zoom < 7) radius = 1;
+	else radius = 0.5;
+	heatmap = new google.maps.visualization.HeatmapLayer({ data: heatmapData, dissipating : false, radius : 1.8 });
 	heatmap.setMap(map);
 }
 
@@ -149,6 +158,13 @@ function recieveCities(data, status, jqXHR) {
 		addMarker(value);
 	});
 	updateHeatMap();
+}
+
+function addHotelMarker() {
+	var latitude = 29384;
+	var longitude = 1923476;
+	var latlong = new google.maps.LatLng(latitude,lonitude);
+	hotels.push(latlong);
 }
 
 function addMarker(city) {
