@@ -1,8 +1,9 @@
 #swap
 *.swp
+*.swo
 
 #compiled
 *.pyc
 
 #env
-.env
+.env*

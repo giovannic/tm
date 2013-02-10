@@ -1,4 +1,5 @@
 import requests
+from cities.models import City, Flight
 
 def get_prices(leaving):
     url = 'http://www.skyscanner.net/flights-from/uk/130223/130302/airfares-%s-in-february-2013-and-march-2013.html' % leaving
@@ -27,6 +28,15 @@ def get_prices(leaving):
             newplaces[place] = price
     return places
 
+def load_flights():
+  fs = get_prices('united-kingdom')
+  for place, price in fs.items():
+    country=City.objects.filter(country=place)
+    if len(country) > 0 and price != 'null':
+      add = Flight(country=country[0],
+	  cost=price,
+	  distance=0)
+      add.save()
 
 if __name__ == '__main__':
     for place, price in get_prices('united-kingdom').items():
