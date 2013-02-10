@@ -88,18 +88,6 @@ function log(msg) {
     }, 0);
 }
 
-function get_CityLocations(){
-	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', function(stuff){
-		var data = stuff.objects
-		$.each(data, function(index, value) {
-  			city_locations[value.name] = value
-			});
-	})
-}
-
-
-
-
 function initialiseMap() {
 	//Initiallisation of global variables
 	markers = new Array();
@@ -126,6 +114,7 @@ function initialiseMap() {
 
 }
 
+/*
 function paint_CityLocations(){
 	$.each(city_locations, function(index, value){
 		console.log(index, value.latitude, value.longitude)
@@ -135,14 +124,24 @@ function paint_CityLocations(){
 	});
 }
 
+function get_CityLocations(){
+	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', function(stuff){
+		var data = stuff.objects
+		$.each(data, function(index, value) {
+  			city_locations[value.name] = value
+			});
+	})
+}
+*/
+
 function recieveCities(data, status, jqXHR) {
 	cities = data.objects;
 	$.each(cities, function (key,value) {
-			var latitude = value.latitude;
-			var longitude = value.longitude;
-			value.score = Math.random();
-			addMarker(longitude, latitude, value.city);
-		});
+		var latitude = value.latitude;
+		var longitude = value.longitude;
+		value.score = Math.random();
+		//addMarker(longitude, latitude, value.city);
+	});
 	updateHeatMap();
 }
 
@@ -153,6 +152,8 @@ function addMarker(longitude, latitude, city) {
 		position: longandlat,
 		title: city
 	});
+
+	//GEvent.addListener(marker, 'click', cityCompatibilities(city));
 	markers.push(marker);
 }
 
