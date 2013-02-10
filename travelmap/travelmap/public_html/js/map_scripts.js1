@@ -1,0 +1,8 @@
+function get_compatibilityScore(weights_object){
+	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json&&name='+'Kiev', function(stuff){
+		var data = stuff.objects
+		$.each(data, function(index, value) {
+  			console.log(index, value)
+			});
+	})
+}
