@@ -1,0 +1,278 @@
+Validating models...
+
+0 errors found
+Django version 1.4.3, using settings 'travelmap.settings'
+Development server is running at http://ec2-54-228-52-161.eu-west-1.compute.amazonaws.com:80/
+Quit the server with CONTROL-C.
+[09/Feb/2013 16:40:19] "GET /static/index.html HTTP/1.1" 200 6511
+[09/Feb/2013 16:40:19] "GET /static/style/jquery-ui.css HTTP/1.1" 200 32269
+[09/Feb/2013 16:40:19] "GET /static/style/style.css HTTP/1.1" 200 1135
+[09/Feb/2013 16:40:19] "GET /static/js/bootstrap.js HTTP/1.1" 200 58528
+[09/Feb/2013 16:40:19] "GET /static/js/location.js HTTP/1.1" 200 990
+[09/Feb/2013 16:40:19] "GET /static/js/jquery.js HTTP/1.1" 200 93068
+[09/Feb/2013 16:40:19] "GET /static/js/script.js HTTP/1.1" 200 3381
+[09/Feb/2013 16:40:19] "GET /static/style/bootstrap.css HTTP/1.1" 200 143430
+[09/Feb/2013 16:40:19] "GET /static/js/map_scripts.js HTTP/1.1" 200 4946
+[09/Feb/2013 16:40:20] "GET /static/js/jquery-ui.js HTTP/1.1" 200 227259
+[09/Feb/2013 16:40:20] "GET /static/img/background-pngs/dark5.png HTTP/1.1" 404 1726
+[09/Feb/2013 16:40:20] "GET /resources/city_list.txt HTTP/1.1" 302 0
+[09/Feb/2013 16:40:20] "GET /static/img/glyphicons-halflings.png HTTP/1.1" 404 1723
+[09/Feb/2013 16:40:20] "GET /static/style/images/ui-bg_flat_75_ffffff_40x100.png HTTP/1.1" 404 1771
+[09/Feb/2013 16:40:20] "GET /static/style/images/ui-bg_highlight-soft_75_cccccc_1x100.png HTTP/1.1" 404 1798
+[09/Feb/2013 16:40:20] "GET /static/style/images/ui-bg_glass_75_e6e6e6_1x400.png HTTP/1.1" 404 1771
+[09/Feb/2013 16:40:20] "GET /static/resources/city_list.txt HTTP/1.1" 200 445
+[09/Feb/2013 16:40:20] "GET /resources/city_longlats.txt HTTP/1.1" 302 0
+[09/Feb/2013 16:40:20] "GET /static/resources/city_longlats.txt HTTP/1.1" 200 1515
+[09/Feb/2013 17:26:33] "GET /static/index.html HTTP/1.1" 200 6511
+[09/Feb/2013 17:26:33] "GET /static/style/jquery-ui.css HTTP/1.1" 200 32269
+[09/Feb/2013 17:26:33] "GET /static/style/style.css HTTP/1.1" 200 1135
+[09/Feb/2013 17:26:35] "GET /static/js/bootstrap.js HTTP/1.1" 200 58528
+[09/Feb/2013 17:26:40] "GET /static/js/location.js HTTP/1.1" 200 990
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 86, in run
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 86, in run
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 86, in run
+[09/Feb/2013 17:26:41] "GET /static/index.html HTTP/1.1" 200 6511
+    self.finish_response()
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 127, in finish_response
+    self.write(data)
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 215, in write
+    self._write(data)
+  File "/usr/lib/python2.7/socket.py", line 324, in write
+    self.flush()
+  File "/usr/lib/python2.7/socket.py", line 303, in flush
+    self._sock.sendall(view[write_offset:write_offset+buffer_size])
+error: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/SocketServer.py", line 582, in process_request_thread
+    self.finish_response()
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 127, in finish_response
+    self.write(data)
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 215, in write
+    self._write(data)
+  File "/usr/lib/python2.7/socket.py", line 324, in write
+    self.flush()
+  File "/usr/lib/python2.7/socket.py", line 303, in flush
+    self._sock.sendall(view[write_offset:write_offset+buffer_size])
+error: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/SocketServer.py", line 582, in process_request_thread
+    self.finish_response()
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 127, in finish_response
+    self.write(data)
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 215, in write
+    self._write(data)
+  File "/usr/lib/python2.7/socket.py", line 324, in write
+    self.flush()
+  File "/usr/lib/python2.7/socket.py", line 303, in flush
+    self._sock.sendall(view[write_offset:write_offset+buffer_size])
+error: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/SocketServer.py", line 582, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.7/SocketServer.py", line 323, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/servers/basehttp.py", line 139, in __init__
+    super(WSGIRequestHandler, self).__init__(*args, **kwargs)
+  File "/usr/lib/python2.7/SocketServer.py", line 640, in __init__
+    self.finish()
+  File "/usr/lib/python2.7/SocketServer.py", line 693, in finish
+    self.wfile.flush()
+  File "/usr/lib/python2.7/socket.py", line 303, in flush
+    self._sock.sendall(view[write_offset:write_offset+buffer_size])
+error: [Errno 32] Broken pipe
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.7/SocketServer.py", line 323, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/servers/basehttp.py", line 139, in __init__
+    super(WSGIRequestHandler, self).__init__(*args, **kwargs)
+  File "/usr/lib/python2.7/SocketServer.py", line 640, in __init__
+    self.finish()
+  File "/usr/lib/python2.7/SocketServer.py", line 693, in finish
+    self.wfile.flush()
+  File "/usr/lib/python2.7/socket.py", line 303, in flush
+    self._sock.sendall(view[write_offset:write_offset+buffer_size])
+error: [Errno 32] Broken pipe
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.7/SocketServer.py", line 323, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/servers/basehttp.py", line 139, in __init__
+    super(WSGIRequestHandler, self).__init__(*args, **kwargs)
+  File "/usr/lib/python2.7/SocketServer.py", line 640, in __init__
+    self.finish()
+  File "/usr/lib/python2.7/SocketServer.py", line 693, in finish
+    self.wfile.flush()
+  File "/usr/lib/python2.7/socket.py", line 303, in flush
+    self._sock.sendall(view[write_offset:write_offset+buffer_size])
+error: [Errno 32] Broken pipe
+[09/Feb/2013 17:26:43] "GET /static/style/jquery-ui.css HTTP/1.1" 200 32269
+[09/Feb/2013 17:26:45] "GET /static/js/bootstrap.js HTTP/1.1" 200 58528
+[09/Feb/2013 17:26:45] "GET /static/js/location.js HTTP/1.1" 200 990
+[09/Feb/2013 17:26:49] "GET /static/style/bootstrap.css HTTP/1.1" 200 143430
+[09/Feb/2013 17:26:49] "GET /static/js/script.js HTTP/1.1" 200 3381
+[09/Feb/2013 17:26:50] "GET /static/js/map_scripts.js HTTP/1.1" 200 4946
+[09/Feb/2013 17:26:50] "GET /static/js/jquery.js HTTP/1.1" 200 93068
+[09/Feb/2013 17:26:54] "GET /static/style/style.css HTTP/1.1" 200 1135
+[09/Feb/2013 17:26:55] "GET /static/js/jquery-ui.js HTTP/1.1" 200 227259
+[09/Feb/2013 17:27:00] "GET /resources/city_list.txt HTTP/1.1" 302 0
+[09/Feb/2013 17:27:00] "GET /static/img/background-pngs/dark5.png HTTP/1.1" 404 1726
+[09/Feb/2013 17:27:00] "GET /static/img/glyphicons-halflings.png HTTP/1.1" 404 1723
+[09/Feb/2013 17:27:01] "GET /static/style/images/ui-bg_flat_75_ffffff_40x100.png HTTP/1.1" 404 1771
+[09/Feb/2013 17:27:01] "GET /static/style/images/ui-bg_highlight-soft_75_cccccc_1x100.png HTTP/1.1" 404 1798
+[09/Feb/2013 17:27:01] "GET /static/style/images/ui-bg_glass_75_e6e6e6_1x400.png HTTP/1.1" 404 1771
+[09/Feb/2013 17:27:04] "GET /robots.txt HTTP/1.0" 404 2434
+[09/Feb/2013 17:27:04] "GET /static/index.html HTTP/1.0" 200 6511
+[09/Feb/2013 17:27:04] "GET /static/js/jquery.js HTTP/1.0" 200 93068
+[09/Feb/2013 17:27:04] "GET /static/js/jquery-ui.js HTTP/1.0" 200 227259
+[09/Feb/2013 17:27:05] "GET /static/js/location.js HTTP/1.0" 200 990
+[09/Feb/2013 17:27:05] "GET /static/js/script.js HTTP/1.0" 200 3381
+[09/Feb/2013 17:27:05] "GET /static/js/bootstrap.js HTTP/1.0" 200 58528
+[09/Feb/2013 17:27:05] "GET /static/js/map_scripts.js HTTP/1.0" 200 4946
+[09/Feb/2013 17:27:05] "GET /robots.txt HTTP/1.0" 404 2434
+[09/Feb/2013 17:27:05] "GET /static/js/bootstrap.js HTTP/1.0" 200 58528
+[09/Feb/2013 17:27:06] "GET /static/resources/city_list.txt HTTP/1.1" 200 445
+[09/Feb/2013 17:27:12] "GET /static/js/location.js HTTP/1.0" 200 990
+[09/Feb/2013 17:27:14] "GET /resources/city_longlats.txt HTTP/1.1" 302 0
+[09/Feb/2013 17:27:18] "GET /static/resources/city_longlats.txt HTTP/1.1" 200 1515
+[09/Feb/2013 17:27:20] "GET /robots.txt HTTP/1.0" 404 2434
+[09/Feb/2013 17:27:20] "GET /static/js/script.js HTTP/1.0" 200 3381
+[09/Feb/2013 17:27:20] "GET /robots.txt HTTP/1.0" 404 2434
+[09/Feb/2013 17:27:20] "GET /static/js/map_scripts.js HTTP/1.0" 200 4946
+[09/Feb/2013 17:27:41] "GET / HTTP/1.1" 301 0
+[09/Feb/2013 17:27:41] "GET /static/index.html HTTP/1.1" 200 6511
+[09/Feb/2013 17:27:41] "GET /static/style/style.css HTTP/1.1" 200 1135
+[09/Feb/2013 17:27:41] "GET /static/style/jquery-ui.css HTTP/1.1" 200 32269
+[09/Feb/2013 17:27:41] "GET /static/js/bootstrap.js HTTP/1.1" 200 58528
+[09/Feb/2013 17:27:42] "GET /static/js/jquery.js HTTP/1.1" 200 93068
+[09/Feb/2013 17:27:42] "GET /static/js/location.js HTTP/1.1" 200 990
+[09/Feb/2013 17:27:42] "GET /static/js/script.js HTTP/1.1" 200 3381
+[09/Feb/2013 17:27:42] "GET /static/style/bootstrap.css HTTP/1.1" 200 143430
+[09/Feb/2013 17:27:42] "GET /static/js/map_scripts.js HTTP/1.1" 200 4946
+[09/Feb/2013 17:27:42] "GET /static/js/jquery-ui.js HTTP/1.1" 200 227259
+[09/Feb/2013 17:27:43] "GET /static/img/background-pngs/dark5.png HTTP/1.1" 404 1726
+[09/Feb/2013 17:27:45] "GET /resources/city_list.txt HTTP/1.1" 302 0
+[09/Feb/2013 17:27:45] "GET /static/img/glyphicons-halflings.png HTTP/1.1" 404 1723
+[09/Feb/2013 17:27:45] "GET /static/style/images/ui-bg_flat_75_ffffff_40x100.png HTTP/1.1" 404 1771
+[09/Feb/2013 17:27:45] "GET /static/style/images/ui-bg_highlight-soft_75_cccccc_1x100.png HTTP/1.1" 404 1798
+[09/Feb/2013 17:27:45] "GET /static/style/images/ui-bg_glass_75_e6e6e6_1x400.png HTTP/1.1" 404 1771
+[09/Feb/2013 17:27:45] "GET /static/resources/city_list.txt HTTP/1.1" 200 445
+[09/Feb/2013 17:27:46] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 2500
+[09/Feb/2013 17:27:46] "GET /resources/city_longlats.txt HTTP/1.1" 302 0
+[09/Feb/2013 17:27:47] "GET /apple-touch-icon.png HTTP/1.1" 404 2464
+[09/Feb/2013 17:27:47] "GET /static/resources/city_longlats.txt HTTP/1.1" 200 1515
+[09/Feb/2013 17:29:00] "GET /static/index.html HTTP/1.1" 200 6511
+[09/Feb/2013 17:29:00] "GET /static/style/jquery-ui.css HTTP/1.1" 200 32269
+[09/Feb/2013 17:29:01] "GET /static/style/style.css HTTP/1.1" 200 1135
+[09/Feb/2013 17:29:02] "GET /static/js/bootstrap.js HTTP/1.1" 200 58528
+[09/Feb/2013 17:29:03] "GET /static/js/location.js HTTP/1.1" 200 990
+[09/Feb/2013 17:29:03] "GET /static/js/jquery.js HTTP/1.1" 200 93068
+[09/Feb/2013 17:29:03] "GET /static/style/bootstrap.css HTTP/1.1" 200 143430
+[09/Feb/2013 17:29:04] "GET /static/js/map_scripts.js HTTP/1.1" 200 4946
+[09/Feb/2013 17:29:04] "GET /static/js/script.js HTTP/1.1" 200 3381
+[09/Feb/2013 17:29:05] "GET /static/js/jquery-ui.js HTTP/1.1" 200 227259
+[09/Feb/2013 17:29:05] "GET /resources/city_list.txt HTTP/1.1" 302 0
+[09/Feb/2013 17:29:05] "GET /static/img/background-pngs/dark5.png HTTP/1.1" 404 1726
+[09/Feb/2013 17:29:05] "GET /static/img/glyphicons-halflings.png HTTP/1.1" 404 1723
+[09/Feb/2013 17:29:05] "GET /static/style/images/ui-bg_flat_75_ffffff_40x100.png HTTP/1.1" 404 1771
+[09/Feb/2013 17:29:05] "GET /static/style/images/ui-bg_highlight-soft_75_cccccc_1x100.png HTTP/1.1" 404 1798
+[09/Feb/2013 17:29:05] "GET /static/style/images/ui-bg_glass_75_e6e6e6_1x400.png HTTP/1.1" 404 1771
+[09/Feb/2013 17:29:06] "GET /static/resources/city_list.txt HTTP/1.1" 200 445
+[09/Feb/2013 17:29:07] "GET /resources/city_longlats.txt HTTP/1.1" 302 0
+[09/Feb/2013 17:29:07] "GET /static/resources/city_longlats.txt HTTP/1.1" 200 1515
+[09/Feb/2013 19:11:09] "GET / HTTP/1.1" 301 0
+[09/Feb/2013 19:11:09] "GET /static/index.html HTTP/1.1" 200 6511
+[09/Feb/2013 19:11:09] "GET /static/style/jquery-ui.css HTTP/1.1" 200 32269
+[09/Feb/2013 19:11:09] "GET /static/style/style.css HTTP/1.1" 200 1135
+[09/Feb/2013 19:11:10] "GET /static/style/bootstrap.css HTTP/1.1" 200 143430
+[09/Feb/2013 19:11:10] "GET /static/js/location.js HTTP/1.1" 200 990
+[09/Feb/2013 19:11:10] "GET /static/js/bootstrap.js HTTP/1.1" 200 58528
+[09/Feb/2013 19:11:10] "GET /static/js/script.js HTTP/1.1" 200 3381
+[09/Feb/2013 19:11:10] "GET /static/js/map_scripts.js HTTP/1.1" 200 4946
+[09/Feb/2013 19:11:10] "GET /static/js/jquery.js HTTP/1.1" 200 93068
+[09/Feb/2013 19:11:10] "GET /static/js/jquery-ui.js HTTP/1.1" 200 227259
+[09/Feb/2013 19:11:12] "GET /static/img/background-pngs/dark5.png HTTP/1.1" 404 1726
+[09/Feb/2013 19:11:12] "GET /static/img/glyphicons-halflings.png HTTP/1.1" 404 1723
+[09/Feb/2013 19:11:12] "GET /resources/city_list.txt HTTP/1.1" 302 0
+[09/Feb/2013 19:11:13] "GET /static/style/images/ui-bg_flat_75_ffffff_40x100.png HTTP/1.1" 404 1771
+[09/Feb/2013 19:11:13] "GET /static/style/images/ui-bg_highlight-soft_75_cccccc_1x100.png HTTP/1.1" 404 1798
+[09/Feb/2013 19:11:13] "GET /static/style/images/ui-bg_glass_75_e6e6e6_1x400.png HTTP/1.1" 404 1771
+[09/Feb/2013 19:11:14] "GET /static/resources/city_list.txt HTTP/1.1" 200 445
+[09/Feb/2013 19:11:15] "GET /resources/city_longlats.txt HTTP/1.1" 302 0
+[09/Feb/2013 19:11:19] "GET /static/resources/city_longlats.txt HTTP/1.1" 200 1515
+[09/Feb/2013 19:11:47] "GET /static/style/images/ui-bg_glass_65_ffffff_1x400.png HTTP/1.1" 404 1771
+[09/Feb/2013 19:11:47] "GET /static/style/images/ui-bg_glass_75_dadada_1x400.png HTTP/1.1" 404 1771
+[09/Feb/2013 19:24:23] "GET /static/index.html HTTP/1.1" 200 6511
+[09/Feb/2013 19:24:23] "GET /static/style/style.css HTTP/1.1" 200 1135
+[09/Feb/2013 19:24:23] "GET /static/js/bootstrap.js HTTP/1.1" 200 58528
+[09/Feb/2013 19:24:23] "GET /static/style/jquery-ui.css HTTP/1.1" 200 32269
+[09/Feb/2013 19:24:23] "GET /static/js/location.js HTTP/1.1" 200 990
+[09/Feb/2013 19:24:23] "GET /static/js/jquery.js HTTP/1.1" 200 93068
+[09/Feb/2013 19:24:23] "GET /static/style/bootstrap.css HTTP/1.1" 200 143430
+[09/Feb/2013 19:24:23] "GET /static/js/script.js HTTP/1.1" 200 3381
+[09/Feb/2013 19:24:23] "GET /static/js/jquery-ui.js HTTP/1.1" 200 227259
+[09/Feb/2013 19:24:23] "GET /static/js/map_scripts.js HTTP/1.1" 200 4946
+[09/Feb/2013 19:24:24] "GET /static/style/images/ui-bg_highlight-soft_75_cccccc_1x100.png HTTP/1.1" 404 1798
+[09/Feb/2013 19:24:24] "GET /static/style/images/ui-bg_glass_75_e6e6e6_1x400.png HTTP/1.1" 404 1771
+[09/Feb/2013 19:24:24] "GET /resources/city_list.txt HTTP/1.1" 302 0
+[09/Feb/2013 19:24:24] "GET /static/img/background-pngs/dark5.png HTTP/1.1" 404 1726
+[09/Feb/2013 19:24:24] "GET /static/style/images/ui-bg_flat_75_ffffff_40x100.png HTTP/1.1" 404 1771
+[09/Feb/2013 19:24:24] "GET /static/img/glyphicons-halflings.png HTTP/1.1" 404 1723
+[09/Feb/2013 19:24:24] "GET /static/resources/city_list.txt HTTP/1.1" 200 445
+[09/Feb/2013 19:24:25] "GET /static/img/background-pngs/dark5.png HTTP/1.1" 404 1726
+[09/Feb/2013 19:24:25] "GET /resources/city_longlats.txt HTTP/1.1" 302 0
+[09/Feb/2013 19:24:25] "GET /static/resources/city_longlats.txt HTTP/1.1" 200 1515
+[09/Feb/2013 19:24:42] "GET / HTTP/1.1" 301 0
+[09/Feb/2013 19:24:42] "GET /static/index.html HTTP/1.1" 200 6511
+[09/Feb/2013 19:24:43] "GET / HTTP/1.1" 301 0
+[09/Feb/2013 19:24:46] "GET /api/v1/cityscore/?format=json HTTP/1.1" 200 14407
+[09/Feb/2013 19:24:47] "GET /static/style/images/ui-bg_glass_75_dadada_1x400.png HTTP/1.1" 404 1771
+[09/Feb/2013 19:24:48] "GET /static/style/images/ui-bg_glass_65_ffffff_1x400.png HTTP/1.1" 404 1771
+[09/Feb/2013 19:24:50] "GET /api/v1/cityscore/?format=json HTTP/1.1" 200 14407
+[09/Feb/2013 19:24:57] "GET /api/v1/cityscore/?format=json HTTP/1.1" 200 14407
+[09/Feb/2013 19:51:08] "HEAD /manager/status HTTP/1.1" 404 0
+[10/Feb/2013 04:47:03] "GET / HTTP/1.1" 301 0
+[10/Feb/2013 04:47:03] "GET /static/index.html HTTP/1.1" 200 6511
+[10/Feb/2013 04:47:03] "GET /static/style/style.css HTTP/1.1" 200 1135
+[10/Feb/2013 04:47:03] "GET /static/js/bootstrap.js HTTP/1.1" 200 58528
+[10/Feb/2013 04:47:03] "GET /static/style/jquery-ui.css HTTP/1.1" 200 32269
+[10/Feb/2013 04:47:03] "GET /static/js/jquery.js HTTP/1.1" 200 93068
+[10/Feb/2013 04:47:03] "GET /static/js/location.js HTTP/1.1" 200 990
+[10/Feb/2013 04:47:03] "GET /static/style/bootstrap.css HTTP/1.1" 200 143430
+[10/Feb/2013 04:47:03] "GET /static/js/map_scripts.js HTTP/1.1" 200 4946
+[10/Feb/2013 04:47:03] "GET /static/js/script.js HTTP/1.1" 200 3381
+[10/Feb/2013 04:47:03] "GET /static/js/jquery-ui.js HTTP/1.1" 200 227259
+[10/Feb/2013 04:47:03] "GET /static/style/images/ui-bg_glass_75_e6e6e6_1x400.png HTTP/1.1" 404 1771
+[10/Feb/2013 04:47:03] "GET /static/style/images/ui-bg_flat_75_ffffff_40x100.png HTTP/1.1" 404 1771
+[10/Feb/2013 04:47:03] "GET /static/img/background-pngs/dark5.png HTTP/1.1" 404 1726
+[10/Feb/2013 04:47:03] "GET /static/img/glyphicons-halflings.png HTTP/1.1" 404 1723
+[10/Feb/2013 04:47:03] "GET /static/style/images/ui-bg_highlight-soft_75_cccccc_1x100.png HTTP/1.1" 404 1798
+[10/Feb/2013 04:47:03] "GET /resources/city_list.txt HTTP/1.1" 302 0
+[10/Feb/2013 04:47:03] "GET /static/resources/city_list.txt HTTP/1.1" 200 445
+[10/Feb/2013 04:47:04] "GET /resources/city_longlats.txt HTTP/1.1" 302 0
+[10/Feb/2013 04:47:04] "GET /static/resources/city_longlats.txt HTTP/1.1" 200 1515
+[10/Feb/2013 04:47:05] "GET /static/img/background-pngs/dark5.png HTTP/1.1" 404 1726
+[10/Feb/2013 04:54:32] "GET /static/style/images/ui-bg_glass_75_dadada_1x400.png HTTP/1.1" 404 1771
+[10/Feb/2013 04:54:33] "GET /static/style/images/ui-bg_glass_65_ffffff_1x400.png HTTP/1.1" 404 1771
+Validating models...
+
+0 errors found
+Django version 1.4.3, using settings 'travelmap.settings'
+Development server is running at http://ec2-54-228-52-161.eu-west-1.compute.amazonaws.com:80/
+Quit the server with CONTROL-C.
+----------------------------------------
+Exception happened during processing of request from ('2.98.241.119', 61671)
+----------------------------------------
+Exception happened during processing of request from ('2.98.241.119', 61674)
+----------------------------------------
+Exception happened during processing of request from ('2.98.241.119', 61673)
+----------------------------------------
+----------------------------------------
+----------------------------------------
+Validating models...
+
+0 errors found
+Django version 1.4.3, using settings 'travelmap.settings'
+Development server is running at http://ec2-54-228-52-161.eu-west-1.compute.amazonaws.com:80/
+Quit the server with CONTROL-C.
