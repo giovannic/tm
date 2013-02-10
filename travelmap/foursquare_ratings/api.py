@@ -26,9 +26,9 @@ class CityLocationResource(ModelResource):
 
 class VenueResource(ModelResource):
     class Meta:
-      queryset = Venue.objects.all().order_by('checkinsCount')
+      queryset = Venue.objects.all().order_by('checkinsCount').filter(checkinsCount__gt=0.003)
       authorization = Authorization()
-      fields = ['name', 'city', 'latitude', 'longitude'] 
+      fields = ['name', 'city', 'latitude', 'longitude', 'checkinsCount', ] 
       always_return_data = True
       filtering = {'city' : ALL}
       limit = 1000
