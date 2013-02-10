@@ -1,7 +1,7 @@
 body {
 	padding-top: 40px;
 	padding-bottom: 40px; /* for the fixed nav bar*/
-	background-image: url('../images/background-pngs/dark5.png');
+	background-image: url('../img/background-pngs/dark5.png');
 }
 
 .navbar .brand {
@@ -10,7 +10,7 @@ body {
 
 #app {
 	width: 100%;
-	height: 560px;
+	height: 530px;
 	margin-top: 40px;
 }
 
@@ -22,19 +22,68 @@ body {
 #option-carousel {
 	padding: 20px;
 	margin-top: 20px;
+	overflow: hidden;
 }
 
 #option-carousel .carousel-inner .item {
-	height: 150px;
+	height: 200px;
 	width: 80%;
 	margin: 0 auto;
 }
 
-li.option-catagory {
-	width: 200px;
+#carousel-navbar {
+	margin: 0;
+	padding-top: 20px;
 }
 
-.navbar .mode-select { /* keep */
+.carousel-inner {
+	display: inline;
+	overflow: hidden;
+}
+
+.all-prefs-container {
+	width: 100%;
+}
+
+.user-options h2 {
+	margin: 0;
+}
+
+button.update {
+	float: right;
+}
+
+.tab-pane {
+	height: 100px;
+}
+
+.slider {
+	width: 300px;
+	height: 10px;
+}
+
+.ui-slider-handle {
+	-webkit-transform: rotate(45deg);
+	top: -13px !important;
+}
+
+.ui-slider-handle:hover {
+	cursor: pointer;
+}
+
+.ui-slider-handle.ui-state-active {
+	background-color: #006dcc !important;
+}
+
+p.amount {
+	margin: 20px;
+	line-height: 25px;
+
+}
+
+.navbar .mode-select {
+	display: inline;
+	width: 115px;
 }
 
 .navbar .container {
