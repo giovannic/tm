@@ -44,15 +44,15 @@ function get_compatibilityScore(weights_object){
 
 	$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function(stuff){
 
-		city_objects = stuff.objects
-		console.log('city_objects', city_objects)
-		$.each(city_objects		, function(index, data){
+		var city_objects = stuff.objects
+
+		$.each(city_objects	, function(index, data){
 			var data = city_objects[index].weighed_scores
-			console.log(data)
 
 			var data = data.replace(/u/g, "");
 			var data = data.replace(/'/g, "\"");
 			var data = jQuery.parseJSON(data)
+			console.log(data);
 			var score = 0
 			var total = 0
 			$.each(weights_object, function(index, val){
@@ -62,7 +62,6 @@ function get_compatibilityScore(weights_object){
 
 			$.each(data, function(index, val){
 				score += Math.min(val,weights_object[mapping(index)]/total)
-				console.log(score)
 			})
 
 			setScoreForCity(city_objects[index].name,score);
@@ -70,28 +69,6 @@ function get_compatibilityScore(weights_object){
 		})
 		updateHeatMap();
 	});
-}
-
-function update(mult) {
-    $.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function(all) {
-        var data = all.objects;
-        var todo = mult[2];
-
-        $.each(data, function(index, thing) {
-            var city = thing.name;
-            var scores = thing.weighed_scores;
-            var scores = scores.replace(/u/g, "");
-            var scores = scores.replace(/'/g, "\"");
-            var scores = jQuery.parseJSON(scores);
-            var heat = 0;
-            $.each(scores, function(name, value) {
-                heat += 10 * value * parseInt(todo[mapping(name)]);
-            });
-            setScoreForCity(city, heat);
-           // console.log(heat);
-        });
-	    updateHeatMap();
-    });
 }
 
 function updateHeatMapForZoomLevel(zoom) {
@@ -102,11 +79,13 @@ function updateHeatMapForZoomLevel(zoom) {
 		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : Math.max(0.01,value.score) };
 		heatmapData.push(latlong);
 	});
-
-	for (var i = 0; i < hotels.length; i++) {
-		heatmapData.push(hotels[i]);
-	}
-
+/*
+	$.each (hotels, function (key, value) {
+		var lat = value.lat;
+		var long = value.long;
+		heatmapData.push({location : new google.maps.LatLng(lat,long), weight : value.cost});
+	});
+*/
     if (heatmap) {
         heatmap.setMap(null);
         delete heatmap;
@@ -148,7 +127,7 @@ function initialiseMap() {
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
 	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', recieveCities);
-	$.getJSON(getBaseURL() + 'api/v1/hotel/?format=json', recieveHotels);
+//	$.getJSON(getBaseURL() + 'api/v1/hotel/?format=json', recieveHotels);
 
 }
 
@@ -158,15 +137,10 @@ function recieveCities(data, status, jqXHR) {
 		value.score = 0;//Math.random();
 		addMarker(value);
 	});
-	updateHeatMap();
-}
 
-function recieveHotels(data, status, jqXHR) {
-	hotels = data.objects;
-	$.each(hotels, function (key,value) {
-	  hotels.push(value);
-	});
 	updateHeatMap();
+
+	sendOffData();
 }
 
 function addMarker(city) {
