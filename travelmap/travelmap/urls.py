@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from tastypie.api import Api
 from cities.api import CityResource, HotelResource, FlightResource
-from foursquare_ratings.api import CityScoreResource, CityLocationResource
+from foursquare_ratings.api import CityScoreResource, CityLocationResource, VenueResource
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import redirect_to
 from django.shortcuts import redirect
@@ -13,6 +13,7 @@ v1_api.register(HotelResource())
 v1_api.register(FlightResource())
 v1_api.register(CityScoreResource())
 v1_api.register(CityLocationResource())
+v1_api.register(VenueResource())
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
