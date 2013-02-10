@@ -33,13 +33,48 @@ function mapping(name) {
 }
 
 function setScoreForCity(city, score) {
-	var i = 0;
-	for (i = 0; i < cities.length; i ++) {
-		if (cities[i] == city) break;
-	}
-	scores[i] = score;
-
+	$.each(cities, function (key, value) {
+		if (value.city === city) {
+			value.score = score;
+		}
+	});
 }
+
+function get_compatibilityScore(weights_object){
+
+	$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json&&', function(stuff){
+
+		
+		city_objects = stuff.objects
+		console.log('city_objects', city_objects)
+		$.each(city_objects		, function(index, data){
+			var data = city_objects[index].weighed_scores
+			console.log(data)
+
+			var data = data.replace(/u/g, "");
+			var data = data.replace(/'/g, "\"");
+			var data = jQuery.parseJSON(data)
+			var score = 0
+			var total = 0
+			$.each(weights_object, function(index, val){
+				val = parseInt(val)
+				total += val
+			})
+
+			$.each(data, function(index, val){
+				score += Math.min(val,weights_object[mapping(index)]/total)
+				console.log(score)
+			})
+
+			score = score*100
+			setScoreForCity(city_objects[index].name,Math.pow(10,score));
+
+		})
+		updateHeatMap();
+
+	})
+}
+
 
 
 function update(mult) {
@@ -58,7 +93,7 @@ function update(mult) {
                 heat += 10 * value * parseInt(todo[mapping(name)]);
             });
             setScoreForCity(city, heat);
-            console.log(heat);
+           // console.log(heat);
         });
 	    updateHeatMap();
     });
@@ -109,12 +144,10 @@ function initialiseMap() {
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
 	var swBound = new google.maps.LatLng(43.73333, 7.41667);
-	var neBound = new google.maps.LatLng(50.08804, 14.42076);
-	var bounds = new google.maps.LatLngBounds(swBound, neBound);
 
 	// Photograph courtesy of the U.S. Geological Survey
 	var srcImage = 'js/head.jpg';
-	overlay = new USGSOverlay(bounds, "test", 5, map);
+	overlay = new USGSOverlay(swBound, "test", 5, map);
 
 	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', recieveCities);
 
