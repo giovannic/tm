@@ -113,7 +113,7 @@ function initialiseMap() {
 	var bounds = new google.maps.LatLngBounds(swBound, neBound);
 
 	// Photograph courtesy of the U.S. Geological Survey
-	var srcImage = 'js/head.jpg';
+	var srcImage = 'head.jpg';
 	overlay = new USGSOverlay(bounds, srcImage, map);
 
 	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', recieveCities);
