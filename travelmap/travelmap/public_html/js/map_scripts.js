@@ -10,8 +10,6 @@ var markers;
 
 // Info on each city for heat map
 var cities;
-var scores;
-var locations;
 var city_locations = {}
 
 // Global heatmap layer
@@ -66,14 +64,12 @@ function update(mult) {
 
 function updateHeatMapForZoomLevel(zoom) {
 	var heatmapData = new Array();
-	for (var i = 0; i < cities.length; i++) {
-		var cityLocation = locations[i];
-		var longitude = cityLocation.lng();
-		var latitude = cityLocation.lat();
-		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : Math.max(0.01,scores[i]) };
-		log(scores);
+	$.each (cities, function (key,value) {
+		var longitude = value.longitude;
+		var latitude = value.latitude;
+		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : Math.max(0.01,value.score) };
 		heatmapData.push(latlong);
-	}
+	});
     if (heatmap) {
         heatmap.setMap(null);
         delete heatmap;
@@ -121,13 +117,12 @@ function initialiseMap() {
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
-/*	xmlreq = new XMLHttpRequest();
-	var fileLocation = getBaseURL() + "resources/city_list.txt";
-	xmlreq.open("GET", fileLocation, true);
-	xmlreq.onreadystatechange = recieveCities;
-	xmlreq.send();*/
-	get_CityLocations()
-	paint_CityLocations()
+
+
+	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', recieveCities);
+
+	//get_CityLocations()
+	//paint_CityLocations()
 
 }
 
@@ -140,50 +135,16 @@ function paint_CityLocations(){
 	});
 }
 
-
-/*
-function recieveCities() {
-	if (xmlreq.readyState == 4) {  // Makes sure the document is ready to parse.
-		if (xmlreq.status == 200) {  // Makes sure it's found the file.
-			var allText = xmlreq.responseText;
-			cities = xmlreq.responseText.split("\n"); // Will separate each line into an array
-			cities.pop();
-			xmlreq2 = new XMLHttpRequest();
-			fileLocation = getBaseURL() + "resources/city_longlats.txt";
-			xmlreq2.open("GET", fileLocation, true);
-			xmlreq2.onreadystatechange = recieveLLs;
-			xmlreq2.send();
-		}
-	}
-	
+function recieveCities(data, status, jqXHR) {
+	cities = data.objects;
+	$.each(cities, function (key,value) {
+			var latitude = value.latitude;
+			var longitude = value.longitude;
+			value.score = Math.random();
+			addMarker(longitude, latitude, value.city);
+		});
+	updateHeatMap();
 }
-
-get_CityLocations()
-
-
-
-function recieveLLs() {
-	if (xmlreq2.readyState == 4) {  // Makes sure the document is ready to parse.
-		if (xmlreq2.status == 200) {  // Makes sure it's found the file.
-			var allText = xmlreq2.responseText;
-			var LLs = xmlreq2.responseText.split("\n"); // Will separate each line into an array
-			var heatmapData = new Array();
-			for (var i = 0; i < LLs.length - 1; i++) {
-				var LLArray = LLs[i].split(",");
-				var latitude = parseFloat(LLArray[0]);
-				var longitude = parseFloat(LLArray[1]);
-
-				scores.push(i);
-				var thing = new google.maps.LatLng(latitude,longitude);
-				locations.push(thing);
-				
-				
-
-			}
-			updateHeatMap();
-		}
-	}
-}*/
 
 function addMarker(longitude, latitude, city) {
 	var longandlat = new google.maps.LatLng(latitude, longitude);
