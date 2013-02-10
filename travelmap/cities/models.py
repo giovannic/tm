@@ -13,6 +13,10 @@ class Hotel(models.Model):
   stars = models.FloatField()
   long = models.FloatField()
   lat = models.FloatField()
+  filtering = {
+      'stars' : ('gte', 'lte',),
+      'rate' : ('gte', 'lte',),
+      }
 
 class Score(models.Model):
   type = models.CharField(max_length=100)
@@ -22,3 +26,6 @@ class Flight(models.Model):
   country = models.ForeignKey(City, related_name='destination')
   cost = models.FloatField()
   distance = models.FloatField()
+  filtering = {
+      'cost' : ('gte', 'lte',),
+      }
