@@ -92,10 +92,7 @@ $(document).ready(function() {
 		}
 	});
 
-	
-
-
-
+});
 
 function sendOffData() {
 
