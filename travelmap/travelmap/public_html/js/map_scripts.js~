@@ -33,12 +33,11 @@ function mapping(name) {
 }
 
 function setScoreForCity(city, score) {
-	var i = 0;
-	for (i = 0; i < cities.length; i ++) {
-		if (cities[i] == city) break;
-	}
-	scores[i] = score;
-
+	$.each(cities, function (key, value) {
+		if (value.city === city) {
+			value.score = score;
+		}
+	});
 }
 
 
@@ -109,7 +108,7 @@ function initialiseMap() {
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
 	var swBound = new google.maps.LatLng(43.73333, 7.41667);
-	var neBound = new google.maps.LatLng(50.08804, -150.005608);
+	var neBound = new google.maps.LatLng(50.08804, 14.42076);
 	var bounds = new google.maps.LatLngBounds(swBound, neBound);
 
 	// Photograph courtesy of the U.S. Geological Survey
