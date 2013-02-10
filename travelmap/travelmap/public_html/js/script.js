@@ -122,7 +122,7 @@ function sendOffData() {
 
 	console.log(allprefs);
 
-	get_compatibilityScore(todo);
+	//get_compatibilityScore(todo);
 
 	update(allprefs);
 }
