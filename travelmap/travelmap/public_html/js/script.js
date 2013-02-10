@@ -12,18 +12,67 @@ $(document).ready(function() {
 	$('.carousel').carousel('pause');
 
 	$('.option-select').click(function() {
+		show_only();
 		$('.option-select').removeClass('active');
 		$(this).addClass('active');
 		$('#option-carousel').carousel(parseInt($(this).attr("index")));
 	});
 
 	//submit button
-		$('.update').click(sendOffData);
+	$('.update').click(function() {
+		sendOffData();
+		hide_only()
+	});
+
+	//show/hide trip options
+	$('#show-hide-options').click(show_hide_options);
+
+	$('body').click(function(event) {
+	    if ($(event.target).closest('#app').length) {
+	        hide_only();
+	    };
+	});
+
+	function show_hide_options() {
+		if($('#show-hide-options').hasClass('hide-mode')) {
+			$('#option-carousel').fadeOut(400);
+			$('#show-hide-options').addClass('show-mode');
+			$('#show-hide-options').removeClass('hide-mode');
+			$('#show-hide-options').html('<a href="#">Show Trip Options</a>');
+			$('#app').removeClass('dialog-open');
+		} else {
+			$('#option-carousel').fadeIn(400);
+			$('#show-hide-options').addClass('hide-mode');
+			$('#show-hide-options').removeClass('show-mode');
+			$('#show-hide-options').html('<a href="#">Hide Trip Options</a>');
+			$('#app').addClass('dialog-open');
+		}
+	};
+
+	function show_only() {
+		if($('#show-hide-options').hasClass('show-mode')) {
+			$('#option-carousel').fadeIn(400);
+			$('#show-hide-options').addClass('hide-mode');
+			$('#show-hide-options').removeClass('show-mode');
+			$('#show-hide-options').html('<a href="#">Hide Trip Options</a>');
+			$('#app').addClass('dialog-open');
+		}
+	}
+
+	function hide_only() {
+		if($('#show-hide-options').hasClass('hide-mode')) {
+			$('#option-carousel').fadeOut(400);
+			$('#show-hide-options').addClass('show-mode');
+			$('#show-hide-options').removeClass('hide-mode');
+			$('#show-hide-options').html('<a href="#">Show Trip Options</a>');
+			$('#app').removeClass('dialog-open');
+		}
+	}
 
 //sliders
 	$( ".standard-slider" ).slider({
 		value:50,
-		min: 0,
+		min: 1,
 		max: 100,
 		slide: function( event, ui ) {
 			$(this).parent().children('p').html(ui.value + '%');
@@ -122,7 +171,7 @@ function sendOffData() {
 
 	console.log(allprefs);
 
-	//get_compatibilityScore(todo);
+	get_compatibilityScore(todo);
 
 	update(allprefs);
 }

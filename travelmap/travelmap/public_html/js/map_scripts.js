@@ -34,7 +34,7 @@ function mapping(name) {
 
 function setScoreForCity(city, score) {
 	$.each(cities, function (key, value) {
-		if (value.city === city) {
+		if (value.name === city) {
 			value.score = score;
 		}
 	});
@@ -44,7 +44,6 @@ function get_compatibilityScore(weights_object){
 
 	$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json&&', function(stuff){
 
-		
 		city_objects = stuff.objects
 		console.log('city_objects', city_objects)
 		$.each(city_objects		, function(index, data){
@@ -66,16 +65,12 @@ function get_compatibilityScore(weights_object){
 				console.log(score)
 			})
 
-			score = score*100
-			setScoreForCity(city_objects[index].name,Math.pow(10,score));
+			setScoreForCity(city_objects[index].name,score);
 
 		})
 		updateHeatMap();
-
-	})
+	});
 }
-
-
 
 function update(mult) {
     $.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function(all) {
@@ -150,7 +145,7 @@ function initialiseMap() {
 function recieveCities(data, status, jqXHR) {
 	cities = data.objects;
 	$.each(cities, function (key,value) {
-		value.score = Math.random();
+		value.score = 0;//Math.random();
 		addMarker(value);
 	});
 	updateHeatMap();
@@ -163,14 +158,20 @@ function addMarker(city) {
 	var marker = new google.maps.Marker({
 		map: map,
 		position: longandlat,
-		title: city.city
+		title: city.name,
+		icon: '../resources/24.png'
 	});
 
 	google.maps.event.addListener(marker, 'click', function () {
 		var latitude = city.latitude;
 		var longitude = city.longitude;
 		var location = new google.maps.LatLng(latitude, longitude);
-		new USGSOverlay(location, city.city, city.score, map);
+		if (overlay) overlay.setMap(null);
+		overlay = new USGSOverlay(location, city.name, city.score, map);
+
+		google.maps.event.addListener(map, 'click', function () {
+			overlay.setMap(null);
+		});
 	});
 	markers.push(marker);
 }
@@ -178,18 +179,5 @@ function addMarker(city) {
 function getBaseURL () {
    return location.protocol + "//" + location.hostname + 
       (location.port && ":" + location.port) + "/";
-}
-
-
-function updateMap() {
-/*    myOptions={
-    center: latlon,zoom:10,
-    mapTypeId:google.maps.MapTypeId.ROADMAP,
-    mapTypeControl:false,
-    navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
-    };
-    var map=new google.maps.Map(document.getElementById("map_canvas"),myOptions);
-    var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
-*/	
 }
 

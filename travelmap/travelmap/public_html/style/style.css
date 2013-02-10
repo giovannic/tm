@@ -4,6 +4,10 @@ body {
 	background-image: url('../img/background-pngs/dark5.png');
 }
 
+.dialog-open {
+	opacity: 0.5;
+}
+
 .navbar .brand {
 	font-size: 2.0em;
 }
@@ -30,7 +34,7 @@ ul.nav {
 
 #app {
 	width: 100%;
-	height: 530px;
+	height: 850px;
 	margin-top: 40px;
 }
 
@@ -40,15 +44,23 @@ ul.nav {
 }
 
 #option-carousel {
+	position: absolute;
+	width: 60%;
+	z-index: 50;
+	top: 35%;
+	left: 20%;
+	
 	padding: 20px;
-	margin-top: 20px;
+	margin: 0 auto;
 	overflow: hidden;
 }
 
 #option-carousel .carousel-inner .item {
+
 	height: 200px;
-	width: 80%;
 	margin: 0 auto;
+	margin: 0 auto;
+	overflow: hidden;
 }
 
 #carousel-navbar {
