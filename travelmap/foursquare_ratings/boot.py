@@ -21,12 +21,4 @@ for city in h.cities:
      f.update_score(h, h.categories.new_categories)
      f.get_total_checkins()
      f.get_weighed_scores()
-     f.get_venues()
-
-
-for city in CityScore.objects.all():  
-    f = Venue.objects.all().order_by('checkinsCount').filter(city = city.name)
-    g = 4*len(f)/5
-    f = f[0:g]
-    for thing in f:
-            thing.delete()     
+     f.get_venues()    
