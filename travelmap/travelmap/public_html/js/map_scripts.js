@@ -108,8 +108,8 @@ function initialiseMap() {
 
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
-	var swBound = new google.maps.LatLng(62.281819, -150.287132);
-	var neBound = new google.maps.LatLng(62.400471, -150.005608);
+	var swBound = new google.maps.LatLng(43.73333, 7.41667);
+	var neBound = new google.maps.LatLng(50.08804, 14.42076);
 	var bounds = new google.maps.LatLngBounds(swBound, neBound);
 
 	// Photograph courtesy of the U.S. Geological Survey
