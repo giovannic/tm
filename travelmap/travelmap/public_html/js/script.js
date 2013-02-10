@@ -18,12 +18,30 @@ $(document).ready(function() {
 	});
 
 	//submit button
-		$('.update').click(sendOffData);
+	$('.update').click(sendOffData);
+
+	//shoe/hide trip options
+	$('#show-hide-options').click(function() {
+		if($(this).hasClass('hide-mode')) {
+			$('#option-carousel').fadeOut(400);
+			$(this).addClass('show-mode');
+			$(this).removeClass('hide-mode');
+			$(this).html('<a href="#">Show Trip Options</a>');
+			$('#app').removeClass('dialog-open');
+		} else {
+			$('#option-carousel').fadeIn(400);
+			$(this).addClass('hide-mode');
+			$(this).removeClass('show-mode');
+			$(this).html('<a href="#">Hide Trip Options</a>');
+			$('#app').addClass('dialog-open');
+		}
+		
+	});
 
 //sliders
 	$( ".standard-slider" ).slider({
 		value:50,
-		min: 0,
+		min: 1,
 		max: 100,
 		slide: function( event, ui ) {
 			$(this).parent().children('p').html(ui.value + '%');
