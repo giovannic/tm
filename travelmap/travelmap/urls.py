@@ -1,12 +1,11 @@
 from django.conf.urls import patterns, include, url
 from tastypie.api import Api
-from cities.api import CityResource, AirportResource, HotelResource, FlightResource
+from cities.api import CityResource, HotelResource, FlightResource
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import redirect_to
 
 v1_api = Api(api_name='v1')
 v1_api.register(CityResource())
-v1_api.register(AirportResource())
 v1_api.register(HotelResource())
 v1_api.register(FlightResource())
 
