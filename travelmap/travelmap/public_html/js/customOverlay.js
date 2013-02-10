@@ -29,9 +29,10 @@ USGSOverlay.prototype.onAdd = function() {
 
   // Create the DIV and set some basic attributes.
   var div = document.createElement('div');
-  div.style.border = "none";
-  div.style.borderWidth = "0px";
-  div.style.position = "absolute";
+  $(div).addClass("cityOverlay popover top");
+
+  //div.style.height = "150px";
+  //div.style.width = "150px";
 
   // Set the overlay's div_ property to this DIV
   this.div_ = div;
