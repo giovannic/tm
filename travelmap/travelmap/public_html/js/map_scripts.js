@@ -143,59 +143,35 @@ function initialiseMap() {
 
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
-	var swBound = new google.maps.LatLng(43.73333, 7.41667);
-
-	// Photograph courtesy of the U.S. Geological Survey
-	var srcImage = 'js/head.jpg';
-	overlay = new USGSOverlay(swBound, "test", 5, map);
-
 	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', recieveCities);
 
-	//get_CityLocations()
-	//paint_CityLocations()
-
 }
-
-/*
-function paint_CityLocations(){
-	$.each(city_locations, function(index, value){
-		console.log(index, value.latitude, value.longitude)
-		var thing = new google.maps.LatLng(value.latitude,value.longitude);
-		locations.push(thing);
-		addMarker(value.longitude, value.latitude, index);
-	});
-}
-
-function get_CityLocations(){
-	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', function(stuff){
-		var data = stuff.objects
-		$.each(data, function(index, value) {
-  			city_locations[value.name] = value
-			});
-	})
-}
-*/
 
 function recieveCities(data, status, jqXHR) {
 	cities = data.objects;
 	$.each(cities, function (key,value) {
-		var latitude = value.latitude;
-		var longitude = value.longitude;
 		value.score = Math.random();
-		//addMarker(longitude, latitude, value.city);
+		addMarker(value);
 	});
 	updateHeatMap();
 }
 
-function addMarker(longitude, latitude, city) {
+function addMarker(city) {
+	var latitude = city.latitude;
+	var longitude = city.longitude;
 	var longandlat = new google.maps.LatLng(latitude, longitude);
 	var marker = new google.maps.Marker({
 		map: map,
 		position: longandlat,
-		title: city
+		title: city.city
 	});
 
-	//GEvent.addListener(marker, 'click', cityCompatibilities(city));
+	google.maps.event.addListener(marker, 'click', function () {
+		var latitude = city.latitude;
+		var longitude = city.longitude;
+		var location = new google.maps.LatLng(latitude, longitude);
+		new USGSOverlay(location, city.city, city.score, map);
+	});
 	markers.push(marker);
 }
 

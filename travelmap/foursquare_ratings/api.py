@@ -2,7 +2,7 @@ from tastypie.api import Api
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization 
 from tastypie import fields
-from foursquare_ratings.models import CityScore
+from foursquare_ratings.models import CityScore, Venue
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
 class CityScoreResource(ModelResource):
@@ -23,3 +23,12 @@ class CityLocationResource(ModelResource):
       always_return_data = True
       filtering = {'name' : ALL}
       limit = 60
+
+class VenueResource(ModelResource):
+    class Meta:
+      queryset = Venue.objects.all().order_by('checkinsCount')
+      authorization = Authorization()
+      fields = ['name', 'city', 'latitude', 'longitude'] 
+      always_return_data = True
+      filtering = {'city' : ALL}
+      limit = 1000
