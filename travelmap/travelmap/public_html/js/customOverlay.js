@@ -59,10 +59,13 @@ USGSOverlay.prototype.draw = function() {
 
   // Resize the image's DIV to fit the indicated dimensions.
   var div = this.div_;
+  set_height = 90;
+  set_width = 100;
+
   div.style.left = locationPx.x + 'px';
-  div.style.top = (locationPx.y - 150) + 'px';
-  div.style.width = 120 + 'px';
-  div.style.height = 150 + 'px';
+  div.style.top = (locationPx.y - set_height) + 'px';
+  div.style.width = set_width + 'px';
+  div.style.height = set_height + 'px';
 }
 
 USGSOverlay.prototype.onRemove = function() {
