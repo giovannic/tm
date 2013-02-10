@@ -92,6 +92,15 @@ p.amount {
 	font-size: 1.3em;
 }
 
+.cityOverlayContainer {
+	webkit-border-bottom-left-radius: 0px;
+}
+
 .cityOverlay {
 	display: block;
+	text-align:center;
+}
+
+.cityOverlay h3, .cityOverlay h4 {
+	line-height:0.75em;
 }
