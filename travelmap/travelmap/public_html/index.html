@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="./js/customOverlay.js"></script>
 
 	<!-- fb -->
+	<script src="//connect.facebook.net/en_US/all.js"></script>
 	<script type="text/javascript" src="./js/fb.js"></script>
 
 </head>
@@ -30,7 +31,7 @@
      window.fbAsyncInit = function() {
        FB.init({
          appId      : '158383940982125',
-	 channelUrl : './static/channel.html',
+	 channelUrl : 'http://ec2-54-228-52-161.eu-west-1.compute.amazonaws.com:8080/static/channel.html',
          status     : true,
          cookie     : true,
          xfbml      : true 
@@ -66,7 +67,7 @@
 					<li id="select-one" index=0 class="option-select active"><a href="#">Accomodation</a></li>
 					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
 					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
-					<li id="fb-login"  class="pull-right-hard"><a href="#"><img class="sm-img" src="./img/social-media-icons/32/facebook.png" /></a></li>
+					<li id="fb-login"  class="pull-right-hard"><a onclick="login()"><img class="sm-img" src="./img/social-media-icons/32/facebook.png" /></a></li>
 				</ul><!-- .nav -->
 				</div><!-- .container -->
 			</div><!-- .navbar-inner -->
