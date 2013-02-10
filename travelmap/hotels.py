@@ -6,9 +6,12 @@ def get_hotels():
   reader = csv.reader(f, delimiter='~')
   hotels = []
   for line in reader:
-    if (len(line) > 6) and line[2] != '' and line[7] != '' and line[3] != '99999':
-      #name country price stars
-      hotels.append((line[1],line[7],line[3],line[2]))
+    try:
+      if (len(line) > 14) and line[2] != '' and line[7] != '' and line[3] != '99999' and line[12] != '0' and line[13] != '0':
+        #name country price stars long lat
+        hotels.append((line[1],line[7],line[3],line[2],line[12],line[13]))
+    except ValueError:
+      pass
   f.close()
   return hotels
 
@@ -30,16 +33,21 @@ def load_hotels():
       try:
         city=City.objects.filter(country=h[1])
         rating = float(h[3])
-        add = Hotel(
+	lo = float(h[4])
+	la = float(h[5])
+	if (lo != 0 and la != 0):
+          add = Hotel(
 	    name=h[0],
 	    city=city[0],
 	    rate=h[2],
 	    stars=rating,
-	    long=0,
-	    lat=0)
-        add.save()
+	    long=float(h[4]),
+	    lat=float(h[5])
+	    )
+          add.save()
       except ValueError:
 	pass
+
 
 if __name__ == '__main__':
   h = get_hotels()
