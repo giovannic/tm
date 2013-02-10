@@ -1,8 +1,25 @@
 function get_compatibilityScore(weights_object){
-	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json&&name='+'Kiev', function(stuff){
-		var data = stuff.objects
-		$.each(data, function(index, value) {
-  			console.log(index, value)
-			});
+	$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json&&name='+'Amsterdam', function(stuff){
+		var data = stuff.objects[0].weighed_scores
+		console.log(data)
+
+		var data = data.replace(/u\'/g, "\'");
+		var data = data.replace(/'/g, "\"");
+		var data = jQuery.parseJSON(data)
+		console.log(weights_object)
+		console.log(data)
+		var score = 0
+		var total = 0
+		$.each(weights_object, function(index, val){
+			val = parseInt(val)
+			total += val
+			console.log(val, total)
+		})
+
+		$.each(data, function(index, val){
+			score += Math.min(val,weights_object[mapping(index)]/total)
+			console.log(score)
+		})
+		console.log(score*100)
 	})
 }
