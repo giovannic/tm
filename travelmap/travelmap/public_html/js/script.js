@@ -123,6 +123,8 @@ $(document).ready(function() {
 
 		console.log(allprefs);
 
+		get_compatibilityScore(todo);
+
 		update(allprefs);
 
 
