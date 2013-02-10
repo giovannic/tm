@@ -1,7 +1,7 @@
 $(document).ready(function() {
 //Setup Map
 	initialiseMap();
-	sendOffData();
+	//sendOffData();
 
 //ensure carousel doesn't run itself - is this my most shameless hack?
 	window.setInterval(function() {$('#option-carousel').carousel('pause')}, 1000);
@@ -173,7 +173,7 @@ function sendOffData() {
 
 	get_compatibilityScore(todo);
 
-	update(allprefs);
+	//update(allprefs);
 }
 
 
