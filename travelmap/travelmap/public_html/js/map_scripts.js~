@@ -33,12 +33,11 @@ function mapping(name) {
 }
 
 function setScoreForCity(city, score) {
-	var i = 0;
-	for (i = 0; i < cities.length; i ++) {
-		if (cities[i] == city) break;
-	}
-	scores[i] = score;
-
+	$.each(cities, function (key, value) {
+		if (value.city === city) {
+			value.score = score;
+		}
+	});
 }
 
 
