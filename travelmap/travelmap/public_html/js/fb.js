@@ -12,13 +12,13 @@ function login() {
 }
 
 function friends_fbloc() {
-  var locations = FB.api('me?fields=friends.limit(10).fields(locations.limit(10))');
+  var fr_fbloc = FB.api('me?fields=friends.limit(10).fields(locations.limit(10))');
 }
 
 function me_fbloc(){
-	var locations = FB.api('me?fields=id,name,likes.limit(10).fields(photos.limit(10).fields(place))');
+	var me_fbloc = FB.api('me?fields=id,name,likes.limit(10).fields(photos.limit(10).fields(place))');
 }
 
 function music_fbloc(){
-	var locations = FB.api('me?fields=music.limit(10).fields(photos.fields(place))');
+	var mus_fbloc = FB.api('me?fields=music.limit(10).fields(photos.fields(place))');
 }
