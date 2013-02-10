@@ -10,11 +10,27 @@ var markers;
 
 // Info on each city for heat map
 var cities;
-var scores;
-var locations;
+var city_locations = {}
 
 // Global heatmap layer
 var heatmap;
+
+var overlay;
+
+function mapping(name) {
+    if (name === "Food") {
+        return "food";
+    } else if (name === "Shop & Service") {
+        return "shopping";
+    } else if (name === "Nightlife Spot") {
+        return "nightlife";
+    } else if (name === "Otdoors & Recreation") {
+        return "outdoor";
+    } else if (name === "Arts & Entertainment") {
+        return "arts";
+    }
+    log(name);
+}
 
 function setScoreForCity(city, score) {
 	var i = 0;
@@ -25,9 +41,12 @@ function setScoreForCity(city, score) {
 
 }
 
+
 function update(mult) {
     $.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function(all) {
         var data = all.objects;
+        var todo = mult[2];
+
         $.each(data, function(index, thing) {
             var city = thing.name;
             var scores = thing.weighed_scores;
@@ -36,9 +55,10 @@ function update(mult) {
             var scores = jQuery.parseJSON(scores);
             var heat = 0;
             $.each(scores, function(name, value) {
-                heat += value * mult;
+                heat += 10 * value * parseInt(todo[mapping(name)]);
             });
             setScoreForCity(city, heat);
+            console.log(heat);
         });
 	    updateHeatMap();
     });
@@ -46,14 +66,12 @@ function update(mult) {
 
 function updateHeatMapForZoomLevel(zoom) {
 	var heatmapData = new Array();
-	for (var i = 0; i < cities.length; i++) {
-		var cityLocation = locations[i];
-		var longitude = cityLocation.lng();
-		var latitude = cityLocation.lat();
-		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : 0.01 };
-		log(scores);
+	$.each (cities, function (key,value) {
+		var longitude = value.longitude;
+		var latitude = value.latitude;
+		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : Math.max(0.01,value.score) };
 		heatmapData.push(latlong);
-	}
+	});
     if (heatmap) {
         heatmap.setMap(null);
         delete heatmap;
@@ -90,50 +108,50 @@ function initialiseMap() {
 
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
-	xmlreq = new XMLHttpRequest();
-	var fileLocation = getBaseURL() + "resources/city_list.txt";
-	xmlreq.open("GET", fileLocation, true);
-	xmlreq.onreadystatechange = recieveCities;
-	xmlreq.send();
+	var swBound = new google.maps.LatLng(43.73333, 7.41667);
+	var neBound = new google.maps.LatLng(50.08804, -150.005608);
+	var bounds = new google.maps.LatLngBounds(swBound, neBound);
+
+	// Photograph courtesy of the U.S. Geological Survey
+	var srcImage = 'js/head.jpg';
+	overlay = new USGSOverlay(bounds, "test", 5, map);
+
+	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', recieveCities);
+
+	//get_CityLocations()
+	//paint_CityLocations()
+
 }
 
-function recieveCities() {
-	if (xmlreq.readyState == 4) {  // Makes sure the document is ready to parse.
-		if (xmlreq.status == 200) {  // Makes sure it's found the file.
-			var allText = xmlreq.responseText;
-			cities = xmlreq.responseText.split("\n"); // Will separate each line into an array
-			cities.pop();
-			xmlreq2 = new XMLHttpRequest();
-			fileLocation = getBaseURL() + "resources/city_longlats.txt";
-			xmlreq2.open("GET", fileLocation, true);
-			xmlreq2.onreadystatechange = recieveLLs;
-			xmlreq2.send();
-		}
-	}
-	
+/*
+function paint_CityLocations(){
+	$.each(city_locations, function(index, value){
+		console.log(index, value.latitude, value.longitude)
+		var thing = new google.maps.LatLng(value.latitude,value.longitude);
+		locations.push(thing);
+		addMarker(value.longitude, value.latitude, index);
+	});
 }
 
-function recieveLLs() {
-	if (xmlreq2.readyState == 4) {  // Makes sure the document is ready to parse.
-		if (xmlreq2.status == 200) {  // Makes sure it's found the file.
-			var allText = xmlreq2.responseText;
-			var LLs = xmlreq2.responseText.split("\n"); // Will separate each line into an array
-			var heatmapData = new Array();
-			for (var i = 0; i < LLs.length - 1; i++) {
-				var LLArray = LLs[i].split(",");
-				var latitude = parseFloat(LLArray[0]);
-				var longitude = parseFloat(LLArray[1]);
+function get_CityLocations(){
+	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', function(stuff){
+		var data = stuff.objects
+		$.each(data, function(index, value) {
+  			city_locations[value.name] = value
+			});
+	})
+}
+*/
 
-				scores.push(i);
-				var thing = new google.maps.LatLng(latitude,longitude);
-				locations.push(thing);
-				
-				addMarker(longitude, latitude, cities[i]);
-
-			}
-			updateHeatMap();
-		}
-	}
+function recieveCities(data, status, jqXHR) {
+	cities = data.objects;
+	$.each(cities, function (key,value) {
+		var latitude = value.latitude;
+		var longitude = value.longitude;
+		value.score = Math.random();
+		//addMarker(longitude, latitude, value.city);
+	});
+	updateHeatMap();
 }
 
 function addMarker(longitude, latitude, city) {
@@ -143,6 +161,8 @@ function addMarker(longitude, latitude, city) {
 		position: longandlat,
 		title: city
 	});
+
+	//GEvent.addListener(marker, 'click', cityCompatibilities(city));
 	markers.push(marker);
 }
 
