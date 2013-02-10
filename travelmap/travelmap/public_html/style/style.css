@@ -8,6 +8,26 @@ body {
 	font-size: 2.0em;
 }
 
+ul.nav {
+	width: 100%;
+}
+
+.pull-right-hard {
+	float: right !important;
+}
+
+.sm-img {
+	position: relative;
+	top: -4px;
+
+	-webkit-transition: -webkit-transform 0.4s;
+}
+
+.sm-img:hover {
+	-webkit-transition-property: top;
+	top: -7px;
+}
+
 #app {
 	width: 100%;
 	height: 530px;
@@ -93,7 +113,8 @@ p.amount {
 }
 
 .cityOverlayContainer {
-	webkit-border-bottom-left-radius: 0px;
+	border-radius: 15px;
+	-webkit-border-bottom-left-radius: 0px;
 }
 
 .cityOverlay {
@@ -103,4 +124,17 @@ p.amount {
 
 .cityOverlay h3, .cityOverlay h4 {
 	line-height:0.75em;
+}
+.cityOverlay p {
+	display: inline;
+}
+
+.point-to-pin {
+	width:15px;
+	height:15px;
+	display: inline;
+
+	position: relative;
+	left:-25px;
+	-webkit-transform: rotate(0deg);
 }
