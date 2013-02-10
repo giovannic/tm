@@ -1,7 +1,6 @@
 $(document).ready(function() {
 //Setup Map
 	initialiseMap();
-	sendOffData();
 
 //ensure carousel doesn't run itself - is this my most shameless hack?
 	window.setInterval(function() {$('#option-carousel').carousel('pause')}, 1000);
