@@ -54,14 +54,15 @@ class all_city_scores(models.Model):
 
 
 class CityScore(models.Model):
+	latitude = models.FloatField()
+	longitude = models.FloatField()
 	name = models.CharField(max_length = 255, unique = True)
 	country_code = models.CharField(max_length = 3)
 	raw_scores = JSONField()
 	total_checkins = models.FloatField()
 	venues = JSONField()
 	weighed_scores = JSONField()
-	latitude = models.FloatField()
-	longitude = models.FloatField()
+
 
 	def update_score(self, city_scores, categories):
 		if not self.raw_scores:

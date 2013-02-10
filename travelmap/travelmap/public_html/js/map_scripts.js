@@ -12,6 +12,7 @@ var markers;
 var cities;
 var scores;
 var locations;
+var city_locations = {}
 
 // Global heatmap layer
 var heatmap;
@@ -91,6 +92,18 @@ function log(msg) {
     }, 0);
 }
 
+function get_CityLocations(){
+	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', function(stuff){
+		var data = stuff.objects
+		$.each(data, function(index, value) {
+  			city_locations[value.name] = value
+			});
+	})
+}
+
+
+
+
 function initialiseMap() {
 	//Initiallisation of global variables
 	markers = new Array();
@@ -108,14 +121,27 @@ function initialiseMap() {
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
-
-	xmlreq = new XMLHttpRequest();
+/*	xmlreq = new XMLHttpRequest();
 	var fileLocation = getBaseURL() + "resources/city_list.txt";
 	xmlreq.open("GET", fileLocation, true);
 	xmlreq.onreadystatechange = recieveCities;
-	xmlreq.send();
+	xmlreq.send();*/
+	get_CityLocations()
+	paint_CityLocations()
+
 }
 
+function paint_CityLocations(){
+	$.each(city_locations, function(index, value){
+		console.log(index, value.latitude, value.longitude)
+		var thing = new google.maps.LatLng(value.latitude,value.longitude);
+		locations.push(thing);
+		addMarker(value.longitude, value.latitude, index);
+	});
+}
+
+
+/*
 function recieveCities() {
 	if (xmlreq.readyState == 4) {  // Makes sure the document is ready to parse.
 		if (xmlreq.status == 200) {  // Makes sure it's found the file.
@@ -132,6 +158,10 @@ function recieveCities() {
 	
 }
 
+get_CityLocations()
+
+
+
 function recieveLLs() {
 	if (xmlreq2.readyState == 4) {  // Makes sure the document is ready to parse.
 		if (xmlreq2.status == 200) {  // Makes sure it's found the file.
@@ -147,13 +177,13 @@ function recieveLLs() {
 				var thing = new google.maps.LatLng(latitude,longitude);
 				locations.push(thing);
 				
-				addMarker(longitude, latitude, cities[i]);
+				
 
 			}
 			updateHeatMap();
 		}
 	}
-}
+}*/
 
 function addMarker(longitude, latitude, city) {
 	var longandlat = new google.maps.LatLng(latitude, longitude);
