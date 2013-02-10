@@ -145,7 +145,7 @@ function initialiseMap() {
 function recieveCities(data, status, jqXHR) {
 	cities = data.objects;
 	$.each(cities, function (key,value) {
-		value.score = Math.random();
+		value.score = 0;//Math.random();
 		addMarker(value);
 	});
 	updateHeatMap();
