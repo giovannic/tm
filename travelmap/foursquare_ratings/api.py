@@ -21,5 +21,5 @@ class CityLocationResource(ModelResource):
       authorization = Authorization()
       fields = ['name', 'country_code', 'latitude', 'longitude'] 
       always_return_data = True
-      filtering = {'name' : 'Kiev'}
+      filtering = {'name' : ALL}
       limit = 60
