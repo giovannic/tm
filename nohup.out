@@ -270,3 +270,9 @@ Exception happened during processing of request from ('2.98.241.119', 61673)
 ----------------------------------------
 ----------------------------------------
 ----------------------------------------
+Validating models...
+
+0 errors found
+Django version 1.4.3, using settings 'travelmap.settings'
+Development server is running at http://ec2-54-228-52-161.eu-west-1.compute.amazonaws.com:80/
+Quit the server with CONTROL-C.
