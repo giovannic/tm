@@ -148,6 +148,7 @@ function initialiseMap() {
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
 	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', recieveCities);
+	$.getJSON(getBaseURL() + 'api/v1/hotel/?format=json', recieveHotels);
 
 }
 
@@ -160,11 +161,12 @@ function recieveCities(data, status, jqXHR) {
 	updateHeatMap();
 }
 
-function addHotelMarker() {
-	var latitude = 29384;
-	var longitude = 1923476;
-	var latlong = new google.maps.LatLng(latitude,lonitude);
-	hotels.push(latlong);
+function recieveHotels(data, status, jqXHR) {
+	hotels = data.objects;
+	$.each(hotels, function (key,value) {
+	  hotels.push(value);
+	});
+	updateHeatMap();
 }
 
 function addMarker(city) {
