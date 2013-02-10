@@ -1,9 +1,9 @@
 USGSOverlay.prototype = new google.maps.OverlayView();
 
-function USGSOverlay(bounds, city, score, map) {
+function USGSOverlay(location, city, score, map) {
 
   // Now initialize all properties.
-  this.bounds_ = bounds;
+  this.location_ = location;
   this.city_ = city;
   this.score_ = score;
   this.map_ = map;
@@ -42,7 +42,7 @@ USGSOverlay.prototype.onAdd = function() {
   // We add an overlay to a map via one of the map's panes.
   // We'll add this overlay to the overlayImage pane.
   var panes = this.getPanes();
-  panes.overlayLayer.appendChild(div);
+  panes.floatPane.appendChild(div);
 }
 
 USGSOverlay.prototype.draw = function() {
@@ -55,15 +55,14 @@ USGSOverlay.prototype.draw = function() {
   // Retrieve the southwest and northeast coordinates of this overlay
   // in latlngs and convert them to pixels coordinates.
   // We'll use these coordinates to resize the DIV.
-  var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-  var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+  var locationPx = overlayProjection.fromLatLngToDivPixel(this.location_);
 
   // Resize the image's DIV to fit the indicated dimensions.
   var div = this.div_;
-  div.style.left = sw.x + 'px';
-  div.style.top = ne.y + 'px';
-  div.style.width = (ne.x - sw.x) + 'px';
-  div.style.height = (sw.y - ne.y) + 'px';
+  div.style.left = locationPx.x + 'px';
+  div.style.top = (locationPx.y - 150) + 'px';
+  div.style.width = 120 + 'px';
+  div.style.height = 150 + 'px';
 }
 
 USGSOverlay.prototype.onRemove = function() {

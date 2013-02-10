@@ -8,7 +8,6 @@ class CityResource(ModelResource):
     class Meta:
       queryset = City.objects.all()
       authorization = Authorization()
-      fields = ['name']
       always_return_data = True
 
 class HotelResource(ModelResource):
