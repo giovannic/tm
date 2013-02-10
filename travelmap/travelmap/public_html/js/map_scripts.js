@@ -69,7 +69,7 @@ function get_compatibilityScore(weights_object){
 
 		})
 		updateHeatMap();
-	})
+	});
 }
 
 function update(mult) {
