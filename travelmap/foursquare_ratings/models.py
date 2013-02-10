@@ -74,7 +74,7 @@ class CityScore(models.Model):
 			self.raw_scores[key] = float()
 			self.venues[key] = []
 			for result in city_scores.all_scores[self.name][key]:
-				self.raw_scores[key]+=float(result['stats']['checkinsCount']+result['stats']['usersCount'])
+				self.raw_scores[key]+=float(result['stats']['checkinsCount'])
 				self.venues[key].append(result)
 		self.save()	
 
@@ -101,7 +101,7 @@ class CityScore(models.Model):
 				name = place['name']
 				latitude = float(place['location']['lat'])
 				longitude = float(place['location']['lng'])
-				count = float(place['stats']['checkinsCount'])
+				count = float(place['stats']['checkinsCount'])/self.total_checkins
 				city = self.name
 				total_checkins = self.total_checkins
 				venue = {'name': name, 'latitude': latitude, 'longitude': longitude, 'checkinsCount': count, 'city': city, 'total_checkins': total_checkins}
@@ -110,10 +110,11 @@ class CityScore(models.Model):
 		return venues		
 
 class Venue(models.Model):
-		name = models.CharField(max_length = 1023)
-		latitude = models.FloatField()
-		longitude = models.FloatField()
-		checkinsCount = models.FloatField()
-		city = models.CharField(max_length = 1032)
-		total_checkins = models.FloatField()
+	name = models.CharField(max_length = 1023)
+	latitude = models.FloatField()
+	longitude = models.FloatField()
+	checkinsCount = models.FloatField()
+	city = models.CharField(max_length = 1032)
+	total_checkins = models.FloatField()
+
 
