@@ -4,9 +4,11 @@ function USGSOverlay(bounds, city, score, map) {
 
   // Now initialize all properties.
   this.bounds_ = bounds;
-	this.city_ = city;
-	this.score_ = score;
+  this.city_ = city;
+  this.score_ = score;
   this.map_ = map;
+
+  inner_html = "<h4>"+this.city_+"</h4><h3>"+this.score_+"%</h3><p>compatible</p>";
 
   // We define a property to hold the image's
   // div. We'll actually create this div
@@ -25,14 +27,16 @@ USGSOverlay.prototype.onAdd = function() {
   // the map's panes are now available for attaching
   // the overlay to the map via the DOM.
 
-	// JOSH HERE
-
   // Create the DIV and set some basic attributes.
   var div = document.createElement('div');
-  $(div).addClass("cityOverlay popover top");
+  
+  $(div).addClass("popover top");
+  div.style.position = "absolute";
+  div.style.display = "block";
+  div.style.height = "150px";
+  div.style.width = "150px";
+  $(div).html(inner_html);
 
-  //div.style.height = "150px";
-  //div.style.width = "150px";
 
   // Set the overlay's div_ property to this DIV
   this.div_ = div;

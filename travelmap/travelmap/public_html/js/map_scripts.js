@@ -114,7 +114,7 @@ function initialiseMap() {
 
 	// Photograph courtesy of the U.S. Geological Survey
 	var srcImage = 'js/head.jpg';
-	overlay = new USGSOverlay(bounds, srcImage, map);
+	overlay = new USGSOverlay(bounds, "test", 5, map);
 
 	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', recieveCities);
 
