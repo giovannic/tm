@@ -11,6 +11,7 @@ var markers;
 // Info on each city for heat map
 var cities;
 var hotels;
+var music;
 
 // Global heatmap layer
 var heatmap;
@@ -141,6 +142,23 @@ function recieveCities(data, status, jqXHR) {
 	updateHeatMap();
 
 	sendOffData();
+}
+
+
+function recieveHotels(data, status, jqXHR) {
+	hots = data.objects;
+	$.each(hots, function (key,value) {
+	  hotels.push(value);
+	});
+}
+
+function recieveMusic(data) {
+	mus = data.objects;
+	$.each(mus, function (key,value) {
+	  if(value.hometown):
+	    music.push(value);
+	});
+	updateHeatMap();
 }
 
 function addMarker(city) {
