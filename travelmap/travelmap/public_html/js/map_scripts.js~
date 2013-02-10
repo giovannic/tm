@@ -11,6 +11,7 @@ var markers;
 // Info on each city for heat map
 var cities;
 var hotels;
+var music;
 
 // Global heatmap layer
 var heatmap;
@@ -79,13 +80,13 @@ function updateHeatMapForZoomLevel(zoom) {
 		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : Math.max(0.01,value.score) };
 		heatmapData.push(latlong);
 	});
-
+/*
 	$.each (hotels, function (key, value) {
 		var lat = value.lat;
 		var long = value.long;
 		heatmapData.push({location : new google.maps.LatLng(lat,long), weight : value.cost});
 	});
-
+*/
     if (heatmap) {
         heatmap.setMap(null);
         delete heatmap;
@@ -138,9 +139,26 @@ function recieveCities(data, status, jqXHR) {
 		addMarker(value);
 	});
 
+<<<<<<< HEAD
+=======
+function recieveHotels(data, status, jqXHR) {
+	hots = data.objects;
+	$.each(hots, function (key,value) {
+	  hotels.push(value);
+	});
+>>>>>>> 1e10d426d0eb4a2fc11cc16ce9463f6d14f9146e
 	updateHeatMap();
 
 	sendOffData();
+}
+
+function recieveMusic(data) {
+	mus = data.objects;
+	$.each(mus, function (key,value) {
+	  if(value.hometown):
+	    music.push(value);
+	});
+	updateHeatMap();
 }
 
 function addMarker(city) {

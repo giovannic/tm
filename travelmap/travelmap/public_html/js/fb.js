@@ -3,7 +3,7 @@ function login() {
        if (response.authResponse) {
 	 FB.api('/me', function(res) {
 	   console.log(res.name);
-	 get_fbloc();
+	 get_sfbloc();
 	 });
        } else {
          console.log("fail");
