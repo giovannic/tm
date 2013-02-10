@@ -1,6 +1,7 @@
 $(document).ready(function() {
 //Setup Map
 	initialiseMap();
+	sendOffData();
 
 //ensure carousel doesn't run itself - is this my most shameless hack?
 	window.setInterval(function() {$('#option-carousel').carousel('pause')}, 1000);
@@ -15,6 +16,9 @@ $(document).ready(function() {
 		$(this).addClass('active');
 		$('#option-carousel').carousel(parseInt($(this).attr("index")));
 	});
+
+	//submit button
+		$('.update').click(sendOffData);
 
 //sliders
 	$( ".standard-slider" ).slider({
@@ -88,44 +92,39 @@ $(document).ready(function() {
 		}
 	});
 
-	
-
-
-//submit button
-	$('.update').click(function() {
-		var allprefs = {};
-		
-		var accom = {};
-
-//		$('#accom-prefs .tab-pane').each(function() {
-//			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
-//		});
-
-
-		var flights = {};
-
-//		$('#todo-prefs .tab-pane').each(function() {
-//			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
-//		});
-
-
-		var todo = {};
-
-		$('#todo-prefs .tab-pane').each(function() {
-			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
-		});
-
-		console.log(todo);
-
-		allprefs[0] = accom;
-		allprefs[1] = flights;
-		allprefs[2] = todo;
-
-		console.log(allprefs);
-
-		update(allprefs);
-
-
-	})
-
 });
+
+function sendOffData() {
+
+	var allprefs = {};
+	
+	var accom = {};
+	var flights = {};
+	var todo = {};
+
+	$('#accom-prefs .tab-pane').each(function() {
+		accom[$(this).children('div').attr("pref")+"-min"] = $(this).children('p').attr("data-min");
+		accom[$(this).children('div').attr("pref")+"-max"] = $(this).children('p').attr("data-max");
+	});
+
+	$('#flight-prefs .tab-pane').each(function() {
+		flights[$(this).children('div').attr("pref")+"-min"] = $(this).children('p').attr("data-min");
+		flights[$(this).children('div').attr("pref")+"-max"] = $(this).children('p').attr("data-max");
+	});
+
+	$('#todo-prefs .tab-pane').each(function() {
+		todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
+	});
+
+	allprefs[0] = accom;
+	allprefs[1] = flights;
+	allprefs[2] = todo;
+
+	console.log(allprefs);
+
+	get_compatibilityScore(todo);
+
+	update(allprefs);
+}
+
+
