@@ -5,7 +5,7 @@ function USGSOverlay(location, city, score, map) {
   // Now initialize all properties.
   this.location_ = location;
   this.city_ = city;
-  this.score_ = score;
+  this.score_ = score.toFixed(2)*100;
   this.map_ = map;
 
   inner_html = "<div class='cityOverlay'><h4>"+this.city_+"</h4><h3>"+this.score_+"%</h3><p>compatible</p></div>";
