@@ -3,6 +3,7 @@ import foursquare
 from cities import cities 
 from jsonfield import JSONField
 from django.conf import settings
+from django.db.models import Max
 
 
 class categories(models.Model):
@@ -90,3 +91,29 @@ class CityScore(models.Model):
 		for key in self.raw_scores:
 			self.weighed_scores[key] = self.raw_scores[key]/self.total_checkins
 		self.save()	
+
+	def get_venues(self):
+		venues = {}
+		venues[self.name] = []
+			
+		for key in self.venues.keys():
+			for place in self.venues[key]:
+				name = place['name']
+				latitude = float(place['location']['lat'])
+				longitude = float(place['location']['lng'])
+				count = float(place['stats']['checkinsCount'])
+				city = self.name
+				total_checkins = self.total_checkins
+				venue = {'name': name, 'latitude': latitude, 'longitude': longitude, 'checkinsCount': count, 'city': city, 'total_checkins': total_checkins}
+				venues[self.name].append(venue)
+				Venue.objects.get_or_create(**venue)
+		return venues		
+
+class Venue(models.Model):
+		name = models.CharField(max_length = 1023)
+		latitude = models.FloatField()
+		longitude = models.FloatField()
+		checkinsCount = models.FloatField()
+		city = models.CharField(max_length = 1032)
+		total_checkins = models.FloatField()
+
