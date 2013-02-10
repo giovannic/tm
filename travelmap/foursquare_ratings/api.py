@@ -9,7 +9,7 @@ class CityScoreResource(ModelResource):
     class Meta:
       queryset = CityScore.objects.all()
       authorization = Authorization()
-      fields = ['name','weighed_scores']
+      fields = ['name','weighed_scores',]
       always_return_data = True
       filtering = {'name' : ALL}
       max_limit = None
@@ -19,8 +19,7 @@ class CityLocationResource(ModelResource):
     class Meta:
       queryset = CityScore.objects.all()
       authorization = Authorization()
-      fields = ['name','longitude', 'latitude', 'country_code']
+      fields = ['name', 'country_code', 'latitude', 'longitude'] 
       always_return_data = True
-      filtering = {'name' : ALL}   
-      max_limit = None   
-      limit = 100
+      filtering = {'name' : 'Kiev'}
+      limit = 60
