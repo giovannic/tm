@@ -40,6 +40,42 @@ function setScoreForCity(city, score) {
 	});
 }
 
+function get_compatibilityScore(weights_object){
+
+	$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json&&', function(stuff){
+
+		
+		city_objects = stuff.objects
+		console.log('city_objects', city_objects)
+		$.each(city_objects		, function(index, data){
+			var data = city_objects[index].weighed_scores
+			console.log(data)
+
+			var data = data.replace(/u/g, "");
+			var data = data.replace(/'/g, "\"");
+			var data = jQuery.parseJSON(data)
+			var score = 0
+			var total = 0
+			$.each(weights_object, function(index, val){
+				val = parseInt(val)
+				total += val
+			})
+
+			$.each(data, function(index, val){
+				score += Math.min(val,weights_object[mapping(index)]/total)
+				console.log(score)
+			})
+
+			score = score*100
+			setScoreForCity(city_objects[index].name,Math.pow(10,score));
+
+		})
+		updateHeatMap();
+
+	})
+}
+
+
 
 function update(mult) {
     $.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function(all) {
@@ -57,7 +93,7 @@ function update(mult) {
                 heat += 10 * value * parseInt(todo[mapping(name)]);
             });
             setScoreForCity(city, heat);
-            console.log(heat);
+           // console.log(heat);
         });
 	    updateHeatMap();
     });
