@@ -8,7 +8,7 @@ function USGSOverlay(location, city, score, map) {
   this.score_ = score;
   this.map_ = map;
 
-  inner_html = "<h4>"+this.city_+"</h4><h3>"+this.score_+"%</h3><p>compatible</p>";
+  inner_html = "<div class='cityOverlay'><h4>"+this.city_+"</h4><h3>"+this.score_+"%</h3><p>compatible</p></div>";
 
   // We define a property to hold the image's
   // div. We'll actually create this div
@@ -30,11 +30,9 @@ USGSOverlay.prototype.onAdd = function() {
   // Create the DIV and set some basic attributes.
   var div = document.createElement('div');
   
-  $(div).addClass("popover top");
+  $(div).addClass("popover top cityOverlayContainer");
   div.style.position = "absolute";
   div.style.display = "block";
-  div.style.height = "150px";
-  div.style.width = "150px";
   $(div).html(inner_html);
 
 
@@ -61,10 +59,13 @@ USGSOverlay.prototype.draw = function() {
 
   // Resize the image's DIV to fit the indicated dimensions.
   var div = this.div_;
+  set_height = 90;
+  set_width = 100;
+
   div.style.left = locationPx.x + 'px';
-  div.style.top = (locationPx.y - 150) + 'px';
-  div.style.width = 120 + 'px';
-  div.style.height = 150 + 'px';
+  div.style.top = (locationPx.y - set_height) + 'px';
+  div.style.width = set_width + 'px';
+  div.style.height = set_height + 'px';
 }
 
 USGSOverlay.prototype.onRemove = function() {
