@@ -19,20 +19,24 @@
 	<script type="text/javascript" src="./js/map_scripts.js"></script> 
 	<script type="text/javascript" src="./js/customOverlay.js"></script>
 
+	<!-- fb -->
+	<script type="text/javascript" src="./js/fb.js"></script>
+
 </head>
 <body onload="getLocation()">
   <div id="fb-root"></div>
   <script>
     //setup fb api
      window.fbAsyncInit = function() {
-     FB.init({
-      appId      : '158383940982125',
-      channelUrl : 'www.wearecool.com/channel.html',
-      status     : true,
-      cookie     : true,
-      xfbml      : true 
-      });
-     };
+       FB.init({
+         appId      : '158383940982125',
+	 channelUrl : './static/channel.html',
+         status     : true,
+         cookie     : true,
+         xfbml      : true 
+       });
+     }
+
     (function(d){
       var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
       if (d.getElementById(id))
@@ -43,34 +47,11 @@
       js.src = "//connect.facebook.net/en_US/all.js";
       ref.parentNode.insertBefore(js, ref);
    }(document));
+
+
  </script>
 
-	<div id="first-up">
-		<!-- this will ask for location etc -->
-	</div><!-- #first-up -->
-
-	<div id="primary" class="container">
-
-		<header class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-				<ul class="nav">
-					<a class="brand" href="#">This will be awesome</a>
-					<li class="divider-vertical"></li>
-					<li id="select-one" index=0 class="option-select active"><a href="#">Accomodation</a></li>
-					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
-					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
-					<li id="fb-login"  class="pull-right-hard"><a href="#"><img class="sm-img" src="./img/social-media-icons/32/facebook.png" /></a></li>
-				</ul><!-- .nav -->
-				</div><!-- .container -->
-			</div><!-- .navbar-inner -->
-		</header><!-- .navbar -->
-		
-		<div id="app">
-			<div id="map_canvas"></div>
-		</div><!-- #app -->
-
-		<div id="option-carousel" class="hero-unit carousel slide ">
+ 	<div id="option-carousel" class="hero-unit carousel slide ">
 			<!-- Carousel items -->
 			<div class="carousel-inner">
 				<div id="accom" index=0 class="active item user-options well">
@@ -159,6 +140,28 @@
 			</div><!-- .carousel-inner -->
 		</div><!-- #option-carousel -->
 
+	<div id="primary" class="container">
+
+		<header class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+				<ul class="nav">
+					<a class="brand" href="#">This will be awesome</a>
+					<li class="divider-vertical"></li>
+					<li id="select-one" index=0 class="option-select active"><a href="#">Accomodation</a></li>
+					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
+					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
+					<li class="divider-vertical"></li>
+					<li id="show-hide-options" class="hide-mode"><a href="#">Hide Trip Options</a></li>
+					<li id="fb-login"  class="pull-right-hard"><a href="#"><img class="sm-img" src="./img/social-media-icons/32/facebook.png" /></a></li>
+				</ul><!-- .nav -->
+				</div><!-- .container -->
+			</div><!-- .navbar-inner -->
+		</header><!-- .navbar -->
+		
+		<div id="app" class="dialog-open">
+			<div id="map_canvas"></div>
+		</div><!-- #app -->
 		
 	</div><!-- #primary -->
 </body>
