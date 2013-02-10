@@ -96,29 +96,22 @@ $(document).ready(function() {
 		var allprefs = {};
 		
 		var accom = {};
+		var flights = {};
+		var todo = {};
 
 		$('#accom-prefs .tab-pane').each(function() {
 			accom[$(this).children('div').attr("pref")+"-min"] = $(this).children('p').attr("data-min");
 			accom[$(this).children('div').attr("pref")+"-max"] = $(this).children('p').attr("data-max");
 		});
 
-		console.log(accom);
-
-
-		var flights = {};
-
-		$('#flights-prefs .tab-pane').each(function() {
-			flights[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
+		$('#flight-prefs .tab-pane').each(function() {
+			flights[$(this).children('div').attr("pref")+"-min"] = $(this).children('p').attr("data-min");
+			flights[$(this).children('div').attr("pref")+"-max"] = $(this).children('p').attr("data-max");
 		});
-
-
-		var todo = {};
 
 		$('#todo-prefs .tab-pane').each(function() {
 			todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
 		});
-
-		
 
 		allprefs[0] = accom;
 		allprefs[1] = flights;
@@ -129,7 +122,6 @@ $(document).ready(function() {
 		get_compatibilityScore(todo);
 
 		update(allprefs);
-
 
 	})
 
