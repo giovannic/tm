@@ -9,7 +9,6 @@
 .env*
 
 #db
-travelmap/travelmap/travelmap.db
 
 #server
 .nohup.out
