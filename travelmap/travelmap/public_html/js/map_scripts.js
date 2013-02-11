@@ -17,7 +17,6 @@ var music;
 var heatmap;
 
 var overlay;
-
 function mapping(name) {
     if (name === "Food") {
         return "food";
@@ -52,20 +51,23 @@ function get_compatibilityScore(weights_object){
 
 			var data = data.replace(/u/g, "");
 			var data = data.replace(/'/g, "\"");
-			var data = jQuery.parseJSON(data);
+			var data = jQuery.parseJSON(data);	
 			console.log(data);
 			var score = 0;
 			var total = 0;
 			$.each(weights_object, function(index, val){
 				val = parseInt(val);
-				total += val;
+				total += (val-40);
+				console.log(val)
 			})
 
 			$.each(data, function(index, val){
-				score += Math.min(val,weights_object[mapping(index)]/total)
+				
+				score += (val+weights_object[mapping(index)]/total)/2;
+				console.log(score)
 			})
-
-			setScoreForCity(city_objects[index].name,score);
+			console.log(score);
+			setScoreForCity(city_objects[index].name, score);
 
 		})
 		updateHeatMap();
