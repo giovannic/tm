@@ -4,6 +4,7 @@ html {
 
 body {
 	height: 100%;
+	min-width: 980px; /*	cannot get this to work - bootstrap responsive CSS is overriding icon:;*/
 	background-image: url('../img/background-pngs/dark5.png');
 }
 
@@ -50,13 +51,25 @@ ul.nav {
 	height: 100%;
 }
 
+/*
+*
+*
+**** 	carousel styles start ****/
+
+#carousel-wrapper {
+	width: 100%;
+	margin: 0 auto;
+}
+
 #option-carousel {
 	position: absolute;
 	width: 60%;
 	min-width: 810px;
 	z-index: 50;
 	top: 30%;
-	left: 20%;
+/*	left: 20%;	*/
+
+
 	
 	padding: 20px;
 	margin: 0 auto;

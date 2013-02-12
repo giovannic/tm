@@ -2,6 +2,8 @@ $(document).ready(function() {
 //Setup Map
 	resize_map();
 	initialiseMap();
+//neccessary UI javascript
+	align_carousel();
 
 //ensure carousel doesn't run itself - is this my most shameless hack?
 /*	
@@ -25,6 +27,7 @@ $(document).ready(function() {
 
 //dynamically resize map height on viewport resize
 	$(window).resize(resize_map);
+	$(window).resize(align_carousel);
 
 	//submit button
 	$('.update').click(function() {
@@ -40,31 +43,6 @@ $(document).ready(function() {
 	        hide_only();
 	    };
 	});
-
-	function show_hide_options() {
-		if(show_only() == 0) {
-			hide_only();
-		}
-	};
-
-	function show_only() {
-		if($('#show-hide-options').hasClass('show-mode')) {
-			$('#option-carousel').fadeIn(400);
-			$('#show-hide-options').toggleClass('hide-mode show-mode');
-			$('#show-hide-options').html('<a href="#">Hide Trip Options</a>');
-			$('#app').addClass('dialog-open');
-			return 1;
-		} else {return 0}
-	}
-
-	function hide_only() {
-		if($('#show-hide-options').hasClass('hide-mode')) {
-			$('#option-carousel').fadeOut(400);
-			$('#show-hide-options').toggleClass('hide-mode show-mode');
-			$('#show-hide-options').html('<a href="#">Show Trip Options</a>');
-			$('#app').removeClass('dialog-open');
-		}
-	}
 
 //sliders
 	$( ".standard-slider" ).slider({
@@ -138,13 +116,50 @@ $(document).ready(function() {
 		}
 	});
 
-});
+}); //end of document ready
+
+//UI javascript
+
+function align_carousel() {
+	$('#option-carousel').css('left', function() {
+		return ($('body').width() - $('#option-carousel').width())/2;
+	});
+}
+
+function show_hide_options() {
+		if(show_only() == 0) {
+			hide_only();
+		}
+	};
+
+function show_only() {
+	if($('#show-hide-options').hasClass('show-mode')) {
+		$('#option-carousel').fadeIn(400);
+		$('#show-hide-options').toggleClass('hide-mode show-mode');
+		$('#show-hide-options').html('<a href="#">Hide Trip Options</a>');
+		$('#app').addClass('dialog-open');
+		return 1;
+	} else {return 0}
+}
+
+function hide_only() {
+	if($('#show-hide-options').hasClass('hide-mode')) {
+		$('#option-carousel').fadeOut(400);
+		$('#show-hide-options').toggleClass('hide-mode show-mode');
+		$('#show-hide-options').html('<a href="#">Show Trip Options</a>');
+		$('#app').removeClass('dialog-open');
+	}
+}
+
+//Map javascript
 
 function resize_map() {
 	k = 0.95; //fraction of remaining height given over to map
 	o = 80; //offset from top (amount of window height taken up by top nave bar)
 	$('#app').height( k*($('body').height()-o) + 'px')
 }
+
+//server interation javascript
 
 function sendOffData() {
 
