@@ -5,7 +5,12 @@
 *	IT ALSO DEFINES THE FUNCTION REQUIRED FOR
 *	CHANGING THE STYLES
 *
+*	IF YOU WANT TO ADD A STYLE OPTION VISIT THIS LINK
+*	http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html
 *
+*	YOU'LL ALSO HAVE TO ADD A DROPDOWN OPTION IN index.html
+*	JUST COPY PASTE FROM THE PREVIOUS ONES AND UPDATE THE THEME-INDEX ATTRIBUTE
+*	
 **************************************************/
 
 
