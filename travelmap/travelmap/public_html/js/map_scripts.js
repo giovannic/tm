@@ -17,6 +17,7 @@ var music;
 var heatmap;
 
 var overlay;
+
 function mapping(name) {
     if (name === "Food") {
         return "food";
@@ -141,6 +142,13 @@ function initialiseMap() {
 	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', recieveCities);
 	$.getJSON(getBaseURL() + 'api/v1/hotel/?format=json', recieveHotels);
 
+}
+
+function restyleMap(styles) {
+	var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
+
+	map.mapTypes.set('map_style', styledMap);
+	map.setMapTypeId('map_style');
 }
 
 function recieveCities(data, status, jqXHR) {

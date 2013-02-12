@@ -35,7 +35,7 @@ $(document).ready(function() {
 		hide_only()
 	});
 
-	//show/hide trip options
+//show/hide trip options
 	$('#show-hide-options').click(show_hide_options);
 
 	$('body').click(function(event) {
@@ -43,6 +43,14 @@ $(document).ready(function() {
 	        hide_only();
 	    };
 	});
+
+//map theme select
+	$('.theme-select').click(function() {
+		var i = $(this).attr('theme-index');
+		set_map_style(i);
+	});
+
+	
 
 //sliders
 	$( ".standard-slider" ).slider({
