@@ -42,36 +42,25 @@ $(document).ready(function() {
 	});
 
 	function show_hide_options() {
-		if($('#show-hide-options').hasClass('hide-mode')) {
-			$('#option-carousel').fadeOut(400);
-			$('#show-hide-options').addClass('show-mode');
-			$('#show-hide-options').removeClass('hide-mode');
-			$('#show-hide-options').html('<a href="#">Show Trip Options</a>');
-			$('#app').removeClass('dialog-open');
-		} else {
-			$('#option-carousel').fadeIn(400);
-			$('#show-hide-options').addClass('hide-mode');
-			$('#show-hide-options').removeClass('show-mode');
-			$('#show-hide-options').html('<a href="#">Hide Trip Options</a>');
-			$('#app').addClass('dialog-open');
+		if(show_only() == 0) {
+			hide_only();
 		}
 	};
 
 	function show_only() {
 		if($('#show-hide-options').hasClass('show-mode')) {
 			$('#option-carousel').fadeIn(400);
-			$('#show-hide-options').addClass('hide-mode');
-			$('#show-hide-options').removeClass('show-mode');
+			$('#show-hide-options').toggleClass('hide-mode show-mode');
 			$('#show-hide-options').html('<a href="#">Hide Trip Options</a>');
 			$('#app').addClass('dialog-open');
-		}
+			return 1;
+		} else {return 0}
 	}
 
 	function hide_only() {
 		if($('#show-hide-options').hasClass('hide-mode')) {
 			$('#option-carousel').fadeOut(400);
-			$('#show-hide-options').addClass('show-mode');
-			$('#show-hide-options').removeClass('hide-mode');
+			$('#show-hide-options').toggleClass('hide-mode show-mode');
 			$('#show-hide-options').html('<a href="#">Show Trip Options</a>');
 			$('#app').removeClass('dialog-open');
 		}
