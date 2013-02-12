@@ -1,5 +1,6 @@
 $(document).ready(function() {
 //Setup Map
+	resize_map();
 	initialiseMap();
 
 //ensure carousel doesn't run itself - is this my most shameless hack?
@@ -16,6 +17,9 @@ $(document).ready(function() {
 		$(this).addClass('active');
 		$('#option-carousel').carousel(parseInt($(this).attr("index")));
 	});
+
+//dynamically resize map height on viewport resize
+	$(window).resize(resize_map);
 
 	//submit button
 	$('.update').click(function() {
@@ -142,6 +146,12 @@ $(document).ready(function() {
 
 });
 
+function resize_map() {
+	k = 0.95; //fraction of remaining height given over to map
+	o = 80; //offset from top (amount of window height taken up by top nave bar)
+	$('#app').height( k*($('body').height()-o) + 'px')
+}
+
 function sendOffData() {
 
 	var allprefs = {};
@@ -167,8 +177,6 @@ function sendOffData() {
 	allprefs[0] = accom;
 	allprefs[1] = flights;
 	allprefs[2] = todo;
-
-	console.log(allprefs);
 
 	get_compatibilityScore(todo);
 
