@@ -4,7 +4,12 @@ $(document).ready(function() {
 	initialiseMap();
 
 //ensure carousel doesn't run itself - is this my most shameless hack?
-	window.setInterval(function() {$('#option-carousel').carousel('pause')}, 1000);
+/*	
+*	I BELIEVE THIS HORRIBLE HACK IS NO LONGER REQUIRED
+*	I'M COMMENTING IT OUT FOR NOW - IF YOU FIND THE UI
+*	STARTS RUNNING AWAY WITH ITSELF UNCOMMENT IT
+*/
+//	window.setInterval(function() {$('#option-carousel').carousel('pause')}, 1000);
 
 
 //initialise some bootstrap javascript
