@@ -44,6 +44,15 @@ $(document).ready(function() {
 	    };
 	});
 
+//show/hide bottom nav
+/*	$('#footer-tab').hover(function () {
+		$('#bottom-nav').removeClass('not-showing');
+	});
+
+	$('#footer-tab').click(function () {
+		$('#bottom-nav').addClass('not-showing');
+	});	*/
+
 //map theme select
 	$('.theme-select').click(function() {
 		var i = $(this).attr('theme-index');
