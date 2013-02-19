@@ -24,7 +24,7 @@ function mapping(name) {
         return "shopping";
     } else if (name === "Nightlife Spot") {
         return "nightlife";
-    } else if (name === "Otdoors & Recreation") {
+    } else if (name === "Outdoors & Recreation") {
         return "outdoor";
     } else if (name === "Arts & Entertainment") {
         return "arts";
@@ -41,32 +41,40 @@ function setScoreForCity(city, score) {
 }
 
 function get_compatibilityScore(weights_object){
+	var weights_size = 0;
+
+	$.each(weights_object, function(index, val){
+		val = parseInt(val);
+		weights_size += val*val;
+	});
+
+	weights_size = Math.sqrt(weights_size);
+
 
 	$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function(stuff){
 
 		var city_objects = stuff.objects
 
 		$.each(city_objects	, function(index, data){
+
 			var data = city_objects[index].weighed_scores
 
-			var data = data.replace(/u/g, "");
+			var data = data.replace(/u\'/g, "\"");
 			var data = data.replace(/'/g, "\"");
 			var data = jQuery.parseJSON(data);	
-			console.log(data);
+			var dot_product = 0;
+			var scores_size = 0;
 			var score = 0;
-			var total = 0;
-			$.each(weights_object, function(index, val){
-				val = parseInt(val);
-				total += (val-40);
-				console.log(val)
-			})
+			console.log(data);
 
 			$.each(data, function(index, val){
+				scores_size += val*val;
+				dot_product += val*(parseInt(weights_object[mapping(index)]))
 				
-				score += (val+weights_object[mapping(index)]/total)/2;
-				console.log(score)
 			})
-			console.log(score);
+			scores_size = Math.sqrt(scores_size);
+			score = dot_product/(scores_size*weights_size);
+			console.log('done cosine similarity', score);
 			setScoreForCity(city_objects[index].name, score);
 
 		})
