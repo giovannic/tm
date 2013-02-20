@@ -23,6 +23,7 @@ $(document).ready(function() {
 		$('.option-select').removeClass('active');
 		$(this).addClass('active');
 		$('#option-carousel').carousel(parseInt($(this).attr("index")));
+		$('#option-carousel').carousel('pause'); //somewhat less hacky...
 	});
 
 //dynamically resize map height on viewport resize
