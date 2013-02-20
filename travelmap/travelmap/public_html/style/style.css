@@ -22,6 +22,7 @@ body {
 
 .navbar .brand {
 	font-size: 2.0em;
+	font-family: 'Baumans', cursive;
 }
 
 .navbar .mode-select {
@@ -39,9 +40,22 @@ ul.nav {
 	width: 100%;
 }
 
+.icon-user {
+	position: relative;
+	top:3px;
+	left:-8px;
+	opacity: 0.7;
+}
+
+.profile-dropdown {
+	min-width: 100%;
+}
+
 .pull-right-hard {
 	float: right !important;
 }
+
+/*** unused fb button styles ***
 
 .sm-img {
 	position: relative;
@@ -54,6 +68,8 @@ ul.nav {
 	-webkit-transition-property: top;
 	top: -7px;
 }
+
+*** end unused ****/
 
 /*
 *
@@ -73,6 +89,10 @@ footer#bottom-nav.not-showing {
 footer#bottom-nav:hover {
 	bottom:0px;
 }
+/*http://css-tricks.com/forums/discussion/16129/triggering-css-transition-by-hovering-over-a-different-element/p1 */
+footer#bottom-nav:hover+div {
+	xleft:-110px;
+}
 
 /*
 *
@@ -82,13 +102,18 @@ footer#bottom-nav:hover {
 	width: 100px;
 	height: 100px;
 	border-radius: 100px;
-/*	background-color: rgba(255,255,255,1); */
 }
 
 #footer-tab {
 	position: relative;
 	bottom: -90px;
 	left: -60px;
+}
+
+.tab-img {
+	width: 50px;
+	position: relative;
+	left: 45px;
 }
 
 /*

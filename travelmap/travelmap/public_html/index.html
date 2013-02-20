@@ -7,6 +7,7 @@
 	<link href="./style/bootstrap.min.css" rel="stylesheet" type="text/css" >
 	<link href="./style/style.css" rel="stylesheet" type="text/css" >
 	<link href="./js/city_list.txt" type="text/plain">
+	<link href='http://fonts.googleapis.com/css?family=Baumans' rel='stylesheet' type='text/css'>
 
 	<!-- JavaScript -->
 	<script src="./js/jquery.js" type="text/javascript"></script>
@@ -55,7 +56,7 @@
 
  	</script>
 	<div id="carousel-wrapper">	
-		<div id="option-carousel" class="hero-unit carousel slide ">
+		<div id="option-carousel" class="hero-unit carousel slide showing">
 			<!-- Carousel items -->
 			<div class="carousel-inner">
 				<div id="accom" index=0 class="active item user-options well">
@@ -151,26 +152,32 @@
 			<div class="navbar-inner">
 				<div class="container">
 				<ul class="nav">
-					<a class="brand" href="#">This will be awesome</a>
+					<a class="brand" href="#">DERP</a>
 					<li class="divider-vertical"></li>
+<!-- old top bar nav 
 					<li id="select-one" index=0 class="option-select active"><a href="#">Accomodation</a></li>
 					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
 					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
 					<li class="divider-vertical"></li>
-					<li id="show-hide-options" class="hide-mode"><a href="#">Hide Trip Options</a></li>
-					<li class="divider-vertical"></li>
-					<li id="select-four" index=3 class="option-select">
-						<div class="btn-group">
-						<a class="btn dropdown-toggle btn-inverse" data-toggle="dropdown" href="#">Change Map Theme
-						<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li class="theme-select" theme-index=0 ><a href="#">Default</a></li>
-							<li class="theme-select" theme-index=1 ><a href="#">Theme 1</a></li>
-							<li class="theme-select" theme-index=2 ><a href="#">Theme 2</a></li>
-						</ul>
-						</div>
-					</li>
 					<li id="fb-login"  class="pull-right-hard"><a href="#"><img class="sm-img" src="./img/social-media-icons/32/facebook.png" /></a></li>
+ end old top bar nav -->
+<!-- new top bar nav -->
+
+					<li class="dropdown pull-right pull-right-hard">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="icon-user"></i>My Travel Profile
+						<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu profile-dropdown" >
+							<li><a href="#">View your profile</a></li>
+							<li><a href="#">Option 2</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Link to your networks</a></li>
+						</ul>
+					</li>
+
+<!--end old top bar nav -->
+
 				</ul><!-- .nav -->
 				</div><!-- .container -->
 			</div><!-- .navbar-inner -->
@@ -181,15 +188,29 @@
 		</div><!-- #app -->
 
 		<footer id="bottom-nav" class="navbar navbar-fixed-bottom not-showing">
-			<div id="footer-tab" class="tab well"></div>
+			<div id="footer-tab" class="tab well"><img class="tab-img" src="img/wrench-256.png"/></div>
 			<div id="bottom-nav-inner"  class="navbar-inner">
 				<div class="container">
 				<ul class="nav">
 					<li id="select-one" index=0 class="option-select active"><a href="#">Accomodation</a></li>
 					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
 					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
-					<li class="divider-vertical pull-right"></li>
-					<li class="pull-right"><a class="brand pull-hard-right" href="#">This will be awesome</a></li>
+					<li class="divider-vertical pull-right-hard">
+					<li id="select-four" index=3 class="option-select pull-right-hard">
+						<div class="btn-group dropup">
+							<button class="btn">Dev</button>
+							<button class="btn dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+							<!-- dropdown menu links -->
+							<li class="theme-select" theme-index=0 ><a href="#">Default</a></li>
+							<li class="theme-select" theme-index=1 ><a href="#">Default (no labels)</a></li>
+							<li class="theme-select" theme-index=2 ><a href="#">Theme 2</a></li>
+							<li class="theme-select" theme-index=3 ><a href="#">Theme 2 (no labels)</a></li>
+							</ul>
+						</div>
+					</li>
 				</ul><!-- .nav -->
 				</div><!-- .container -->
 			</div><!-- .navbar-inner -->

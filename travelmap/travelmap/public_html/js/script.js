@@ -10,8 +10,10 @@ $(document).ready(function() {
 *	I BELIEVE THIS HORRIBLE HACK IS NO LONGER REQUIRED
 *	I'M COMMENTING IT OUT FOR NOW - IF YOU FIND THE UI
 *	STARTS RUNNING AWAY WITH ITSELF UNCOMMENT IT
+*
+*	I was wrong - it's still needed :(
 */
-//	window.setInterval(function() {$('#option-carousel').carousel('pause')}, 1000);
+	window.setInterval(function() {$('#option-carousel').carousel('pause')}, 1000);
 
 
 //initialise some bootstrap javascript
@@ -59,6 +61,10 @@ $(document).ready(function() {
 		var i = $(this).attr('theme-index');
 		set_map_style(i);
 	});
+
+//footer UI
+	$('footer#bottom-nav').mouseenter(footerTabHide);
+	$('footer#bottom-nav').mouseleave(footerTabShow);
 
 	
 
@@ -151,7 +157,7 @@ function show_hide_options() {
 	};
 
 function show_only() {
-	if($('#show-hide-options').hasClass('show-mode')) {
+	if($('#option-carousel').hasClass('showing')) {
 		$('#option-carousel').fadeIn(400);
 		$('#show-hide-options').toggleClass('hide-mode show-mode');
 		$('#show-hide-options').html('<a href="#">Hide Trip Options</a>');
@@ -161,12 +167,20 @@ function show_only() {
 }
 
 function hide_only() {
-	if($('#show-hide-options').hasClass('hide-mode')) {
+	if($('#show-hide-options').hasClass('showing')==0) {
 		$('#option-carousel').fadeOut(400);
 		$('#show-hide-options').toggleClass('hide-mode show-mode');
 		$('#show-hide-options').html('<a href="#">Show Trip Options</a>');
 		$('#app').removeClass('dialog-open');
 	}
+}
+
+function footerTabHide() {
+	$('#footer-tab').animate({left:'-110px'}, 400);
+}
+
+function footerTabShow() {
+	$('#footer-tab').animate({left:'-60px'}, 400);
 }
 
 //Map javascript
