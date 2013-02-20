@@ -8,6 +8,47 @@ body {
 	background-image: url('../img/background-pngs/dark5.png');
 }
 
+/*
+*
+*
+***** bg img change styles *****/
+
+body.bg0 {
+	background-image: url('../img/background-pngs/dark1.png');
+}
+body.bg1 {
+	background-image: url('../img/background-pngs/dark2.png');	
+}
+body.bg2 {
+	background-image: url('../img/background-pngs/dark3.png');	
+}
+body.bg3 {
+	background-image: url('../img/background-pngs/dark4.png');	
+}
+body.bg4 {
+	background-image: url('../img/background-pngs/dark5.png');	
+}
+body.bg5 {
+	background-image: url('../img/background-pngs/light1.png');	
+}
+body.bg6 {
+	background-image: url('../img/background-pngs/light2.png');	
+}
+body.bg7 {
+	background-image: url('../img/background-pngs/light3.png');	
+}
+body.bg8 {
+	background-image: url('../img/background-pngs/paper1.png');	
+}
+body.bg9 {
+	background-image: url('../img/background-pngs/paper2.png');	
+}
+body.bg10 {
+	background-image: url('../img/background-pngs/paper3.png');	
+}
+
+/********************************/
+
 .dialog-open {
 	opacity: 0.5;
 }
@@ -55,22 +96,6 @@ ul.nav {
 	float: right !important;
 }
 
-/*** unused fb button styles ***
-
-.sm-img {
-	position: relative;
-	top: -4px;
-
-	-webkit-transition: -webkit-transform 0.4s;
-}
-
-.sm-img:hover {
-	-webkit-transition-property: top;
-	top: -7px;
-}
-
-*** end unused ****/
-
 /*
 *
 ***** bottom nav bar *****/
@@ -79,6 +104,7 @@ footer#bottom-nav {
 	-moz-transition: bottom 0.4s;
     -webkit-transition: bottom 0.4s;
     -o-transition: bottom 0.4s;
+    -ms-transition: bottom 0.4s;
     transition: bottom 0.4s;
 }
 
@@ -110,6 +136,11 @@ footer#bottom-nav:hover+div {
 	left: -60px;
 }
 
+#footer-tab.navbar-inverse {
+	background-color: rgba(0,113,160,0.8);
+	border: none;
+}
+
 .tab-img {
 	width: 50px;
 	position: relative;
@@ -138,6 +169,10 @@ footer#bottom-nav:hover+div {
 	overflow: hidden;
 
 	-webkit-box-shadow: 0px 33px 15px -20px rgba(0,0,0,0.85);
+	-moz-box-shadow: 0px 33px 15px -20px rgba(0,0,0,0.85);
+	-o-box-shadow: 0px 33px 15px -20px rgba(0,0,0,0.85);
+	-ms-box-shadow: 0px 33px 15px -20px rgba(0,0,0,0.85);
+	box-shadow: 0px 33px 15px -20px rgba(0,0,0,0.85);
 }
 
 #option-carousel .carousel-inner .item {
@@ -173,6 +208,10 @@ button.update {
 	height: 100px;
 }
 
+.tab-content {
+	overflow: hidden;
+}
+
 /*
 *
 ***** sliders *****/
@@ -184,6 +223,11 @@ button.update {
 
 .ui-slider-handle {
 	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+
 	top: -13px !important;
 }
 
@@ -208,7 +252,12 @@ p.amount {
 #app {
 	width: 100%;
 	height: 480px;
+
 	-webkit-box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
+	-moz-box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
+	-o-box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
+	-ms-box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
+	box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
 }
 
 #map_canvas {
@@ -218,7 +267,12 @@ p.amount {
 
 .cityOverlayContainer {
 	border-radius: 15px;
+
 	-webkit-border-bottom-left-radius: 0px;
+	-moz-border-bottomleft-radius: 0px;
+	-o-border-bottom-left-radius: 0px;
+	-ms-border-bottom-left-radius: 0px;
+	border-bottom-left-radius: 0px;
 }
 
 .cityOverlay {

@@ -1,18 +1,28 @@
 /*
 *
 *
-*	THIS DOCUMENT IS FOR HOLDING MAP STYLES ONLY
-*	IT ALSO DEFINES THE FUNCTION REQUIRED FOR
-*	CHANGING THE STYLES
+*	THIS DOCUMENT IS FOR PROTOTYPE JS ONLY
 *
-*	IF YOU WANT TO ADD A STYLE OPTION VISIT THIS LINK
+*	IF YOU WANT TO ADD A MAP STYLE OPTION VISIT THIS LINK
 *	http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html
-*
-*	YOU'LL ALSO HAVE TO ADD A DROPDOWN OPTION IN index.html
-*	JUST COPY PASTE FROM THE PREVIOUS ONES AND UPDATE THE THEME-INDEX ATTRIBUTE
 *	
 **************************************************/
 
+function set_map_style(i) {
+  var styledMap = new google.maps.StyledMapType(styles[i], {name: "Styled Map"});
+  map.mapTypes.set('map_style', styledMap);
+  map.setMapTypeId('map_style');
+}
+
+function set_bg(i, inverse) {
+  $('body').removeAttr('class');
+  $('body').addClass('bg'+i);
+  if(inverse==1){
+    $('header, footer, #footer-tab').addClass('navbar-inverse');
+  } else {
+    $('header, footer, #footer-tab').removeClass('navbar-inverse');
+  }
+}
 
 styles = new Array();
 
@@ -91,10 +101,3 @@ styles[3] = [
       { "visibility": "on" }
     ]
   }];
-
-
-function set_map_style(i) {
-	var styledMap = new google.maps.StyledMapType(styles[i], {name: "Styled Map"});
-	map.mapTypes.set('map_style', styledMap);
-	map.setMapTypeId('map_style');
-}

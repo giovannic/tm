@@ -28,7 +28,7 @@
 	<!-- hotel data -->
 
 </head>
-<body onload="getLocation()">
+<body onload="getLocation()" >
   <div id="fb-root"></div>
   <script>
     //setup fb api
@@ -176,7 +176,7 @@
 						</ul>
 					</li>
 
-<!--end old top bar nav -->
+<!--end new top bar nav -->
 
 				</ul><!-- .nav -->
 				</div><!-- .container -->
@@ -197,9 +197,9 @@
 					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
 					<li class="divider-vertical pull-right-hard">
 					<li id="select-four" index=3 class="option-select pull-right-hard">
-						<div class="btn-group dropup">
-							<button class="btn">Dev</button>
-							<button class="btn dropdown-toggle" data-toggle="dropdown">
+						<div id="dev-options" class="btn-group dropup">
+							<button class="btn btn-inverse">Dev</button>
+							<button class="btn dropdown-toggle btn-inverse" data-toggle="dropdown">
 							<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
@@ -208,8 +208,20 @@
 							<li class="theme-select" theme-index=1 ><a href="#">Default (no labels)</a></li>
 							<li class="theme-select" theme-index=2 ><a href="#">Theme 2</a></li>
 							<li class="theme-select" theme-index=3 ><a href="#">Theme 2 (no labels)</a></li>
+							<li class="divider"></li>
+							<li class="bg-select" index=0><a href="#">Background 1</a></li>
+							<li class="bg-select" index=1><a href="#">Background 2</a></li>
+							<li class="bg-select" index=2><a href="#">Background 3</a></li>
+							<li class="bg-select" index=3><a href="#">Background 4</a></li>
+							<li class="bg-select" index=4><a href="#">Default</a></li>
+							<li class="bg-select" index=5 inverse=1 ><a href="#">Background 5</a></li>
+							<li class="bg-select" index=6 inverse=1 ><a href="#">Background 6</a></li>
+							<li class="bg-select" index=7 inverse=1 ><a href="#">Background 7</a></li>
+							<li class="bg-select" index=8 inverse=1 ><a href="#">Background 8</a></li>
+							<li class="bg-select" index=9 inverse=1 ><a href="#">Background 9</a></li>
+							<li class="bg-select" index=10 inverse=1 ><a href="#">Background 10</a></li>
 							</ul>
-						</div>
+						</div><!-- #dev-options -->
 					</li>
 				</ul><!-- .nav -->
 				</div><!-- .container -->
