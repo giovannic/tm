@@ -15,7 +15,8 @@ function showPosition(position)
   lon=position.coords.longitude;
   latlon=new google.maps.LatLng(lat, lon)
   mapholder=document.getElementById('map_canvas')  
-  updateMap();  
+  //not defined
+  //updateMap();  
   }
 
   function showError(error)
