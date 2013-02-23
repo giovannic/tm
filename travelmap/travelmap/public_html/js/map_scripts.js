@@ -140,6 +140,8 @@ function recieveCities(data, status, jqXHR) {
 	sendOffData();
 }
 
+function recieveFlights(data, status, jqXHR) {
+}
 
 function recieveHotels(data, status, jqXHR) {
 	hotels = data.objects;
