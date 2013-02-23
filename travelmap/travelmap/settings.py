@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'jsonfield',
     'django_extensions',
     'foursquare_ratings',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging

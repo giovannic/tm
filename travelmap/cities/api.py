@@ -2,12 +2,17 @@ from tastypie.api import Api
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization 
 from tastypie import fields
-from cities.models import City, Hotel, Flight
+from cities.models import City, Hotel, Flight, ExtUrl
 
 class CityResource(ModelResource):
     class Meta:
       queryset = City.objects.all()
       authorization = Authorization()
+      always_return_data = True
+
+class ExtUrlResource(ModelResource):
+    class Meta:
+      queryset = ExtUrl.objects.all()
       always_return_data = True
 
 class HotelResource(ModelResource):
@@ -18,8 +23,9 @@ class HotelResource(ModelResource):
       always_return_data = True
 
 class FlightResource(ModelResource):
-  country = fields.ToOneField(CityResource, 'country', full=True)
-  class Meta:
+    country = fields.ToOneField(CityResource, 'country', full=True)
+    source = fields.ToOneField(ExtUrlResource, 'source', full=True)
+    class Meta:
       queryset = Flight.objects.all()
       authorization = Authorization()
       always_return_data = True
