@@ -1,6 +1,6 @@
-ClickOverlay.prototype = new google.maps.OverlayView();
+USGSOverlay.prototype = new google.maps.OverlayView();
 
-function ClickOverlay(location, city, score, map) {
+function USGSOverlay(location, city, score, map) {
 
   // Now initialize all properties.
   this.location_ = location;
@@ -21,7 +21,7 @@ function ClickOverlay(location, city, score, map) {
 }
 
 
-ClickOverlay.prototype.onAdd = function() {
+USGSOverlay.prototype.onAdd = function() {
 
   // Note: an overlay's receipt of onAdd() indicates that
   // the map's panes are now available for attaching
@@ -45,7 +45,7 @@ ClickOverlay.prototype.onAdd = function() {
   panes.floatPane.appendChild(div);
 }
 
-ClickOverlay.prototype.draw = function() {
+USGSOverlay.prototype.draw = function() {
 
   // Size and position the overlay. We use a southwest and northeast
   // position of the overlay to peg it to the correct position and size.
@@ -68,7 +68,7 @@ ClickOverlay.prototype.draw = function() {
   div.style.height = set_height + 'px';
 }
 
-ClickOverlay.prototype.onRemove = function() {
+USGSOverlay.prototype.onRemove = function() {
   this.div_.parentNode.removeChild(this.div_);
   this.div_ = null;
 }
