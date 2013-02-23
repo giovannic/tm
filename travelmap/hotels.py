@@ -7,7 +7,7 @@ def get_hotels():
   hotels = []
   for line in reader:
     try:
-      if (len(line) > 14) and line[2] != '' and line[7] != '' and line[3] != '99999' and line[12] != '0' and line[13] != '0':
+      if (len(line) > 14) and line[2] != '' and line[7] != '' and line[3] != '99999' and line[12] != '0' and line[13] != '0' and line[10] != '':
         #name country price stars long lat url
         hotels.append((line[1],line[7],line[3],line[2],line[13],line[12]),line[10])
     except ValueError:
