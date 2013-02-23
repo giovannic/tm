@@ -76,8 +76,8 @@ function get_compatibilityScore(weights_object){
 function updateHeatMapForZoomLevel(zoom) {
 	var heatmapData = new Array();
 	$.each (cities, function (key,value) {
-		var longitude = value.longitude;
-		var latitude = value.latitude;
+		var longitude = value.long;
+		var latitude = value.lat;
 		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : Math.max(0.01,value.score) };
 		heatmapData.push(latlong);
 		});
@@ -107,6 +107,7 @@ function log(msg) {
 function initialiseMap() {
 	//Initiallisation of global variables
 	markers = new Array();
+	scores = new Array();
 	locations = new Array();
 
 	var point = new google.maps.LatLng(52.536273,13.623047);
@@ -123,14 +124,16 @@ function initialiseMap() {
 
 //	$.getJSON(getBaseURL() + 'api/v1/city/?format=json&limit=0', recieveCities);
 
+
 }
 
 function recieveCities(data, status, jqXHR) {
 	cities = data.objects;
-	$.each(cities, function (key,value) {
+	for (var key in cities) {
+		var value = cities[key];		
 		value.score = Math.random();//0;
 		addMarker(value);
-	});
+	}
 
   /*
 	updateHeatMap();
@@ -160,7 +163,7 @@ function addMarker(city) {
 		var longitude = city.long;
 		var location = new google.maps.LatLng(latitude, longitude);
 		if (overlay) overlay.setMap(null);
-		overlay = new ClickOverlay(location, city.name, city.score, map, map.getZoom());
+		overlay = new USGSOverlay(location, city.name, city.score, map);
 
 		google.maps.event.addListener(map, 'click', function () {
 			overlay.setMap(null);
