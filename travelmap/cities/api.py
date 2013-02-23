@@ -16,14 +16,15 @@ class ExtUrlResource(ModelResource):
       always_return_data = True
 
 class HotelResource(ModelResource):
-    city = fields.ToOneField(CityResource, 'city', full=True)
+    city = fields.ToOneField(CityResource, 'city', full=False)
+    source = fields.ToOneField(ExtUrlResource, 'source', full=True)
     class Meta:
       queryset = Hotel.objects.all()
       authorization = Authorization()
       always_return_data = True
 
 class FlightResource(ModelResource):
-    country = fields.ToOneField(CityResource, 'country', full=True)
+    country = fields.ToOneField(CityResource, 'country', full=False)
     source = fields.ToOneField(ExtUrlResource, 'source', full=True)
     class Meta:
       queryset = Flight.objects.all()

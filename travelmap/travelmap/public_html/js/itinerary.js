@@ -5,6 +5,9 @@ function itinerary_add(item) {
   itinerary_update();
 }
 
+function itinerary_remove(){
+}
+
 function itinerary_update(){
 
 }

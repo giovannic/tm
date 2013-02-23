@@ -122,8 +122,8 @@ function initialiseMap() {
 
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
-//	$.getJSON(getBaseURL() + 'api/v1/city/?format=json&limit=0', recieveCities);
-
+	$.getJSON(getBaseURL() + 'api/v1/city/?format=json&limit=0', recieveCities);
+	$.getJSON(getBaseURL() + 'api/v1/flight/?format=json&limit=0', recieveFlight);
 
 }
 
@@ -135,11 +135,9 @@ function recieveCities(data, status, jqXHR) {
 		addMarker(value);
 	}
 
-  /*
 	updateHeatMap();
 
 	sendOffData();
-	*/
 }
 
 
