@@ -17,6 +17,7 @@ var music;
 var heatmap;
 
 var overlay;
+
 function mapping(name) {
     if (name === "Food") {
         return "food";
@@ -174,14 +175,10 @@ function addMarker(city) {
 	var latitude = city.lat;
 	var longitude = city.long;
 	var longandlat = new google.maps.LatLng(latitude, longitude);
-	var marker = new google.maps.Marker({
-		map: map,
-		position: longandlat,
-		title: city.name,
-		icon: '../resources/24.png'
-	});
 
-	google.maps.event.addListener(marker, 'click', function () {
+	var marker = new PieOverlay(longandlat, city.name, city.score, map);
+	
+/*	google.maps.event.addListener(marker, 'click', function () {
 		var latitude = city.lat;
 		var longitude = city.long;
 		var location = new google.maps.LatLng(latitude, longitude);
@@ -192,6 +189,7 @@ function addMarker(city) {
 			overlay.setMap(null);
 		});
 	});
+*/
 	markers.push(marker);
 }
 

@@ -17,6 +17,7 @@ var music;
 var heatmap;
 
 var overlay;
+
 function mapping(name) {
     if (name === "Food") {
         return "food";
@@ -112,6 +113,20 @@ function updateHeatMapForZoomLevel(zoom) {
 
 function updateHeatMap() {
 	updateHeatMapForZoomLevel(map.getZoom());
+	
+	while (markers.length > 0) {
+		var marker = markers.pop();
+		marker.setMap(null);
+	}
+
+	for (var key in cities) {
+		var city = cities[key];
+		var latitude = city.lat;
+		var longitude = city.long;
+		var longandlat = new google.maps.LatLng(latitude, longitude);
+
+		var marker = new PieOverlay(longandlat, city.name, city.score, map);
+	}
 }
 
 function log(msg) {
@@ -174,16 +189,12 @@ function addMarker(city) {
 	var latitude = city.lat;
 	var longitude = city.long;
 	var longandlat = new google.maps.LatLng(latitude, longitude);
-	var marker = new google.maps.Marker({
-		map: map,
-		position: longandlat,
-		title: city.name,
-		icon: '../resources/24.png'
-	});
 
-	google.maps.event.addListener(marker, 'click', function () {
-		var latitude = city.latitude;
-		var longitude = city.longitude;
+	var marker = new PieOverlay(longandlat, city.name, city.score, map);
+	
+/*	google.maps.event.addListener(marker, 'click', function () {
+		var latitude = city.lat;
+		var longitude = city.long;
 		var location = new google.maps.LatLng(latitude, longitude);
 		if (overlay) overlay.setMap(null);
 		overlay = new USGSOverlay(location, city.name, city.score, map);
@@ -192,6 +203,7 @@ function addMarker(city) {
 			overlay.setMap(null);
 		});
 	});
+*/
 	markers.push(marker);
 }
 
