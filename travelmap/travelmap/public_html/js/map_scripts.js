@@ -10,8 +10,7 @@ var markers;
 
 // Info on each city for heat map
 var cities;
-var hotels;
-var music;
+var flight;
 
 // Global heatmap layer
 var heatmap;
@@ -81,27 +80,12 @@ function updateHeatMapForZoomLevel(zoom) {
 		var latitude = value.latitude;
 		var latlong = { location : new google.maps.LatLng(latitude, longitude), weight : Math.max(0.01,value.score) };
 		heatmapData.push(latlong);
-	});
-/*
-	$.each (hotels, function (key, value) {
-		var lat = value.lat;
-		var long = value.long;
-		var score1;
-
-		$.each(cities, function (key2, value2) {
-			if (value2.name === value.city.name) {
-				score1 = value2.score;
-				break;
-			}
 		});
 
-		heatmapData.push({location : new google.maps.LatLng(lat,long), weight : value.cost});
-	});
-*/
-    if (heatmap) {
-        heatmap.setMap(null);
-        delete heatmap;
-    }
+	if (heatmap) {
+        	heatmap.setMap(null);
+        	delete heatmap;
+    	}
 	var radius = 0;
 	if (zoom < 4) radius = 1.8;
 	else if (zoom < 7) radius = 1;
@@ -138,40 +122,20 @@ function initialiseMap() {
 
 	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
-	$.getJSON(getBaseURL() + 'api/v1/citylocation/?format=json', recieveCities);
-	$.getJSON(getBaseURL() + 'api/v1/hotel/?format=json', recieveHotels);
-
+	$.getJSON(getBaseURL() + 'api/v1/city/?format=json', recieveCities);
 }
 
 function recieveCities(data, status, jqXHR) {
 	cities = data.objects;
-	$.each(cities, function (key,value) {
-		value.score = 0;//Math.random();
-		addMarker(value);
-	});
-
-	updateHeatMap();
+	$.each(cities, addMarker);
 
 	sendOffData();
 }
 
 
-function recieveHotels(data, status, jqXHR) {
-	hotels = data.objects;
-}
-/*
-function recieveMusic(data) {
-	mus = data.objects;
-	$.each(mus, function (key,value) {
-	  if(value.hometown):
-	    music.push(value);
-	});
-	updateHeatMap();
-}
-*/
-function addMarker(city) {
-	var latitude = city.latitude;
-	var longitude = city.longitude;
+function addMarker() {
+	var latitude = this.lat;
+	var longitude = this.long;
 	var longandlat = new google.maps.LatLng(latitude, longitude);
 	var marker = new google.maps.Marker({
 		map: map,
@@ -191,6 +155,7 @@ function addMarker(city) {
 			overlay.setMap(null);
 		});
 	});
+
 	markers.push(marker);
 }
 

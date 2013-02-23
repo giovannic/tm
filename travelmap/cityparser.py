@@ -18,6 +18,10 @@ def get_cities():
 	  latd += float(lat[1][:-2])/60
         if (len(long) > 1):
 	  longd += float(long[1][:-2])/60
+	if (lat[1][-1:] == 'S'):
+	  latd = -latd
+	if (long[1][-1:] == 'W'):
+	  longd = -longd
         candc.append((line[1],line[0],latd,longd))
     except:
       pass
