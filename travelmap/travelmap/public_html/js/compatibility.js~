@@ -5,6 +5,7 @@ function getScoresForCity(city) {
 	var data = {	"name":"London",
 						"averageHotelCostPerNight":83.50,
 						"flightCostFromCurrentLocation":30,
+						"flightTime":1,
 						"food":60,
 						"arts":50,
 						"outdoor":30,

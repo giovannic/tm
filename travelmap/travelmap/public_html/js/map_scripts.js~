@@ -84,7 +84,13 @@ function initialiseMap() {
 	};
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
-	google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
+	// Style map
+    var styledMap = new google.maps.StyledMapType(style,
+            {name: "Styled Map"});
+    map.mapTypes.set('map_style', styledMap);
+    map.setMapTypeId('map_style');
+
+	//google.maps.event.addListener(map, 'zoom_changed', function() { updateHeatMap() });
 
 	$.getJSON(getBaseURL() + 'api/v1/city/?format=json&limit=0', recieveCities);
 
@@ -111,8 +117,7 @@ function recieveCities(data, status, jqXHR) {
 	//add to map
 	for (var key in cities) {
 		var value = cities[key];
-		value.score = Math.random();//0;
-		addMarker(value);
+		if (value.name === "London") addMarker(value);
 	}
 
 	sendOffData();
@@ -122,8 +127,14 @@ function addMarker(city) {
 	var latitude = city.lat;
 	var longitude = city.long;
 	var longandlat = new google.maps.LatLng(latitude, longitude);
-
-	var marker = new PieOverlay(longandlat, city.name, city.score, map);
+	
+	//TEMP
+	var ldnData = getScoresForCity("London");
+	var usrData = getUserPreferences();
+	var ldnScore = getOverallScore(ldnData, usrData);
+	var ldnBreakdown = getPercentageScores(ldnData, usrData);
+	
+	var marker = new PieOverlay(longandlat, city.name, ldnScore, ldnBreakdown, map);
 	
 /*	google.maps.event.addListener(marker, 'click', function () {
 		var latitude = city.lat;
@@ -144,4 +155,11 @@ function getBaseURL () {
    return location.protocol + "//" + location.hostname + 
       (location.port && ":" + location.port) + "/";
 }
+
+function updatePieCharts() {
+	for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(null);
+	}
+}
+
 

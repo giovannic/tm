@@ -20,7 +20,7 @@ $(document).ready(function() {
 	//submit button
 	$('.update').click(function() {
 		updatePieCharts();		
-		sendOffData();
+		//sendOffData();
 		hide_only()
 	});
 

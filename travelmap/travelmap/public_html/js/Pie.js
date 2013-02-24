@@ -12,6 +12,7 @@ function makePieChart(containerDiv, values, x, y, radius) {
 		total += percent;
 	}
 	total = 0;
+/*
 	for ( var key in values) {
 		var percent = values[key];
 		var segmentPositions = percentToPosition(total, total + percent, radius);
@@ -19,6 +20,7 @@ function makePieChart(containerDiv, values, x, y, radius) {
 		if (percent > 15) drawLabel(theSvg, x, y, segmentPositions, radius, key, percent);
 		total += percent;
 	}
+*/
 }
 
 function makeRandomColour() {

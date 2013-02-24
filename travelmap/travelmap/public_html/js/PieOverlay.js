@@ -4,12 +4,13 @@ var thresholds = [95,95,85,80,70,60,40,20,10,0,0,0,0];
 //var thresholds = [100,100,100,100,100,100,100,100,100,100,100,100];
 //var thresholds = [0,0,0,0,0,0,0,0,0,0,0,0];
 
-function PieOverlay(location, city, score, map) {
+function PieOverlay(location, city, score, breakdown, map) {
 
 	// Now initialize all properties.
 	this.location_ = location;
 	this.city_ = city;
-	this.score_ = score.toFixed(2)*100;
+	this.score_ = score.toFixed(2);
+	this.breakdown_ = breakdown;
 	this.map_ = map;
 	this.threshold_ = thresholds[map.getZoom()];
 	this.pie_ = null;
@@ -36,11 +37,7 @@ PieOverlay.prototype.onAdd = function() {
 	var pie = document.createElement('div');
 	pie.style.position = "absolute";
 	pie.style.display = "block";
-	var one = Math.floor(Math.random() * 100);
-	var two = Math.floor(Math.random() * (100 - one));
-	var three = 100 - one - two;
-	var values = {"test1":one,"test2":two,"test4":three};
-	makePieChart(pie, values, (this.score_/3), (this.score_/3), (this.score_/3));
+	makePieChart(pie, this.breakdown_, (this.score_/3), (this.score_/3), (this.score_/3));
 
 	var dot = document.createElement('img');
 	dot.style.position = "absolute";
