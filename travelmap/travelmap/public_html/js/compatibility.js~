@@ -37,6 +37,7 @@ function getUserPreferences() {
 	allprefs = jsonConcat(flights, accom);
 	allprefs = jsonConcat(allprefs, todo);
 
+	console.log(allprefs);
 	return allprefs;
 }
 
