@@ -18,6 +18,14 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('cities', ['City'])
 
+        # Adding model 'ExtUrl'
+        db.create_table('cities_exturl', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('ref', self.gf('django.db.models.fields.CharField')(max_length=1000)),
+            ('hits', self.gf('django.db.models.fields.IntegerField')(default=0)),
+        ))
+        db.send_create_signal('cities', ['ExtUrl'])
+
         # Adding model 'Hotel'
         db.create_table('cities_hotel', (
             ('name', self.gf('django.db.models.fields.CharField')(max_length=200, primary_key=True)),
@@ -26,6 +34,7 @@ class Migration(SchemaMigration):
             ('stars', self.gf('django.db.models.fields.FloatField')()),
             ('long', self.gf('django.db.models.fields.FloatField')()),
             ('lat', self.gf('django.db.models.fields.FloatField')()),
+            ('source', self.gf('django.db.models.fields.related.ForeignKey')(related_name='hotel_source', null=True, to=orm['cities.ExtUrl'])),
         ))
         db.send_create_signal('cities', ['Hotel'])
 
@@ -35,6 +44,7 @@ class Migration(SchemaMigration):
             ('country', self.gf('django.db.models.fields.related.ForeignKey')(related_name='destination', to=orm['cities.City'])),
             ('cost', self.gf('django.db.models.fields.FloatField')()),
             ('distance', self.gf('django.db.models.fields.FloatField')()),
+            ('source', self.gf('django.db.models.fields.related.ForeignKey')(related_name='flight_source', null=True, to=orm['cities.ExtUrl'])),
         ))
         db.send_create_signal('cities', ['Flight'])
 
@@ -42,6 +52,9 @@ class Migration(SchemaMigration):
     def backwards(self, orm):
         # Deleting model 'City'
         db.delete_table('cities_city')
+
+        # Deleting model 'ExtUrl'
+        db.delete_table('cities_exturl')
 
         # Deleting model 'Hotel'
         db.delete_table('cities_hotel')
@@ -59,12 +72,19 @@ class Migration(SchemaMigration):
             'long': ('django.db.models.fields.FloatField', [], {}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
+        'cities.exturl': {
+            'Meta': {'object_name': 'ExtUrl'},
+            'hits': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'ref': ('django.db.models.fields.CharField', [], {'max_length': '1000'})
+        },
         'cities.flight': {
             'Meta': {'object_name': 'Flight'},
             'cost': ('django.db.models.fields.FloatField', [], {}),
             'country': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'destination'", 'to': "orm['cities.City']"}),
             'distance': ('django.db.models.fields.FloatField', [], {}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'source': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'flight_source'", 'null': 'True', 'to': "orm['cities.ExtUrl']"})
         },
         'cities.hotel': {
             'Meta': {'object_name': 'Hotel'},
@@ -73,6 +93,7 @@ class Migration(SchemaMigration):
             'long': ('django.db.models.fields.FloatField', [], {}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'primary_key': 'True'}),
             'rate': ('django.db.models.fields.IntegerField', [], {}),
+            'source': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'hotel_source'", 'null': 'True', 'to': "orm['cities.ExtUrl']"}),
             'stars': ('django.db.models.fields.FloatField', [], {})
         }
     }

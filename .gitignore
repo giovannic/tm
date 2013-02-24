@@ -1,6 +1,7 @@
 #swap
 *.swp
 *.swo
+*~
 
 #compiled
 *.pyc

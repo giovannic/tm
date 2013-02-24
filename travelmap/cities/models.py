@@ -22,6 +22,7 @@ class Hotel(models.Model):
       'stars' : ('gte', 'lte',),
       'rate' : ('gte', 'lte',),
       }
+  ordering = ['city']
 
 class Flight(models.Model):
   country = models.ForeignKey(City, related_name='destination')

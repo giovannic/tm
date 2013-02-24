@@ -18,7 +18,7 @@ def get_hotels():
 def load_hotels():
   hots = get_hotels()
     
-  for h in hots[:1000]:
+  for h in hots[:5000]:
       try:
         city=City.objects.filter(country=h[1])
         rating = float(h[3])
