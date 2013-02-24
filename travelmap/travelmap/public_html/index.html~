@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+	<title>Trip Heat</title>
+	<!-- CSS -->
+	<link href="./style/jquery-ui.css" rel="stylesheet" type="text/css" >
+	<link href="./style/bootstrap.min.css" rel="stylesheet" type="text/css" >
+	<link href="./style/style.css" rel="stylesheet" type="text/css" >
+	<link href="./js/city_list.txt" type="text/plain">
+
+	<!-- JavaScript -->
+	<script src="./js/jquery.js" type="text/javascript"></script>
+	<script src="./js/jquery-ui.js" type="text/javascript"></script>
+	<script src="./js/bootstrap.js" type="text/javascript"></script>
+	<script src="./js/location.js" type="text/javascript"></script>
+	<script src="./js/script.js" type="text/javascript"></script>
+
+	<!-- Google Maps Javascript API v3 -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyADkJKuWEou2-gPAgZoHB-y6tll-7C86ys&sensor=false"></script>
+	<script type="text/javascript" src="./js/map_scripts.js"></script> 
+	<script type="text/javascript" src="./js/customOverlay.js"></script>
+	<script type="text/javascript" src="./js/PieOverlay.js"></script>
+
+	<!-- fb -->
+	<script src="//connect.facebook.net/en_US/all.js"></script>
+	<script type="text/javascript" src="./js/fb.js"></script>
+	<!-- hotel data -->
+
+</head>
+<body onload="getLocation()">
+  <div id="fb-root"></div>
+  <script>
+    //setup fb api
+     window.fbAsyncInit = function() {
+       FB.init({
+         appId      : '158383940982125',
+	 channelUrl : 'http://ec2-54-228-52-161.eu-west-1.compute.amazonaws.com:8080/static/channel.html',
+         status     : true,
+         cookie     : true,
+         xfbml      : true 
+       });
+     }
+
+    (function(d){
+      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+      if (d.getElementById(id))
+        {return;}
+      js = d.createElement('script');
+      js.id = id;
+      js.async = true;
+      js.src = "//connect.facebook.net/en_US/all.js";
+      ref.parentNode.insertBefore(js, ref);
+   }(document));
+
+
+ </script>
+ 	<div id="option-carousel" class="hero-unit carousel slide ">
+			<!-- Carousel items -->
+			<div class="carousel-inner">
+				<div id="accom" index=0 class="active item user-options well">
+					<h2>Accomodation</h2>
+					<div class="container all-prefs-container">
+						<p>Set your accomodation preferences</p>
+						<button class="btn btn-primary update">Update your trip map</button>
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#0tab1" data-toggle="tab">Hotel Star Rating</a></li>
+							<li><a href="#0tab2" data-toggle="tab">Room Rate</a></li>
+							<li><a href="#0tab3" data-toggle="tab">Length of Stay</a></li>
+						</ul>
+						<div id="accom-prefs" class="tab-content" pref-cat=flight>
+								<div class="tab-pane active" id="0tab1">
+									<div id="hotel-rating-slider" class="slider range-slider" pref=hotel-rating ></div>
+									<p class="amount" data-min=2 data-max=4 >Min: 2 <i class="icon-star"></i><br/>Max: 4 <i class="icon-star"></i></p>
+								</div>
+								<div class="tab-pane" id="0tab2">
+									<div id="room-rate-slider" class="slider range-slider" pref=price-range ></div>
+									<p class="amount" data-min=50 data-max=200 >Min: &#163;50<br/>Max: &#163;200</p>
+								</div>
+								<div class="tab-pane" id="0tab3">
+									<div id="stay-dur-slider" class="slider range-slider" pref=stay-dur-range ></div>
+									<p class="amount" data-min=3 data-max=8 >Min: 3 days<br/>Max: 8 days</p>
+								</div>
+							</div><!-- .tab-content -->
+					</div><!-- .all-prefs-container -->
+				</div>
+				<div id="flights" index=1 class="item user-options well">
+					<h2>Flights</h2>
+					<div class="container all-prefs-container">
+						<p>Set your flight preferences</p>
+						<button class="btn btn-primary update">Update your trip map</button>
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#1tab1" data-toggle="tab">Flight Cost (return)</a></li>
+							<li><a href="#1tab2" data-toggle="tab">Flying Time</a></li>
+						</ul>
+						<div id="flight-prefs" class="tab-content" pref-cat=flight>
+								<div class="tab-pane active" id="1tab1">
+									<div id="flight-price-slider" class="slider range-slider" pref=price-range ></div>
+									<p class="amount" data-min=350 data-max=1000 >Min: &#163;350<br/>Max: &#163;1000</p>
+								</div>
+								<div class="tab-pane" id="1tab2">
+									<div id="flight-time-slider" class="slider range-slider" pref=flight-time-range ></div>
+									<p class="amount" data-min=2 data-max=3 >Min: 2 hours<br/>Max: 3 hours</p>
+								</div>
+							</div><!-- .tab-content -->
+					</div><!-- .all-prefs-container -->
+				</div>
+				<div id="to-do" index=2 class="item user-options well">
+					<h2>To Do</h2>
+					<div class="container all-prefs-container">
+						<p>Which aspects your trip would you like optimised?</p>
+						<button class="btn btn-primary update">Update your trip map</button>
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#2tab1" data-toggle="tab">Food</a></li>
+								<li><a href="#2tab2" data-toggle="tab">Arts & Entertainment</a></li>
+								<li><a href="#2tab3" data-toggle="tab">Outdoor Pursuits</a></li>
+								<li><a href="#2tab4" data-toggle="tab">Shopping</a></li>
+								<li><a href="#2tab5" data-toggle="tab">Nightlife</a></li>
+							</ul>
+							<div id="todo-prefs" class="tab-content" pref-cat=todo>
+								<div class="tab-pane active" id="2tab1">
+									<div id="food-slider" class="slider standard-slider" pref=food ></div>
+									<p class="amount" data=50 >50%</p>
+								</div>
+								<div class="tab-pane" id="2tab2">
+									<div id="arts-slider" class="slider standard-slider" pref=arts ></div>
+									<p class="amount" data=50  >50%</p>
+								</div>
+								<div class="tab-pane" id="2tab3">
+									<div id="outdoor-slider" class="slider standard-slider" pref=outdoor ></div>
+									<p class="amount" data=50 >50%</p>
+								</div>
+								<div class="tab-pane" id="2tab4">
+									<div id="shopping-slider" class="slider standard-slider" pref=shopping ></div>
+									<p class="amount" data=50 >50%</p>
+								</div>
+								<div class="tab-pane" id="2tab5">
+									<div id="nightlife-slider" class="slider standard-slider" pref=nightlife ></div>
+									<p class="amount" data=50 >50%</p>
+								</div>
+							</div><!-- .tab-content -->
+					</div><!-- .all-prefs-container -->
+				</div>
+			</div><!-- .carousel-inner -->
+		</div><!-- #option-carousel -->
+
+	<div id="primary" class="container">
+
+		<header class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+				<ul class="nav">
+					<a class="brand" href="#">This will be awesome</a>
+					<li class="divider-vertical"></li>
+					<li id="select-one" index=0 class="option-select active"><a href="#">Accomodation</a></li>
+					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
+					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
+					<li class="divider-vertical"></li>
+					<li id="show-hide-options" class="hide-mode"><a href="#">Hide Trip Options</a></li>
+					<li id="fb-login"  class="pull-right-hard"><a href="#"><img class="sm-img" src="./img/social-media-icons/32/facebook.png" /></a></li>
+				</ul><!-- .nav -->
+				</div><!-- .container -->
+			</div><!-- .navbar-inner -->
+		</header><!-- .navbar -->
+		
+		<div id="app" class="dialog-open">
+			<div id="map_canvas"></div>
+		</div><!-- #app -->
+		
+	</div><!-- #primary -->
+</body>
+<script>
+
+</script>
+</html>
+<!--
+
+                                                                           
+  88   88   88   ,ad8888ba,  88        88                       88         
+  88   88   88  d8"'    `"8b 88        88                       88         
+aa88aaa88aa 88 d8'           88        88                       88         
+""88"""88"" 88 88            88aaaaaaaa88 ,adPPYYba,  ,adPPYba, 88   ,d8   
+aa88aaa88aa 88 88            88""""""""88 ""     `Y8 a8"     "" 88 ,a8"    
+""88"""88"" 88 Y8,           88        88 ,adPPPPP88 8b         8888[      
+  88   88   88  Y8a.    .a8P 88        88 88,    ,88 "8a,   ,aa 88`"Yba,   
+  88   88   88   `"Y8888Y"'  88        88 `"8bbdP"Y8  `"Ybbd8"' 88   `Y8a  
+                                                                           
+                                                                           
+                                               
+ ad888888b,    ,a8888a,        88  ad888888b,  
+d8"     "88  ,8P"'  `"Y8,    ,d88 d8"     "88  
+        a8P ,8P        Y8, 888888         a8P  
+     ,d8P"  88          88     88      aad8"   
+   a8P"     88          88     88      ""Y8,   
+ a8P'       `8b        d8'     88         "8b  
+d8"          `8ba,  ,ad8'      88 Y8,     a88  
+88888888888    "Y8888P"        88  "Y888888P'  
+                                               
+
+-->
