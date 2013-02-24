@@ -15,3 +15,7 @@ travelmap/travelmap/travelmap.db
 #server
 .nohup.out
 run_aws.sh
+
+travelmap/travelmap/settings.py
+
+travelmap/travelmap/settings.py
