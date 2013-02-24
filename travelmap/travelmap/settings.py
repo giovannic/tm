@@ -9,18 +9,16 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-        'NAME': 'gc1610', 
-        'USER': 'gc1610',
-        'PASSWORD': 'FAHvYxjGKW', 
-	'HOST': 'db.doc.ic.ac.uk',
-        'PORT': '5432',
-    }
+  'default': {
+     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+     'NAME': 'gc1610', 
+     'USER': 'gc1610',
+     'PASSWORD': 'FAHvYxjGKW', 
+     'HOST': 'db.doc.ic.ac.uk',
+     'PORT': '5432',
+     }
 }
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -125,6 +123,7 @@ INSTALLED_APPS = (
     'jsonfield',
     'django_extensions',
     'foursquare_ratings',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -168,8 +168,6 @@ function sendOffData() {
 	allprefs[1] = flights;
 	allprefs[2] = todo;
 
-	console.log(allprefs);
-
 	get_compatibilityScore(todo);
 
 	//update(allprefs);

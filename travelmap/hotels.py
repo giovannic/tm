@@ -1,5 +1,5 @@
 import csv
-from cities.models import City, Hotel
+from cities.models import City, Hotel, ExtUrl
 
 def get_hotels():
   f = open('../hotelsbase.csv')
@@ -7,9 +7,9 @@ def get_hotels():
   hotels = []
   for line in reader:
     try:
-      if (len(line) > 14) and line[2] != '' and line[7] != '' and line[3] != '99999' and line[12] != '0' and line[13] != '0':
-        #name country price stars long lat
-        hotels.append((line[1],line[7],line[3],line[2],line[12],line[13]))
+      if (len(line) > 14) and line[2] != '' and line[7] != '' and line[3] != '99999' and line[12] != '0' and line[13] != '0' and line[10] != '':
+        #name country price stars long lat url
+        hotels.append((line[1],line[7],line[3],line[2],line[13],line[12],line[10]))
     except ValueError:
       pass
   f.close()
@@ -17,32 +17,23 @@ def get_hotels():
 
 def load_hotels():
   hots = get_hotels()
-  f = open("../list_of_cities.txt")
-  eu = []
-  for line in f:
-    eu.append(line[1:-3])
     
-  cNames = []
-  for city in eu:
-    c = City.objects.filter(name=city)
-    if len(c) > 0:
-      cNames.append(c[0].country.encode('ascii', 'ignore'))
-
-  for h in hots:
-    if any(h[1] in country for country in cNames):
+  for h in hots[:5000]:
       try:
         city=City.objects.filter(country=h[1])
         rating = float(h[3])
 	lo = float(h[4])
 	la = float(h[5])
 	if (lo != 0 and la != 0):
+	  u, _ = ExtUrl.objects.get_or_create(ref=h[6])
           add = Hotel(
 	    name=h[0],
 	    city=city[0],
 	    rate=h[2],
 	    stars=rating,
 	    long=float(h[4]),
-	    lat=float(h[5])
+	    lat=float(h[5]),
+	    source=u,
 	    )
           add.save()
       except ValueError:
