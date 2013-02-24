@@ -246,6 +246,17 @@ function recieveHotels(data, status, jqXHR) {
 	})
 }
 
+function getscores(){
+  var scores = {};
+  for (city in cities)
+  {
+    scores[city] = {};
+    scores[city].flightCost = flights[city];
+    scores[city].avgHotelCost = averageRate(hotels[city]);
+  }
+  return scores;
+}
+
 function addMarker(city) {
 	var latitude = city.lat;
 	var longitude = city.long;
