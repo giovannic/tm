@@ -5,7 +5,6 @@ function getScoresForCity(city) {
 	var data = {	"name":"London",
 						"averageHotelCostPerNight":83.50,
 						"flightCostFromCurrentLocation":30,
-						"flightTime":1,
 						"food":60,
 						"arts":50,
 						"outdoor":30,
@@ -38,6 +37,7 @@ function getUserPreferences() {
 	allprefs = jsonConcat(flights, accom);
 	allprefs = jsonConcat(allprefs, todo);
 
+	console.log(allprefs);
 	return allprefs;
 }
 

@@ -160,6 +160,11 @@ function updatePieCharts() {
 	for (var i = 0; i < markers.length; i++) {
 		markers[i].setMap(null);
 	}
+
+	for (var key in cities) {
+		var value = cities[key];
+		if (value.name === "London") addMarker(value);
+	}
 }
 
 

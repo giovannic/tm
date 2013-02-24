@@ -8,7 +8,7 @@ function makePieChart(containerDiv, values, x, y, radius) {
 		var percent = values[key];
 		var segmentPositions = percentToPosition(total, total + percent, radius);
 		var segmentPositions = translateTo(segmentPositions, x, y);
-		drawSegment(theSvg, x, y, segmentPositions, radius, makeRandomColour(), percent);
+		drawSegment(theSvg, x, y, segmentPositions, radius, pieColours[key], percent);
 		total += percent;
 	}
 	total = 0;

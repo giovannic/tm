@@ -39,3 +39,12 @@ var style = [
     ]
   }
 ];
+
+var pieColours = {	"Arts and Entertainment": "#FF0000",
+							"Flights": "#0101DF",
+							"Food": "#01DF01",
+							"Hotels": "#FF8000",
+							"Nightlife": "#6A0888",
+							"Outdoor": "#FFFF00",
+							"Shopping": "#00FFFF" };
+
