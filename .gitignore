@@ -19,3 +19,7 @@ run_aws.sh
 travelmap/travelmap/settings.py
 
 travelmap/travelmap/settings.py
+
+*.sublime-project
+
+*.sublime-workspace
