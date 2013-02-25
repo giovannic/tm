@@ -1,13 +1,13 @@
 
-cat = categories(parent = 'root')
-cat.get_categories()
+# cat = categories(parent = 'root')
+# cat.get_categories()
 
-cat = categories.objects.all()[0]
-type(cat)
+# cat = categories.objects.all()[0]
+# type(cat)
 
-h = all_city_scores(categories = cat)
-execfile('foursquare_parser/city_list_europe.py')
-h.get_city_scores(cities, cat.new_categories)
+# h = all_city_scores(categories = cat)
+# execfile('foursquare_parser/city_list_europe.py')
+# h.get_city_scores(cities, cat.new_categories)
 
 h = all_city_scores.objects.all()[0]
 

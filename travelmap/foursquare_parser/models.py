@@ -25,12 +25,13 @@ class categories(models.Model):
 
 	def dump_children_categories(self):
 		for key in self.new_categories:
+			print key
 			h = categories.objects.get_or_create(
-				parent = self.name, 
+				parent = key, 
 				raw_categories = self.new_categories[key], 
 				new_categories = self.new_categories[key],
 				parent_cat = self)
-			h.save()
+			h[0].save()
 						
 
 class all_city_scores(models.Model):

@@ -5,6 +5,8 @@ class City(models.Model):
   country = models.CharField(max_length=200)
   long = models.FloatField()
   lat = models.FloatField()
+  def __unicode__(self):
+    return self.name+", "+self.country
 
 class ExtUrl(models.Model):
   ref = models.CharField(max_length=1000)
