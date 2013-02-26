@@ -1,6 +1,6 @@
 from django.db import models
 from jsonfield import JSONField
-from cities.models import City
+from props.models import City
 from venues.models import Venue
 import foursquare
 
