@@ -1,18 +1,3 @@
-function getScoresForCity(city) {
-	// To be implemented
-	// As an example will return fake data for London
-	var city = "London";
-	var data = {	"name":"London",
-						"averageHotelCostPerNight":83.50,
-						"flightCostFromCurrentLocation":30,
-						"food":60,
-						"arts":50,
-						"outdoor":30,
-						"shopping":55,
-						"nightlife":65};
-	return data;
-}
-
 function getUserPreferences() {
 	var allprefs = {};
 	
@@ -127,7 +112,7 @@ function getFlightScore(cityData, userData) {
 
 function getFoodScore(cityData, userData) {
 	var foodScore;
-	var cityFood = cityData.food;
+	var cityFood = cityData["Food"];
 	var userFood = userData.food;
 	if (cityFood > userFood) foodScore = 100;
 	else foodScore = (cityFood / userFood) * 100;
@@ -136,7 +121,7 @@ function getFoodScore(cityData, userData) {
 
 function getArtScore(cityData, userData) {
 	var artScore;
-	var cityArt = cityData.arts;
+	var cityArt = cityData["Arts & Entertainment"];
 	var userArt = userData.arts;
 	if (cityArt > userArt) artScore = 100;
 	else artScore = (cityArt / userArt) * 100;
@@ -145,7 +130,7 @@ function getArtScore(cityData, userData) {
 
 function getOutdoorScore(cityData, userData) {
 	var outdoorScore;
-	var cityOutdoor = cityData.outdoor;
+	var cityOutdoor = cityData["Outdoors & Recreation"];
 	var userOutdoor = userData.outdoor;
 	if (cityOutdoor > userOutdoor) outdoorScore = 100;
 	else outdoorScore = (cityOutdoor / userOutdoor) * 100;
@@ -154,7 +139,7 @@ function getOutdoorScore(cityData, userData) {
 
 function getShoppingScore(cityData, userData) {
 	var shoppingScore;
-	var cityShopping = cityData.shopping;
+	var cityShopping = cityData["Shop & Service"];
 	var userShopping = userData.shopping;
 	if (cityShopping > userShopping) shoppingScore = 100;
 	else shoppingScore = (cityShopping / userShopping) * 100;
@@ -163,7 +148,7 @@ function getShoppingScore(cityData, userData) {
 
 function getNightlifeScore(cityData, userData) {
 	var nightlifeScore;
-	var cityNightlife = cityData.nightlife;
+	var cityNightlife = cityData["Nightlife Spot"];
 	var userNightlife = userData.nightlife;
 	if (cityNightlife > userNightlife) nightlifeScore = 100;
 	else nightlifeScore = (cityNightlife / userNightlife) * 100;

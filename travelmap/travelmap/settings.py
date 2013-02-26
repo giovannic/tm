@@ -119,10 +119,13 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'cities',
+    'props',
     'jsonfield',
     'django_extensions',
     'foursquare_ratings',
+    'foursquare_parser',
+    'venues',
+    'categories',
     'south',
 )
 

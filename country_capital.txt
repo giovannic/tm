@@ -185,7 +185,7 @@ Turkey,Ankara,39°57'N,32°54'E
 Turkmenistan,Ashgabat,38°00'N,57°50'E
 Tuvalu,Funafuti,08°31'S,179°13'E
 Uganda,Kampala,00°20'N,32°30'E
-Ukraine,Kiev (Rus),50°30'N,30°28'E
+Ukraine,Kiev,50°30'N,30°28'E
 United Arab Emirates,Abu Dhabi,24°28'N,54°22'E
 United Kingdom of Great Britain and Northern Ireland,London,51°36'N,00°05'W
 United Republic of Tanzania,Dodoma,06°08'S,35°45'E

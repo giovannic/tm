@@ -38,6 +38,7 @@ function mapping(name) {
     }
 }
 
+/*
 function setScoreForCity(city, score) {
 	$.each(cities, function (key, value) {
 		if (value.name === city) {
@@ -75,6 +76,8 @@ function get_compatibilityScore(weights_object){
 		// updateHeatMap();
 	});
 }
+
+
 
 function updateHeatMapForZoomLevel(zoom) {
 	$.each (flights, function (key, value) {
@@ -147,6 +150,8 @@ function updateHeatMapForZoomLevel(zoom) {
 function updateHeatMap() {
 	updateHeatMapForZoomLevel(map.getZoom());
 }
+ 
+ */
 
 function log(msg) {
     setTimeout(function() {
@@ -157,7 +162,6 @@ function log(msg) {
 function initialiseMap() {
 	//Initiallisation of global variables
 	markers = new Array();
-	scores = new Array();
 	locations = new Array();
 
 	var point = new google.maps.LatLng(52.536273,13.623047);
@@ -180,10 +184,16 @@ function initialiseMap() {
 	$.getJSON(getBaseURL() + 'api/v1/city/?format=json&limit=0', recieveCities);
 	$.getJSON(getBaseURL() + 'api/v1/flight/?format=json&limit=0', recieveFlights);
 	$.getJSON(getBaseURL() + 'api/v1/hotel/?format=json&limit=0', recieveHotels);
+    //$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', recieveScores);
 
 }
 
 function sortCitiesByScore() {
+    for (var key in cities) {
+        value = cities[key];
+        value.score = getOverallScore(getScoresForCity(value), getUserPreferences());
+    }
+    
 	cities.sort( function(a,b) {
 		return a.score - b.score;
 	});
@@ -197,22 +207,52 @@ function recieveCities(data, status, jqXHR) {
 	  cities[value.resource_uri] = value;
 	})
 	*/
-	for (var key in cities) {
-		var value = cities[key];
-		value.score = Math.random();//0;
-	}
+}
 
-	//sort by score
-	sortCitiesByScore();
+function recieveScores(data, status, jqXHR) {
+    var scores = data.objects;
+    
+    mergeScoreWithCities(scores);
+    
+    // if scores came with cities this should be called after recieve cities
+    updatePieCharts();
+}
 
-	//add to map
-	for (var key in cities) {
-		var value = cities[key];
-		//if (value.name === "London") addMarker(value);
-		getScoresForCity(value, addMarker);
-	}
+// THIS FUNCTION IS NOT NEEDED IF SCORES CAME WITH CITIES!
 
-	sendOffData();
+function mergeScoreWithCities(scores) {
+    // For each set of scores, find equivilent city
+    for (var key in scores) {
+        var cityScore = scores[key];
+        var cityLoc;
+        var cityLocKey;
+        for (var key2 in cities) {
+            var value = cities[key2];
+            if (cityScore.name == value.name) { // SOMETIMES THIS IS NEVER TRUE
+                cityLoc = value;
+                cityLocKey = key2;
+                break;
+            }
+        }
+        // Once equivilent city is found put the scores in the city data
+        cityLoc.weighed_scores = cityScore.weighed_scores;
+        
+        // Add on flight and hotel scores (would be better if flight and hotel scores came with other scores)
+        var flightAndHotelScores = getFlightAndHotelScores();
+        cityLoc.weighed_scores.averageHotelCostPerNight = flightAndHotelScores[cityLocKey].avgHotelCost;
+        cityLoc.weighed_scores.flightCostFromCurrentLocation = flightAndHotelScores[cityLocKey].flightCost;
+    }
+}
+
+function getFlightAndHotelScores(){
+    var scores = {};
+    for (city in cities)
+    {
+        scores[city] = {};
+        scores[city].flightCost = flights[city];
+        scores[city].avgHotelCost = 0;//averageRate(hotels[city]); NOT DEFINED
+    }
+    return scores;
 }
 
 function recieveFlights(data, status, jqXHR) {
@@ -229,15 +269,16 @@ function recieveHotels(data, status, jqXHR) {
 	})
 }
 
-function getscores(){
-  var scores = {};
-  for (city in cities)
-  {
-    scores[city] = {};
-    scores[city].flightCost = flights[city];
-    scores[city].avgHotelCost = averageRate(hotels[city]);
-  }
-  return scores;
+function getScoresForCity() {
+    var data = {"Food" : 0,
+                "Outdoors & Recreation" :0,
+                "Nightlife Spot" : 0,
+                "Arts & Entertainment" : 0,
+                "Shop & Service" : 0,
+                "averageHotelCostPerNight" :0,
+                "flightCostFromCurrentLocation" : 0
+                };
+    return data;
 }
 
 function addMarker(city) {
@@ -245,13 +286,12 @@ function addMarker(city) {
 	var longitude = city.long;
 	var longandlat = new google.maps.LatLng(latitude, longitude);
 	
-	//TEMP
-	var ldnData = getScoresForCity("London");
+	var cityData = getScoresForCity(city);
 	var usrData = getUserPreferences();
-	var ldnScore = getOverallScore(ldnData, usrData);
-	var ldnBreakdown = getPercentageScores(ldnData, usrData);
+	var cityScore = city.score;
+	var cityBreakdown = getPercentageScores(cityData, usrData);
 	
-	var marker = new PieOverlay(longandlat, city.name, ldnScore, ldnBreakdown, map);
+	var marker = new PieOverlay(longandlat, city.name, cityScore, cityBreakdown, map);
 	
 /*	google.maps.event.addListener(marker, 'click', function () {
 		var latitude = city.lat;
@@ -278,14 +318,18 @@ function getBaseURL () {
 }
 
 function updatePieCharts() {
+    
+    sortCitiesByScore();
+    
 	for (var i = 0; i < markers.length; i++) {
 		markers[i].setMap(null);
 	}
 
 	for (var key in cities) {
 		var value = cities[key];
-		if (value.name === "London") addMarker(value);
+		addMarker(value);
 	}
+    
 }
 
 
