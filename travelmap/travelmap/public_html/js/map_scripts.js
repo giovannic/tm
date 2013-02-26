@@ -208,7 +208,8 @@ function recieveCities(data, status, jqXHR) {
 	//add to map
 	for (var key in cities) {
 		var value = cities[key];
-		if (value.name === "London") addMarker(value);
+		//if (value.name === "London") addMarker(value);
+		getScoresForCity(value, addMarker);
 	}
 
 	sendOffData();
@@ -265,6 +266,10 @@ function addMarker(city) {
 	});
 */
 	markers.push(marker);
+}
+
+function getScoresForCity(city, callb) {
+  $.getJSON(getBaseURL() + city.resource_uri + '/?format=json', callb)
 }
 
 function getBaseURL () {

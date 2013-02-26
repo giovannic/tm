@@ -4,9 +4,15 @@ from tastypie.authorization import Authorization
 from tastypie import fields
 from cities.models import City, Hotel, Flight, ExtUrl
 
+class CitySummaryResource(ModelResource):
+  class Meta:
+
 class CityResource(ModelResource):
     class Meta:
-      queryset = City.objects.all()
+      queryset = City.objects.annotate(
+	flight = Avg('destination__cost'),
+	hotels = Avg('hotel_in__rate')
+	activity = )
       authorization = Authorization()
       always_return_data = True
 
