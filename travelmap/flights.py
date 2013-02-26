@@ -1,5 +1,5 @@
 import requests
-from cities.models import City, Flight, ExtUrl
+from props.models import City, Flight, DataSource
 
 def get_prices(leaving):
     url = 'http://www.skyscanner.net/flights-from/uk/130223/130302/airfares-%s-in-february-2013-and-march-2013.html' % leaving
@@ -40,7 +40,7 @@ def load_flights():
   for place, price in fs[0].items():
     country=City.objects.filter(country=place)
     if len(country) > 0 and price != 'null':
-      link = ExtUrl(ref=fs[1][place])
+      link = DataSource(ref=fs[1][place])
       link.save()
       add = Flight(country=country[0],
 	  cost=price,

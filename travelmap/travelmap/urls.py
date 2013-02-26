@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from tastypie.api import Api
-from cities.api import CityResource, HotelResource, FlightResource
+from props.api import CityResource, HotelResource, FlightResource
 from foursquare_ratings.api import CityScoreResource, CityLocationResource, VenueResource
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import redirect_to
