@@ -9,18 +9,16 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(os.path.dirname(__file__), "travelmap.db"), 
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
+  'default': {
+     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+     'NAME': 'gc1610', 
+     'USER': 'gc1610',
+     'PASSWORD': 'FAHvYxjGKW', 
+     'HOST': 'db.doc.ic.ac.uk',
+     'PORT': '5432',
+     }
 }
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -121,10 +119,14 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'cities',
+    'props',
     'jsonfield',
     'django_extensions',
     'foursquare_ratings',
+    'foursquare_parser',
+    'venues',
+    'categories',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging

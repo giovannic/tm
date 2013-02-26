@@ -1,4 +1,5 @@
 from django.db import models
+<<<<<<< HEAD
 import foursquare
 from cities import cities 
 from jsonfield import JSONField
@@ -53,10 +54,20 @@ class all_city_scores(models.Model):
 			print(city)	
 		self.save()			
 
+=======
+from jsonfield import JSONField
+from props.models import City
+from venues.models import Venue
+import foursquare
+>>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 
 class CityScore(models.Model):
 	latitude = models.FloatField()
 	longitude = models.FloatField()
+<<<<<<< HEAD
+=======
+	city = models.ForeignKey(City, related_name='score_for_city', null = True, blank = True)
+>>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 	name = models.CharField(max_length = 255, unique = True)
 	country_code = models.CharField(max_length = 3)
 	raw_scores = JSONField()
@@ -64,6 +75,12 @@ class CityScore(models.Model):
 	venues = JSONField()
 	weighed_scores = JSONField()
 
+<<<<<<< HEAD
+=======
+	def __unicode__(self):
+
+		return self.name+", "+self.country_code
+>>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 
 	def update_score(self, city_scores, categories):
 		if not self.raw_scores:
@@ -102,13 +119,20 @@ class CityScore(models.Model):
 				latitude = float(place['location']['lat'])
 				longitude = float(place['location']['lng'])
 				count = float(place['stats']['checkinsCount'])/self.total_checkins
+<<<<<<< HEAD
 				city = self.name
 				total_checkins = self.total_checkins
 				venue = {'name': name, 'latitude': latitude, 'longitude': longitude, 'checkinsCount': count, 'city': city, 'total_checkins': total_checkins}
+=======
+				city = self.city
+				total_checkins = self.total_checkins
+				venue = {'name': name, 'latitude': latitude, 'longitude': longitude, 'checkinsCount': count, 'city':city, 'total_checkins': total_checkins}
+>>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 				venues[self.name].append(venue)
 				Venue.objects.get_or_create(**venue)
 		return venues		
 
+<<<<<<< HEAD
 class Venue(models.Model):
 	name = models.CharField(max_length = 1023)
 	latitude = models.FloatField()
@@ -118,3 +142,5 @@ class Venue(models.Model):
 	total_checkins = models.FloatField()
 
 
+=======
+>>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d

@@ -6,30 +6,23 @@
 	<link href="./style/jquery-ui.css" rel="stylesheet" type="text/css" >
 	<link href="./style/bootstrap.min.css" rel="stylesheet" type="text/css" >
 	<link href="./style/style.css" rel="stylesheet" type="text/css" >
-<<<<<<< HEAD
-	<link href="./style/dev.css" rel="stylesheet" type="text/css" >
-	<!-- WEBFONTS -->
-	<link href='http://fonts.googleapis.com/css?family=Baumans' rel='stylesheet' type='text/css'>
-=======
 	<link href="./js/city_list.txt" type="text/plain">
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 
 	<!-- JavaScript -->
 	<script src="./js/jquery.js" type="text/javascript"></script>
 	<script src="./js/jquery-ui.js" type="text/javascript"></script>
 	<script src="./js/bootstrap.js" type="text/javascript"></script>
-<<<<<<< HEAD
-	<script src="./js/map_styles.js" type="text/javascript"></script>
 	<script src="./js/location.js" type="text/javascript"></script>
 	<script src="./js/script.js" type="text/javascript"></script>
-
-	<!-- what is this? -->
-	<link href="./js/city_list.txt" type="text/plain">
 
 	<!-- Google Maps Javascript API v3 -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyADkJKuWEou2-gPAgZoHB-y6tll-7C86ys&sensor=false"></script>
 	<script type="text/javascript" src="./js/map_scripts.js"></script> 
 	<script type="text/javascript" src="./js/customOverlay.js"></script>
+	<script type="text/javascript" src="./js/PieOverlay.js"></script>
+	<script type="text/javascript" src="./js/Pie.js"></script>
+	<script type="text/javascript" src="./js/mapStyle.js"></script>
+	<script type="text/javascript" src="./js/compatibility.js"></script>
 
 	<!-- fb -->
 	<script src="//connect.facebook.net/en_US/all.js"></script>
@@ -37,27 +30,34 @@
 	<!-- hotel data -->
 
 </head>
-<body onload="getLocation()" >
-	<div id="carousel-wrapper">	
-		<div id="option-carousel" class="hero-unit carousel slide showing">
-=======
-	<script src="./js/script.js" type="text/javascript"></script>
+<body onload="getLocation()">
+  <div id="fb-root"></div>
+  <script>
+    //setup fb api
+     window.fbAsyncInit = function() {
+       FB.init({
+         appId      : '158383940982125',
+	 channelUrl : 'http://ec2-54-228-52-161.eu-west-1.compute.amazonaws.com:8080/static/channel.html',
+         status     : true,
+         cookie     : true,
+         xfbml      : true 
+       });
+     }
 
-	<!-- Google Maps Javascript API v3 -->
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyADkJKuWEou2-gPAgZoHB-y6tll-7C86ys&sensor=false"></script>
+    (function(d){
+      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+      if (d.getElementById(id))
+        {return;}
+      js = d.createElement('script');
+      js.id = id;
+      js.async = true;
+      js.src = "//connect.facebook.net/en_US/all.js";
+      ref.parentNode.insertBefore(js, ref);
+   }(document));
 
-	<script type="text/javascript" src="./js/map_scripts.js"></script> 
-	<script type="text/javascript" src="./js/customOverlay.js"></script>
-	<script type="text/javascript" src="./js/PieOverlay.js"></script>
-	<script type="text/javascript" src="./js/Pie.js"></script>
-	<script type="text/javascript" src="./js/mapStyle.js"></script>
-	<script type="text/javascript" src="./js/compatibility.js"></script>
-	<script src="./js/itinerary.js" type="text/javascript"></script>
 
-</head>
-<body>
+ </script>
  	<div id="option-carousel" class="hero-unit carousel slide ">
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 			<!-- Carousel items -->
 			<div class="carousel-inner">
 				<div id="accom" index=0 class="active item user-options well">
@@ -76,11 +76,7 @@
 									<p class="amount" data-min=2 data-max=4 >Min: 2 <i class="icon-star"></i><br/>Max: 4 <i class="icon-star"></i></p>
 								</div>
 								<div class="tab-pane" id="0tab2">
-<<<<<<< HEAD
-									<div id="room-rate-slider" class="slider range-slider" pref=price-range ></div>
-=======
-									<div id="room-rate-slider" class="slider range-slider" pref=hotel-price ></div>
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
+									<div id="room-rate-slider" class="slider range-slider" pref=flight-price ></div>
 									<p class="amount" data-min=50 data-max=200 >Min: &#163;50<br/>Max: &#163;200</p>
 								</div>
 								<div class="tab-pane" id="0tab3">
@@ -89,11 +85,7 @@
 								</div>
 							</div><!-- .tab-content -->
 					</div><!-- .all-prefs-container -->
-<<<<<<< HEAD
-				</div><!-- #accom -->
-=======
 				</div>
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 				<div id="flights" index=1 class="item user-options well">
 					<h2>Flights</h2>
 					<div class="container all-prefs-container">
@@ -105,11 +97,7 @@
 						</ul>
 						<div id="flight-prefs" class="tab-content" pref-cat=flight>
 								<div class="tab-pane active" id="1tab1">
-<<<<<<< HEAD
-									<div id="flight-price-slider" class="slider range-slider" pref=price-range ></div>
-=======
-									<div id="flight-price-slider" class="slider range-slider" pref=flight-price ></div>
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
+									<div id="flight-price-slider" class="slider range-slider" pref=hotel-price ></div>
 									<p class="amount" data-min=350 data-max=1000 >Min: &#163;350<br/>Max: &#163;1000</p>
 								</div>
 								<div class="tab-pane" id="1tab2">
@@ -118,11 +106,7 @@
 								</div>
 							</div><!-- .tab-content -->
 					</div><!-- .all-prefs-container -->
-<<<<<<< HEAD
-				</div><!-- #flights -->
-=======
 				</div>
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 				<div id="to-do" index=2 class="item user-options well">
 					<h2>To Do</h2>
 					<div class="container all-prefs-container">
@@ -158,90 +142,6 @@
 								</div>
 							</div><!-- .tab-content -->
 					</div><!-- .all-prefs-container -->
-<<<<<<< HEAD
-				</div><!-- #to-do -->
-			</div><!-- .carousel-inner -->
-		</div><!-- #option-carousel -->
-	</div> <!-- #carousel-wrapper -->
-	
-	<div class="primary app container centred">
-
-		<header id="top-nav" class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-				<ul class="nav">
-					<a class="brand" href="#">differently</a>
-					<li class="divider-vertical"></li>
-					<li class="dropdown pull-right pull-right-hard">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="icon-user"></i>My Travel Profile
-						<b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu profile-dropdown" >
-							<li><a href="#">View your profile</a></li>
-							<li><a href="#">Option 2</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Link to your networks</a></li>
-						</ul>
-					</li>
-				</ul><!-- .nav -->
-				</div><!-- .container -->
-			</div><!-- .navbar-inner -->
-		</header><!-- #top-nav.navbar -->
-		
-		<div class="app-wrapper">
-			<div id="app" class="app centred dialog-open">
-				<div id="map_canvas"></div>
-			</div><!-- #app -->
-		</div><!-- .app-wrapper -->
-
-		<footer id="app-bottom-nav" class="app-bottom-nav navbar navbar-fixed-bottom not-showing">
-			<div id="footer-tab" class="tab well"><img class="tab-img" src="img/wrench-256.png"/></div>
-			<div id="bottom-nav-inner"  class="navbar-inner">
-				<div class="container">
-				<ul class="nav">
-					<li id="select-one" index=0 class="option-select active"><a href="#">Accomodation</a></li>
-					<li id="select-two" index=1 class="option-select"><a href="#">Flights</a></li>
-					<li id="select-three" index=2 class="option-select"><a href="#">To Do</a></li>
-					<li class="divider-vertical pull-right-hard">
-					<li id="select-four" index=3 class="option-select pull-right-hard">
-						<div id="dev-options" class="btn-group dropup">
-							<button class="btn btn-inverse">Dev</button>
-							<button class="btn dropdown-toggle btn-inverse" data-toggle="dropdown">
-							<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-							<!-- dropdown menu links -->
-							<li class="theme-select" theme-index=0 ><a href="#">Default</a></li>
-							<li class="theme-select" theme-index=1 ><a href="#">Default (no labels)</a></li>
-							<li class="theme-select" theme-index=2 ><a href="#">Theme 2</a></li>
-							<li class="theme-select" theme-index=3 ><a href="#">Theme 2 (no labels)</a></li>
-							<li class="divider"></li>
-							<li class="bg-select" index=0><a href="#">Background 1</a></li>
-							<li class="bg-select" index=1><a href="#">Background 2</a></li>
-							<li class="bg-select" index=2><a href="#">Background 3</a></li>
-							<li class="bg-select" index=3><a href="#">Background 4</a></li>
-							<li class="bg-select" index=4><a href="#">Default</a></li>
-							<li class="bg-select" index=5 inverse=1 ><a href="#">Background 5</a></li>
-							<li class="bg-select" index=6 inverse=1 ><a href="#">Background 6</a></li>
-							<li class="bg-select" index=7 inverse=1 ><a href="#">Background 7</a></li>
-							<li class="bg-select" index=8 inverse=1 ><a href="#">Background 8</a></li>
-							<li class="bg-select" index=9 inverse=1 ><a href="#">Background 9</a></li>
-							<li class="bg-select" index=10 inverse=1 ><a href="#">Background 10</a></li>
-							</ul>
-						</div><!-- #dev-options -->
-					</li>
-				</ul><!-- .nav -->
-				</div><!-- .container -->
-			</div><!-- .navbar-inner -->
-		</footer><!-- #bottom-nav -->
-		
-	</div><!-- #primary -->
-</body>
-<script>
-
-</script>
-=======
 				</div>
 			</div><!-- .carousel-inner -->
 		</div><!-- #option-carousel -->
@@ -271,7 +171,9 @@
 		
 	</div><!-- #primary -->
 </body>
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
+<script>
+
+</script>
 </html>
 <!--
 

@@ -1,6 +1,10 @@
 #swap
 *.swp
 *.swo
+<<<<<<< HEAD
+=======
+*~
+>>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 
 #compiled
 *.pyc
@@ -15,4 +19,14 @@ travelmap/travelmap/travelmap.db
 .nohup.out
 run_aws.sh
 
+<<<<<<< HEAD
 .DS_Store
+=======
+travelmap/travelmap/settings.py
+
+travelmap/travelmap/settings.py
+
+*.sublime-project
+
+*.sublime-workspace
+>>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
