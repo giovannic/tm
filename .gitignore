@@ -15,4 +15,4 @@ travelmap/travelmap/travelmap.db
 .nohup.out
 run_aws.sh
 
-travelmap/travelmap/public_html/.DS_Store
+.DS_Store
