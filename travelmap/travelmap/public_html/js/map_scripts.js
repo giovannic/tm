@@ -191,7 +191,7 @@ function initialiseMap() {
 function sortCitiesByScore() {
     for (var key in cities) {
         value = cities[key];
-        value.score = getOverallScore(value.weighed_scores, getUserPreferences());
+        value.score = getOverallScore(getScoresForCity(value), getUserPreferences());
     }
     
 	cities.sort( function(a,b) {
