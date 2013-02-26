@@ -269,13 +269,24 @@ function recieveHotels(data, status, jqXHR) {
 	})
 }
 
+function getScoresForCity() {
+    var data = {"Food" : 0,
+                "Outdoors & Recreation" :0,
+                "Nightlife Spot" : 0,
+                "Arts & Entertainment" : 0,
+                "Shop & Service" : 0,
+                "averageHotelCostPerNight" :0,
+                "flightCostFromCurrentLocation" : 0
+                };
+    return data;
+}
+
 function addMarker(city) {
 	var latitude = city.lat;
 	var longitude = city.long;
 	var longandlat = new google.maps.LatLng(latitude, longitude);
 	
-	//TEMP
-	var cityData = city.weighed_scores;
+	var cityData = getScoresForCity(city);
 	var usrData = getUserPreferences();
 	var cityScore = city.score;
 	var cityBreakdown = getPercentageScores(cityData, usrData);
@@ -312,8 +323,9 @@ function updatePieCharts() {
 
 	for (var key in cities) {
 		var value = cities[key];
-		if (value.name === "London") addMarker(value);
+		addMarker(value);
 	}
+    
 }
 
 
