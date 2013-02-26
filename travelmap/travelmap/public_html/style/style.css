@@ -8,54 +8,21 @@ body {
 	background-image: url('../img/background-pngs/dark5.png');
 }
 
-/*
-*
-*
-***** bg img change styles *****/
-
-body.bg0 {
-	background-image: url('../img/background-pngs/dark1.png');
-}
-body.bg1 {
-	background-image: url('../img/background-pngs/dark2.png');	
-}
-body.bg2 {
-	background-image: url('../img/background-pngs/dark3.png');	
-}
-body.bg3 {
-	background-image: url('../img/background-pngs/dark4.png');	
-}
-body.bg4 {
-	background-image: url('../img/background-pngs/dark5.png');	
-}
-body.bg5 {
-	background-image: url('../img/background-pngs/light1.png');	
-}
-body.bg6 {
-	background-image: url('../img/background-pngs/light2.png');	
-}
-body.bg7 {
-	background-image: url('../img/background-pngs/light3.png');	
-}
-body.bg8 {
-	background-image: url('../img/background-pngs/paper1.png');	
-}
-body.bg9 {
-	background-image: url('../img/background-pngs/paper2.png');	
-}
-body.bg10 {
-	background-image: url('../img/background-pngs/paper3.png');	
-}
-
-/********************************/
-
 .dialog-open {
 	opacity: 0.5;
 }
 
-#primary {
-	padding: 80px 0 40px 0;
+.primary {
+	width: 100%;
+	padding: 61px 0 0 0;
 }
+
+.primary .app {
+	width: 100%;
+	padding: 61px 0 40px 0;
+}
+
+
 
 /*
 *
@@ -92,15 +59,31 @@ ul.nav {
 	min-width: 100%;
 }
 
+/*
+*
+***** helper classes ***/
+
 .pull-right-hard {
 	float: right !important;
+}
+
+.pull-left-hard {
+	float: left !important;
+}
+
+.centred {
+	margin: 0 auto;
+}
+
+.brand-font {
+	font-family: 'Baumans', cursive;
 }
 
 /*
 *
 ***** bottom nav bar *****/
 
-footer#bottom-nav {
+footer.app-bottom-nav {
 	-moz-transition: bottom 0.4s;
     -webkit-transition: bottom 0.4s;
     -o-transition: bottom 0.4s;
@@ -108,16 +91,12 @@ footer#bottom-nav {
     transition: bottom 0.4s;
 }
 
-footer#bottom-nav.not-showing {
+footer.app-bottom-nav.not-showing {
 	bottom:-50px;
 }
 
-footer#bottom-nav:hover {
+footer.app-bottom-nav:hover {
 	bottom:0px;
-}
-/*http://css-tricks.com/forums/discussion/16129/triggering-css-transition-by-hovering-over-a-different-element/p1 */
-footer#bottom-nav:hover+div {
-	xleft:-110px;
 }
 
 /*
@@ -231,6 +210,17 @@ button.update {
 	top: -13px !important;
 }
 
+.ui-slider-handle.alt-style { /* SEE HERE - work in progress */
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+
+	border-radius: 23px;
+	top: -8px !important;
+}
+
 .ui-slider-handle:hover {
 	cursor: pointer;
 }
@@ -249,9 +239,15 @@ p.amount {
 *
 ***** overlay & map styles *****/
 
-#app {
+.app-wrapper {
 	width: 100%;
+}
+
+#app {
+	width: 80%%;
 	height: 480px;
+
+	padding-top: 20px;
 
 	-webkit-box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
 	-moz-box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
@@ -283,3 +279,91 @@ p.amount {
 .cityOverlay h3, .cityOverlay h4 {
 	line-height:0.75em;
 }
+
+/*
+*
+*	CBA TO BREAK UP STYLESHEET JUST YET
+*
+*	NB: sf stands for shop front - I needed a class name
+*
+***** HOMEPAGE / SIGNUP STYLES *****/
+
+
+
+.sf {
+	width: 100%;
+	height: 580px;
+	margin-top: 40px;
+	margin: ;
+}
+
+.sf-container {
+	width:100%;
+	min-height: 600px;
+}
+
+.sf-inner {
+	width: 897px;
+	height: 582px;
+}
+
+.sf-caption {
+	width: 60%;
+	height: 60px;
+	position: relative;
+	top: -60px;
+
+	float: left;
+
+	color:white;
+	background-color: rgba(0,0,0,0.65);
+	border-radius: 0px 30px 0px 0px;
+}
+
+.sf-caption:hover {
+	background-color: rgba(89,168,15,0.65);
+	cursor: pointer;
+}
+
+
+h3.caption {
+	margin-left:10px;
+	font-weight: 100;
+}
+
+.sf-img {
+	height:582px;	
+	margin: 0 auto;
+}
+
+.signup-container {
+	width: 100%;
+	margin-top:150px;
+	margin-bottom: 50px;
+}
+
+.signup-inner.hero-unit {
+	width: 777px; /* 897 - 2*60px of padding */
+	overflow: hidden;
+		background-image: url('../img/background-pngs/paper5.png');
+}
+
+.signup-option {
+	display: inline;
+	max-width: 40%;
+	margin: 0 auto;
+	text-align: justify;
+}
+
+.fb-signup {
+	float: left;
+}
+
+.email-signup {
+	float: right;
+}
+
+
+
+
+

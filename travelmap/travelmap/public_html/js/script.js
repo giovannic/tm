@@ -1,9 +1,18 @@
+//global vars
+
+i = 2; //image source index for front page slide show
+
 $(document).ready(function() {
-//Setup Map
-	resize_map();
-	initialiseMap();
-//neccessary UI javascript
+//Setup Map if the relvant canvas is in the DOM
+	if($('#map_canvas').length > 0){
+		resize_map();
+		initialiseMap();
+	}
+//neccessary layout javascript
 	align_carousel();
+//dynamically resize map height on viewport resize
+	$(window).resize(resize_map);
+	$(window).resize(align_carousel);
 
 //ensure carousel doesn't run itself - is this my most shameless hack?
 /*	
@@ -11,14 +20,17 @@ $(document).ready(function() {
 *	I'M COMMENTING IT OUT FOR NOW - IF YOU FIND THE UI
 *	STARTS RUNNING AWAY WITH ITSELF UNCOMMENT IT
 *
-*	I was wrong - it's still needed :(
 */
-	window.setInterval(function() {$('#option-carousel').carousel('pause')}, 1000);
+//	window.setInterval(function() {$('#option-carousel').carousel('pause'); console.log(99)}, 1000);
 
+	window.setInterval(cycleSfImg, 5000);
 
 //initialise some bootstrap javascript
 	$('.dropdown-toggle').dropdown();
-	$('.carousel').carousel('pause');
+	$('.carousel').carousel();
+	$('.sf-carousel').carousel({
+		interval : 2000
+	});
 
 	$('.option-select').click(function() {
 		show_only();
@@ -28,11 +40,27 @@ $(document).ready(function() {
 		$('#option-carousel').carousel('pause'); //somewhat less hacky...
 	});
 
-//dynamically resize map height on viewport resize
-	$(window).resize(resize_map);
-	$(window).resize(align_carousel);
+/*
+*
+*
+*
+***** homepage js event handlers *****/
 
-	//submit button
+	$('#signup-prompt').click(function(){
+		$('body,html').animate({
+			scrollTop: 730
+		}, 300);
+	})
+
+
+
+/*
+*
+*
+*
+***** app js event handlers *****/
+
+//submit button
 	$('.update').click(function() {
 		sendOffData();
 		hide_only()
@@ -58,8 +86,8 @@ $(document).ready(function() {
 	});
 
 //footer UI
-	$('footer#bottom-nav').mouseenter(footerTabHide);
-	$('footer#bottom-nav').mouseleave(footerTabShow);
+	$('footer#app-bottom-nav').mouseenter(footerTabHide);
+	$('footer#app-bottom-nav').mouseleave(footerTabShow);
 
 	
 
@@ -218,5 +246,25 @@ function sendOffData() {
 
 	//update(allprefs);
 }
+
+//Homepage Javascript
+
+cycleSfImg = function() {
+
+	//$('#sf-img-current').attr("src", './img/shop-imgs/map'+i%9+'.jpg');
+	//$('#sf-img-upcoming').attr("src", './img/shop-imgs/map'+i%9+'.jpg');
+
+	$('.sf-inner').fadeOut(800, function() {
+	    $('.sf-img').attr("src", './img/shop-imgs/map'+i%9+'.jpg');
+	    $('.sf-inner').fadeIn(800);
+	});
+
+
+	i++;
+
+
+}
+
+
 
 
