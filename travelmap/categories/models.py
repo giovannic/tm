@@ -1,6 +1,6 @@
 from django.db import models
 from jsonfield import JSONField
-from cities.models import DataSource
+from props.models import DataSource
 
 
 # Create your models here.

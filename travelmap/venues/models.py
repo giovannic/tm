@@ -1,5 +1,5 @@
 from django.db import models
-from cities.models import City
+from props.models import City
 from categories.models import Category
 # Create your models here.
 class Venue(models.Model):
