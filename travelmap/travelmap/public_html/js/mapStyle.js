@@ -40,11 +40,11 @@ var style = [
   }
 ];
 
-var pieColours = {	"Arts and Entertainment": "#FF0000",
-							"Flights": "#0101DF",
-							"Food": "#01DF01",
-							"Hotels": "#FF8000",
-							"Nightlife": "#6A0888",
+var pieColours = {	"Arts and Entertainment": "#7DA046",
+							"Flights": "#FA7206",
+							"Food": "#FF995D",
+							"Hotels": "#B8DB77",
+							"Nightlife": "#AD2E0B",
 							"Outdoor": "#FFFF00",
 							"Shopping": "#00FFFF" };
 

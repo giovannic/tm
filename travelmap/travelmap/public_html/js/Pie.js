@@ -3,24 +3,29 @@ var svgns = "http://www.w3.org/2000/svg";
 function makePieChart(containerDiv, values, x, y, radius) {
 	var theSvg = makeSvg(containerDiv);
 	var noOfSegments = Object.keys(values).length;
+	var total = 0;	
+	var gBox = document.createElementNS("http://www.w3.org/2000/svg", "g");
+	for ( var key in values) {
+		var percent = values[key];
+		var segmentPositions = percentToPosition(total, total + percent, radius);
+		var segmentPositions = translateTo(segmentPositions, x, y);
+		drawSegment(gBox, x, y, segmentPositions, radius, pieColours[key], percent);
+		total += percent;
+	}
+	theSvg.appendChild(gBox);
+}
+
+function makeLabels(theSvg, values, x, y, radius) {
+	var gBox = document.createElementNS("http://www.w3.org/2000/svg", "g");
 	var total = 0;
 	for ( var key in values) {
 		var percent = values[key];
 		var segmentPositions = percentToPosition(total, total + percent, radius);
 		var segmentPositions = translateTo(segmentPositions, x, y);
-		drawSegment(theSvg, x, y, segmentPositions, radius, pieColours[key], percent);
+		drawLabel(gBox, x, y, segmentPositions, radius, key, percent);
 		total += percent;
 	}
-	total = 0;
-/*
-	for ( var key in values) {
-		var percent = values[key];
-		var segmentPositions = percentToPosition(total, total + percent, radius);
-		var segmentPositions = translateTo(segmentPositions, x, y);
-		if (percent > 15) drawLabel(theSvg, x, y, segmentPositions, radius, key, percent);
-		total += percent;
-	}
-*/
+	theSvg.appendChild(gBox);
 }
 
 function makeRandomColour() {
@@ -101,26 +106,26 @@ function drawLabel(theSvg, x, y, segPositions, radius, text, percent) {
 
 	
 	// Calculate text width
-	var width = $('<span></span>').css({display:'none',whiteSpace:'nowrap',fontSize:'10'}).appendTo($('body')).text(text).width();
-	var height = $('<span></span>').css({display:'none',whiteSpace:'nowrap',fontSize:'10'}).appendTo($('body')).text(text).height();
+	var width = $('<span></span>').css({display:'none',whiteSpace:'nowrap',fontSize:'14'}).appendTo($('body')).text(text).width();
+	var height = $('<span></span>').css({display:'none',whiteSpace:'nowrap',fontSize:'14'}).appendTo($('body')).text(text).height();
 	
 	var bbox = segment.getBBox();
 	var labelx = segPositions.labelX - (width/4);
 	var labely = segPositions.labelY - (height/4);
-	var percenty = labely + (height/2); 
+	var percenty = labely + (height/1.5); 
 
 	var label = document.createElementNS("http://www.w3.org/2000/svg", "text");
 	label.setAttribute("x", labelx);
 	label.setAttribute("y", labely);
-	label.setAttribute("font-size", 10);
+	label.setAttribute("font-size", 14);
 	label.textContent = text;
 	theSvg.appendChild(label);
 
 	var percentLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
 	percentLbl.setAttribute("x", labelx);
 	percentLbl.setAttribute("y", percenty);
-	percentLbl.setAttribute("font-size", 10);
-	percentLbl.textContent = percent + "%";
+	percentLbl.setAttribute("font-size", 14);
+	percentLbl.textContent = percent.toFixed(2) + "%";
 	theSvg.appendChild(percentLbl);	
 	
 }

@@ -1,3 +1,4 @@
+var thePieOverlays = new Array();
 PieOverlay.prototype = new google.maps.OverlayView();
 
 var thresholds = [95,95,85,80,70,60,40,20,10,0,0,0,0];
@@ -15,6 +16,9 @@ function PieOverlay(location, city, score, breakdown, map) {
 	this.threshold_ = thresholds[map.getZoom()];
 	this.pie_ = null;
 	this.dot_ = null;
+	thePieOverlays.push(this);
+	this.index_ = thePieOverlays.length;
+	this.scale_ = 1;
 
 	// We define a property to hold the image's
 	// div. We'll actually create this div
@@ -38,6 +42,8 @@ PieOverlay.prototype.onAdd = function() {
 	pie.style.position = "absolute";
 	pie.style.display = "block";
 	makePieChart(pie, this.breakdown_, (this.score_/3), (this.score_/3), (this.score_/3));
+
+	pie.setAttribute("onclick", "openCloseDetails(" + this.index_ + ")");
 
 	var dot = document.createElement('img');
 	dot.style.position = "absolute";
@@ -73,12 +79,16 @@ PieOverlay.prototype.draw = function() {
 		this.pie_.style.visibility = 'visible';
 		this.dot_.style.visibility = 'hidden';
 	}
+
+	var gBox = this.pie_.childNodes[0].childNodes[0];
+	gBox.setAttribute ("transform", "scale(" + this.scale_ + ")");
+
 	var overlayProjection = this.getProjection();
 	var locationPx = overlayProjection.fromLatLngToDivPixel(this.location_);
 
 	// Resize the image's DIV to fit the indicated dimensions.
-	set_height = this.score_ / 1.5;
-	set_width = this.score_ / 1.5;
+	set_height = this.score_ * this.scale_ / 1.5;
+	set_width = this.score_ * this.scale_ / 1.5;
 
 	var pie = this.pie_;
 	pie.style.left = 0;
@@ -102,4 +112,71 @@ PieOverlay.prototype.draw = function() {
 PieOverlay.prototype.onRemove = function() {
 	this.div_.parentNode.removeChild(this.div_);
 	this.div_ = null;
+}
+
+// Variable to hold currently open pie
+var currentlyOpenIndex;
+
+// Function called when a pie chart is clicked
+function openCloseDetails(index) {
+	// First close previous pie if one is already open
+	if (currentlyOpenIndex) closeDetails(currentlyOpenIndex);
+	openDetails(index);
+}
+
+function openDetails(index) {
+	var theOverlay = thePieOverlays[index-1];
+	if (theOverlay.scale_ == 1) {
+		animateGrow(theOverlay, true);
+		currentlyOpenIndex = index;
+		// Add listener so pie is closed when click off
+		google.maps.event.addListener(map, 'click', function() { closeDetails(index); } );
+	}
+}
+
+function closeDetails(index) {
+	var theOverlay = thePieOverlays[index-1];
+	if (theOverlay.scale_ != 1) {
+		animateShrink(theOverlay);
+		currentlyOpenIndex = null;
+	}
+}
+
+// Function to draw labels once pie is open
+function showLabels(theOverlay) {
+	var theSvg = theOverlay.pie_.childNodes[0];
+	var radius = (theOverlay.score_ * theOverlay.scale_) / 3;
+	makeLabels(theSvg,  theOverlay.breakdown_, radius, radius, radius);
+}
+
+function animateGrow(theOverlay, first) {
+	var currentScale = theOverlay.scale_
+	// If 500 px wide then stop and add the labels
+	if ((theOverlay.score_ * currentScale / 1.5) >= 500) {
+		showLabels(theOverlay);
+		return;
+	}
+	theOverlay.scale_ = currentScale + 1;
+	theOverlay.draw();
+	// On first iteration remove and re-add to map to bring to front
+	if (first) {
+		var map = theOverlay.map_;
+		theOverlay.setMap(null);
+		theOverlay.setMap(map);
+	}
+	
+	// In 1 milli second grow a bit more
+	setTimeout(function() {
+		animateGrow(theOverlay, false)
+	},1);
+}
+
+function animateShrink(theOverlay) {
+	var currentScale = theOverlay.scale_
+	if (currentScale <= 1) return;
+	theOverlay.scale_ = currentScale - 1;
+	theOverlay.draw();
+	setTimeout(function() {
+		animateShrink(theOverlay)
+	},1);
 }

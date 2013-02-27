@@ -277,13 +277,13 @@ function recieveHotels(data, status, jqXHR) {
 }
 
 function getScoresForCity() {
-    var data = {"Food" : 30,
-                "Outdoors & Recreation" :90,
-                "Nightlife Spot" : 60,
-                "Arts & Entertainment" : 73,
-                "Shop & Service" : 86,
-                "averageHotelCostPerNight" :100,
-                "flightCostFromCurrentLocation" : 230
+    var data = {"Food" : Math.random()*80,
+                "Outdoors & Recreation" :Math.random()*80,
+                "Nightlife Spot" : Math.random()*80,
+                "Arts & Entertainment" : Math.random()*80,
+                "Shop & Service" : Math.random()*80,
+                "averageHotelCostPerNight" :Math.random()*150,
+                "flightCostFromCurrentLocation" : Math.random()*200
                 };
     return data;
 }
@@ -299,19 +299,7 @@ function addMarker(city) {
 	var cityBreakdown = getPercentageScores(cityData, usrData);
 	
 	var marker = new PieOverlay(longandlat, city.name, cityScore, cityBreakdown, map);
-	
-/*	google.maps.event.addListener(marker, 'click', function () {
-		var latitude = city.lat;
-		var longitude = city.long;
-		var location = new google.maps.LatLng(latitude, longitude);
-		if (overlay) overlay.setMap(null);
-		overlay = new USGSOverlay(location, city.name, city.score, map);
 
-		google.maps.event.addListener(map, 'click', function () {
-			overlay.setMap(null);
-		});
-	});
-*/
 	markers.push(marker);
 }
 /*
