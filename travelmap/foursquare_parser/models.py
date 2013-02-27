@@ -4,38 +4,8 @@ from django.conf import settings
 import foursquare
 
 # Create your models here.
-class categories(models.Model):
-	parent = models.CharField(max_length = 512, primary_key = True)
-	raw_categories = JSONField()
-	new_categories = JSONField()
-	parent_cat = models.ForeignKey('self', blank = True, null = True, related_name = 'children_categories')
-
-	def get_categories(self):
-		client = foursquare.Foursquare(client_id= settings.FSQ_CLIENT_ID, client_secret = settings.FSQ_CLIENT_SECRET)
-		self.raw_categories = client.venues.categories()
-		self.new_categories = {}
-		for base_category in self.raw_categories['categories']:
-			self.new_categories[base_category['name']] = base_category
-		for base_category in self.new_categories.keys():	
-			for sub_category in self.new_categories[base_category]['categories']:
-				self.new_categories[base_category][sub_category['name']] = sub_category
-		for key in [u'College & University', u'Residence', u'Travel & Transport', u'Professional & Other Places']:
-			self.new_categories.pop(key)
-		self.save()
-
-	def dump_children_categories(self):
-		for key in self.new_categories:
-			print key
-			h = categories.objects.get_or_create(
-				parent = key, 
-				raw_categories = self.new_categories[key], 
-				new_categories = self.new_categories[key],
-				parent_cat = self)
-			h[0].save()
-						
-
+	
 class all_city_scores(models.Model):
-	categories = models.ForeignKey(categories)
 	all_scores = JSONField()
 	cities = JSONField()
 	cities_geocodes = JSONField()

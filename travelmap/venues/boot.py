@@ -52,21 +52,28 @@ def loadVenues(venues):
 				latitude = float(place['location']['lat'])
 				longitude = float(place['location']['lng'])
 				count = float(place['stats']['checkinsCount'])
+				if count <10:
+					pass;
+				else:
+					venue = {
+						'name': name, 
+						'latitude': latitude, 
+						'longitude': longitude, 
+						'checkinsCount': count, 
+						'city':city, 
+						'category': category,
+						'dataSource': data_source,}
+					venue = Venue.objects.get_or_create(**venue)
 
+				
 
+def getCategoriesForVenue(categories_dict, venue):
+	for cat in venue_categories:
+		category = Category.objects.get(name = cat['name'])
+		venue.category.add(category)
+	venue.save()
 
-				venue = {
-					'name': name, 
-					'latitude': latitude, 
-					'longitude': longitude, 
-					'checkinsCount': count, 
-					'city':city, 
-					'category': None,
-					'dataSource': data_source,}
-				venue = Venue.objects.get_or_create(**venue)
-				for
-
-def getCategoriesForVenue(venue_categories):
+		
 
 
 
