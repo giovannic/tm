@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //global vars
 
 i = 2; //image source index for front page slide show
@@ -32,26 +31,12 @@ $(document).ready(function() {
 	$('.sf-carousel').carousel({
 		interval : 2000
 	});
-=======
-$(document).ready(function() {
-//Setup Map
-	initialiseMap();
-
-//ensure carousel doesn't run itself - is this my most shameless hack?
-	window.setInterval(function() {$('#option-carousel').carousel('pause')}, 1000);
-
-
-//initialise some bootstrap javascript
-	$('.dropdown-toggle').dropdown();
-	$('.carousel').carousel('pause');
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 
 	$('.option-select').click(function() {
 		show_only();
 		$('.option-select').removeClass('active');
 		$(this).addClass('active');
 		$('#option-carousel').carousel(parseInt($(this).attr("index")));
-<<<<<<< HEAD
 		$('#option-carousel').carousel('pause'); //somewhat less hacky...
 	});
 
@@ -75,25 +60,12 @@ $(document).ready(function() {
 *
 ***** app js event handlers *****/
 
-//submit button
-	$('.update').click(function() {
-=======
-	});
-
 	//submit button
 	$('.update').click(function() {
 		updatePieCharts();		
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 		sendOffData();
 		hide_only()
 	});
-
-<<<<<<< HEAD
-//show/hide trip options
-=======
-	//show/hide trip options
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
-	$('#show-hide-options').click(show_hide_options);
 
 	$('body').click(function(event) {
 	    if ($(event.target).closest('#app').length) {
@@ -101,7 +73,6 @@ $(document).ready(function() {
 	    };
 	});
 
-<<<<<<< HEAD
 //map theme select
 	$('.theme-select').click(function() {
 		set_map_style($(this).attr('theme-index'));
@@ -116,44 +87,6 @@ $(document).ready(function() {
 	$('footer#app-bottom-nav').mouseenter(footerTabHide);
 	$('footer#app-bottom-nav').mouseleave(footerTabShow);
 
-	
-=======
-	function show_hide_options() {
-		if($('#show-hide-options').hasClass('hide-mode')) {
-			$('#option-carousel').fadeOut(400);
-			$('#show-hide-options').addClass('show-mode');
-			$('#show-hide-options').removeClass('hide-mode');
-			$('#show-hide-options').html('<a href="#">Show Trip Options</a>');
-			$('#app').removeClass('dialog-open');
-		} else {
-			$('#option-carousel').fadeIn(400);
-			$('#show-hide-options').addClass('hide-mode');
-			$('#show-hide-options').removeClass('show-mode');
-			$('#show-hide-options').html('<a href="#">Hide Trip Options</a>');
-			$('#app').addClass('dialog-open');
-		}
-	};
-
-	function show_only() {
-		if($('#show-hide-options').hasClass('show-mode')) {
-			$('#option-carousel').fadeIn(400);
-			$('#show-hide-options').addClass('hide-mode');
-			$('#show-hide-options').removeClass('show-mode');
-			$('#show-hide-options').html('<a href="#">Hide Trip Options</a>');
-			$('#app').addClass('dialog-open');
-		}
-	}
-
-	function hide_only() {
-		if($('#show-hide-options').hasClass('hide-mode')) {
-			$('#option-carousel').fadeOut(400);
-			$('#show-hide-options').addClass('show-mode');
-			$('#show-hide-options').removeClass('hide-mode');
-			$('#show-hide-options').html('<a href="#">Show Trip Options</a>');
-			$('#app').removeClass('dialog-open');
-		}
-	}
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 
 //sliders
 	$( ".standard-slider" ).slider({
@@ -227,7 +160,6 @@ $(document).ready(function() {
 		}
 	});
 
-<<<<<<< HEAD
 }); //end of document ready
 
 //UI javascript
@@ -280,9 +212,6 @@ function resize_map() {
 }
 
 //server interation javascript
-=======
-});
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 
 function sendOffData() {
 
@@ -315,27 +244,13 @@ function sendOffData() {
 	//update(allprefs);
 }
 
-<<<<<<< HEAD
 //Homepage Javascript
 
 cycleSfImg = function() {
-
-	//$('#sf-img-current').attr("src", './img/shop-imgs/map'+i%9+'.jpg');
-	//$('#sf-img-upcoming').attr("src", './img/shop-imgs/map'+i%9+'.jpg');
-
 	$('.sf-inner').fadeOut(800, function() {
 	    $('.sf-img').attr("src", './img/shop-imgs/map'+i%9+'.jpg');
 	    $('.sf-inner').fadeIn(800);
 	});
-
-
 	i++;
-
-
 }
-
-
-
-=======
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 

@@ -20,6 +20,7 @@ travelmap/travelmap/travelmap.db
 run_aws.sh
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .DS_Store
 =======
 travelmap/travelmap/settings.py
@@ -30,3 +31,6 @@ travelmap/travelmap/settings.py
 
 *.sublime-workspace
 >>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
+=======
+travelmap/travelmap/public_html/.DS_Store
+>>>>>>> parent of f8c3ea9... modded .gitignore

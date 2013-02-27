@@ -1,11 +1,22 @@
-<<<<<<< HEAD
+/*
+*
+*
+**** NOTE I DIDN'T KNOW HOW TO RESOLVE THIS MERGE CONFLICT AS
+**** THIS ISN'T MY CODE. I'VE KEPT ALL THE CODE AND COMMENTED
+**** GITS MERGE INDICATORS. BEN, IF YOU COULD TIDY THIS UP WHEN
+**** YOU HAVE A CHANCE THAT'D BE SMASHING
+**** THANKS, JOSH
+*/
+
+
+/* <<<<<<< HEAD * /
 var compatibility_score;
 var city_score;
 
 function get_city_score(city){
 	$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function)
-	}asdasda
-=======
+	} /* asdasda */
+/* ======= */
 function getUserPreferences() {
 	var allprefs = {};
 	
@@ -163,4 +174,4 @@ function getNightlifeScore(cityData, userData) {
 	return nightlifeScore;
 }
 
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
+/* >>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d */
