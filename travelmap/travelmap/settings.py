@@ -137,7 +137,6 @@ INSTALLED_APPS = (
     'jsonfield',
     'django_extensions',
     'foursquare_ratings',
-    'foursquare_parser',
     'venues',
     'categories',
     'south',
