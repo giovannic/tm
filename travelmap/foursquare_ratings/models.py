@@ -1,73 +1,13 @@
 from django.db import models
-<<<<<<< HEAD
-import foursquare
-from cities import cities 
-from jsonfield import JSONField
-from django.conf import settings
-from django.db.models import Max
-
-
-class categories(models.Model):
-	parent = models.CharField(max_length = 512, primary_key = True)
-	raw_categories = JSONField()
-	new_categories = JSONField()
-
-	def get_categories(self):
-		client = foursquare.Foursquare(client_id= settings.FSQ_CLIENT_ID, client_secret = settings.FSQ_CLIENT_SECRET)
-		self.raw_categories = client.venues.categories()
-		self.new_categories = {}
-		for base_category in self.raw_categories['categories']:
-			self.new_categories[base_category['name']] = base_category
-		for base_category in self.new_categories.keys():	
-			for sub_category in self.new_categories[base_category]['categories']:
-				self.new_categories[base_category][sub_category['name']] = sub_category
-		for key in [u'College & University', u'Residence', u'Travel & Transport', u'Professional & Other Places']:
-			self.new_categories.pop(key)
-		self.save()		
-
-class all_city_scores(models.Model):
-	categories = models.ForeignKey(categories)
-	all_scores = JSONField()
-	cities = JSONField()
-	cities_geocodes = JSONField()
-
-
-	def get_city_scores(self, cities, categories):
-		self.cities = cities
-		if not self.all_scores:
-			self.all_scores = {}
-		client = foursquare.Foursquare(client_id= settings.FSQ_CLIENT_ID, client_secret = settings.FSQ_CLIENT_SECRET)
-		params ={'near':'city', 'limit':50, 'intent': 'browse', 'categoryId' : '','radius': 100000}
-		res = {}
-		if not self.cities_geocodes:
-			self.cities_geocodes = {}
-
-		for city in cities:
-			self.all_scores[city] = {}
-			params['near'] = city
-			for cat in categories.keys():
-				params['categoryId'] = categories[cat]['id']
-				dump = client.venues.search(params=params)
-				self.all_scores[city][categories[cat]['name']] = dump['venues']
-			self.cities_geocodes[city] = dump['geocode']
-
-			print(city)	
-		self.save()			
-
-=======
 from jsonfield import JSONField
 from props.models import City
 from venues.models import Venue
 import foursquare
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 
 class CityScore(models.Model):
 	latitude = models.FloatField()
 	longitude = models.FloatField()
-<<<<<<< HEAD
-=======
 	city = models.ForeignKey(City, related_name='score_for_city', null = True, blank = True)
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 	name = models.CharField(max_length = 255, unique = True)
 	country_code = models.CharField(max_length = 3)
 	raw_scores = JSONField()
@@ -75,12 +15,9 @@ class CityScore(models.Model):
 	venues = JSONField()
 	weighed_scores = JSONField()
 
-<<<<<<< HEAD
-=======
 	def __unicode__(self):
 
 		return self.name+", "+self.country_code
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 
 	def update_score(self, city_scores, categories):
 		if not self.raw_scores:
@@ -119,28 +56,9 @@ class CityScore(models.Model):
 				latitude = float(place['location']['lat'])
 				longitude = float(place['location']['lng'])
 				count = float(place['stats']['checkinsCount'])/self.total_checkins
-<<<<<<< HEAD
-				city = self.name
-				total_checkins = self.total_checkins
-				venue = {'name': name, 'latitude': latitude, 'longitude': longitude, 'checkinsCount': count, 'city': city, 'total_checkins': total_checkins}
-=======
 				city = self.city
 				total_checkins = self.total_checkins
 				venue = {'name': name, 'latitude': latitude, 'longitude': longitude, 'checkinsCount': count, 'city':city, 'total_checkins': total_checkins}
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
 				venues[self.name].append(venue)
 				Venue.objects.get_or_create(**venue)
 		return venues		
-
-<<<<<<< HEAD
-class Venue(models.Model):
-	name = models.CharField(max_length = 1023)
-	latitude = models.FloatField()
-	longitude = models.FloatField()
-	checkinsCount = models.FloatField()
-	city = models.CharField(max_length = 1032)
-	total_checkins = models.FloatField()
-
-
-=======
->>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
