@@ -1,22 +1,3 @@
-/*
-*
-*
-**** NOTE I DIDN'T KNOW HOW TO RESOLVE THIS MERGE CONFLICT AS
-**** THIS ISN'T MY CODE. I'VE KEPT ALL THE CODE AND COMMENTED
-**** GITS MERGE INDICATORS. BEN, IF YOU COULD TIDY THIS UP WHEN
-**** YOU HAVE A CHANCE THAT'D BE SMASHING
-**** THANKS, JOSH
-*/
-
-
-/* <<<<<<< HEAD * /
-var compatibility_score;
-var city_score;
-
-function get_city_score(city){
-	$.getJSON(getBaseURL() + 'api/v1/cityscore/?format=json', function)
-	} /* asdasda */
-/* ======= */
 function getUserPreferences() {
 	var allprefs = {};
 	
@@ -37,6 +18,12 @@ function getUserPreferences() {
 	$('#todo-prefs .tab-pane').each(function() {
 		todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
 	});
+
+	accom["hotel-price-min"] = accom["price-range-min"];
+	accom["hotel-price-max"] = accom["price-range-max"];
+
+	flights["flight-price-min"] = flights["price-range-min"];
+	flights["flight-price-max"] = flights["price-range-max"];
 
 	allprefs = jsonConcat(flights, accom);
 	allprefs = jsonConcat(allprefs, todo);

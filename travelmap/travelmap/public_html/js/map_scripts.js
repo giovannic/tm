@@ -195,7 +195,7 @@ function initialiseMap() {
 
 function sortCitiesByScore() {
     for (var key in cities) {
-        value = cities[key];
+        var value = cities[key];
         value.score = getOverallScore(getScoresForCity(value), getUserPreferences());
     }
     
@@ -212,8 +212,9 @@ function recieveCities(data, status, jqXHR) {
 	  cities[value.resource_uri] = value;
 	})
 	*/
+    updatePieCharts();
 }
-
+/*
 function recieveScores(data, status, jqXHR) {
     var scores = data.objects;
     
@@ -248,6 +249,7 @@ function mergeScoreWithCities(scores) {
         cityLoc.weighed_scores.flightCostFromCurrentLocation = flightAndHotelScores[cityLocKey].flightCost;
     }
 }
+*/
 
 function getFlightAndHotelScores(){
     var scores = {};
@@ -275,13 +277,13 @@ function recieveHotels(data, status, jqXHR) {
 }
 
 function getScoresForCity() {
-    var data = {"Food" : 0,
-                "Outdoors & Recreation" :0,
-                "Nightlife Spot" : 0,
-                "Arts & Entertainment" : 0,
-                "Shop & Service" : 0,
-                "averageHotelCostPerNight" :0,
-                "flightCostFromCurrentLocation" : 0
+    var data = {"Food" : 30,
+                "Outdoors & Recreation" :90,
+                "Nightlife Spot" : 60,
+                "Arts & Entertainment" : 73,
+                "Shop & Service" : 86,
+                "averageHotelCostPerNight" :100,
+                "flightCostFromCurrentLocation" : 230
                 };
     return data;
 }
@@ -312,11 +314,11 @@ function addMarker(city) {
 */
 	markers.push(marker);
 }
-
+/*
 function getScoresForCity(city, callb) {
   $.getJSON(getBaseURL() + city.resource_uri + '/?format=json', callb)
 }
-
+*/
 function getBaseURL () {
    return location.protocol + "//" + location.hostname + 
       (location.port && ":" + location.port) + "/";
