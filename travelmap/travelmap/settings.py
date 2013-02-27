@@ -9,16 +9,36 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-DATABASES = {
-  'default': {
-     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-     'NAME': 'gc1610', 
-     'USER': 'gc1610',
-     'PASSWORD': 'FAHvYxjGKW', 
-     'HOST': 'db.doc.ic.ac.uk',
-     'PORT': '5432',
-     }
-}
+
+
+if 'VCAP_SERVICES' in os.environ:
+    import json
+    vcap_services = json.loads(os.environ['VCAP_SERVICES'])
+    # XXX: avoid hardcoding here
+    psql_serv = vcap_services["postgresql-9.1"][0]
+    cred = psql_serv['credentials']
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': cred['name'],
+            'USER': cred['user'],
+            'PASSWORD': cred['password'],
+            'HOST': cred['hostname'],
+            'PORT': cred['port'],
+            }
+        }
+else:
+    DATABASES = {
+      'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'gc1610', 
+         'USER': 'gc1610',
+         'PASSWORD': 'FAHvYxjGKW', 
+         'HOST': 'db.doc.ic.ac.uk',
+         'PORT': '5432',
+         }
+    }
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
