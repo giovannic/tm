@@ -2,3 +2,4 @@ import venues.boot as boot
 execfile('venues/city_list_europe.py')
 cat_list = Category.objects.filter(parentCat__name ="root")
 venues_list = boot.getVenues(cities, cat_list, boot.getClient())
+boot.loadVenues(venues_list)
