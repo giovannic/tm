@@ -7,8 +7,6 @@ from venues.models import Venue
 def getClient():
 	client = foursquare.Foursquare(client_id= settings.FSQ_CLIENT_ID, client_secret = settings.FSQ_CLIENT_SECRET)
 	return client
-def getEUCities():
-	return execfile('venues/city_list_europe.py')
 
 def getVenues(city_list, cat_list, client):
 	params ={
@@ -32,29 +30,36 @@ def getVenues(city_list, cat_list, client):
 				pass;
 			else:
 				print cat.name
-				venues[city][cat] = []
+				venues[city][cat.name] = []
 				params['categoryId'] = cat.dataSource.ref
 				res = client.venues.search(params)
-				venues[city][cat].extend(res['venues'])
+				venues[city][cat.name].extend(res['venues'])
 	return venues
 
-def loadVenues(venues):
+def loadVenues():
+
+	cat_list = Category.objects.filter(parentCat__name = 'root')
+	venues = getVenues(getEUCities(), cat_list, getClient())
+
 	for key in venues:
 		try:
-			city = City.objects.get(name = key)
+			city = City.objects.get(name__startswith = key)
 		except Exception:
-			pass;
+			continue		
 		for cat in venues[key]:
-			category = Category.objects.get(name = cat)
 			for place in venues[key][cat]:
 				name = place['name']
+				category = Category.objects.get(name = place['categories'][0]['name'])
 				data_source = DataSource.objects.get_or_create(ref=place['id'])[0]
+				print data_source
 				latitude = float(place['location']['lat'])
 				longitude = float(place['location']['lng'])
-				count = float(place['stats']['checkinsCount'])
+				count = int(place['stats']['checkinsCount'])				
 				if count <10:
+					
 					pass;
 				else:
+					
 					venue = {
 						'name': name, 
 						'latitude': latitude, 
@@ -63,21 +68,68 @@ def loadVenues(venues):
 						'city':city, 
 						'category': category,
 						'dataSource': data_source,}
-					venue = Venue.objects.get_or_create(**venue)
-
-				
-
-def getCategoriesForVenue(categories_dict, venue):
-	for cat in venue_categories:
-		category = Category.objects.get(name = cat['name'])
-		venue.category.add(category)
-	venue.save()
-
-		
-
+					venue = Venue.objects.get_or_create(**venue)[0]
+					print venue
 
 
 				
+
+
+
+
+
+
+def getEUCities():
+	return ["Amsterdam",
+			"Andorra la Vella",
+			"Athens",
+			"Belgrade",
+			"Berlin",
+			"Bern",
+			"Bratislava",
+			"Brussels",
+			"Bucharest",
+			"Budapest",
+			"Chisinau",
+			"Copenhagen",
+			"Douglas",
+			"Dublin",
+			"Gibraltar",
+			"Helsinki",
+			"Kiev",
+			"Lisbon",
+			"Ljubljana",
+			"London",
+			"Longyearbyen",
+			"Luxemburg",
+			"Madrid",
+			"Minsk",
+			"Monaco-Ville",
+			"Nicosia",
+			"Oslo",
+			"Podgorica",
+			"Prague",
+			"Pristina",
+			"Reykjavik",
+			"Riga",
+			"Rome",
+			"Saint Helier",
+			"Saint Peter Port",
+			"San Marino",
+			"Sarajevo",
+			"Skopje",
+			"Sofia",
+			"Stockholm",
+			"Tallinn",
+			"Tirana",
+			"Torshavn",
+			"Vaduz",
+			"Valletta",
+			"Vatican City",
+			"Vienna",
+			"Vilnius",
+			"Warsaw",
+			"Zagreb",]
 
 
 
