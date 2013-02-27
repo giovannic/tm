@@ -2,8 +2,7 @@ import foursquare
 from django.conf import settings
 from categories.models import Category
 from props.models import DataSource, City 
-
-
+from venues.models import Venue
 #get foursquare client
 def getClient():
 	client = foursquare.Foursquare(client_id= settings.FSQ_CLIENT_ID, client_secret = settings.FSQ_CLIENT_SECRET)
@@ -11,7 +10,7 @@ def getClient():
 def getEUCities():
 	return execfile('venues/city_list_europe.py')
 
-def getVenues(city_list, category_list, client):
+def getVenues(city_list, cat_list, client):
 	params ={
 		'near': '', 
 		'radius': 100000, 
@@ -26,13 +25,17 @@ def getVenues(city_list, category_list, client):
 		if type(city) is not str:
 			city = city.name
 		params['near'] = city
-		venues[city] = {}	
-		for cat in category_list:
-			venues[city][cat] = []
-			print cat
-			params['categoryId'] = cat.dataSource.ref
-			res = client.venues.search(params)
-			venues[city][cat].extend(res['venues'])
+		venues[city] = {}
+		ignore = ["Travel & Transport", "Residence", "Professional & Other Places", "College & University"]	
+		for cat in cat_list:
+			if cat.name in ignore:
+				pass;
+			else:
+				print cat.name
+				venues[city][cat] = []
+				params['categoryId'] = cat.dataSource.ref
+				res = client.venues.search(params)
+				venues[city][cat].extend(res['venues'])
 	return venues
 
 def loadVenues(venues):
@@ -49,15 +52,29 @@ def loadVenues(venues):
 				latitude = float(place['location']['lat'])
 				longitude = float(place['location']['lng'])
 				count = float(place['stats']['checkinsCount'])
-				venue = {
-					'name': name, 
-					'latitude': latitude, 
-					'longitude': longitude, 
-					'checkinsCount': count, 
-					'city':city, 
-					'category': category,
-					'dataSource': data_source,}
-				Venue.objects.get_or_create(**venue)
+				if count <10:
+					pass;
+				else:
+					venue = {
+						'name': name, 
+						'latitude': latitude, 
+						'longitude': longitude, 
+						'checkinsCount': count, 
+						'city':city, 
+						'category': category,
+						'dataSource': data_source,}
+					venue = Venue.objects.get_or_create(**venue)
+
+				
+
+def getCategoriesForVenue(categories_dict, venue):
+	for cat in venue_categories:
+		category = Category.objects.get(name = cat['name'])
+		venue.category.add(category)
+	venue.save()
+
+		
+
 
 
 				
