@@ -7,6 +7,7 @@ var xmlreq2;
 
 // Global array of markers
 var markers;
+
 // foursquare
 var fsmarksers;
 
@@ -31,14 +32,15 @@ function mapping(name) {
         return "shopping";
     } else if (name === "Nightlife Spot") {
         return "nightlife";
-    } else if (name === "Otdoors & Recreation") {
+    } else if (name === "Outdoors & Recreation") {
         return "outdoor";
     } else if (name === "Arts & Entertainment") {
         return "arts";
     }
+    log(name);
 }
 
-/*
+
 function setScoreForCity(city, score) {
 	$.each(cities, function (key, value) {
 		if (value.name === city) {
@@ -54,26 +56,30 @@ function get_compatibilityScore(weights_object){
 		var city_objects = stuff.objects
 
 		$.each(city_objects	, function(index, data){
-			var data = city_objects[index].weighed_scores;
 
-			var data = data.replace(/u/g, "");
+
+			var data = city_objects[index].weighed_scores
+
+			var data = data.replace(/u\'/g, "\"");
 			var data = data.replace(/'/g, "\"");
-			var data = jQuery.parseJSON(data);
+			var data = jQuery.parseJSON(data);	
+			var dot_product = 0;
+			var scores_size = 0;
 			var score = 0;
-			var total = 0;
-			$.each(weights_object, function(index, val){
-				val = parseInt(val);
-				total += val;
-			})
+			console.log(data);
 
 			$.each(data, function(index, val){
-				score += Math.min(val,weights_object[mapping(index)]/total)
+				scores_size += val*val;
+				dot_product += val*(parseInt(weights_object[mapping(index)]))
+				
 			})
-
-			setScoreForCity(city_objects[index].name,score);
+			scores_size = Math.sqrt(scores_size);
+			score = dot_product/(scores_size*weights_size);
+			console.log('done cosine similarity', score);
+			setScoreForCity(city_objects[index].name, score);
 
 		})
-		// updateHeatMap();
+		updateHeatMap();
 	});
 }
 
@@ -145,13 +151,12 @@ function updateHeatMapForZoomLevel(zoom) {
 	if (zoom < 4) radius = 1.8;
 	else if (zoom < 7) radius = 1;
 	else radius = 0.5;
+
 }
 
 function updateHeatMap() {
 	updateHeatMapForZoomLevel(map.getZoom());
 }
- 
- */
 
 function log(msg) {
     setTimeout(function() {
@@ -331,5 +336,3 @@ function updatePieCharts() {
 	}
     
 }
-
-

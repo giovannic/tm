@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+	<title>Home Page</title>
+	<!-- CSS -->
+	<link href="./style/jquery-ui.css" rel="stylesheet" type="text/css" >
+	<link href="./style/bootstrap.min.css" rel="stylesheet" type="text/css" >
+	<link href="./style/style.css" rel="stylesheet" type="text/css" >
+	<link href="./js/city_list.txt" type="text/plain">
+	<link href='http://fonts.googleapis.com/css?family=Baumans' rel='stylesheet' type='text/css'>
+
+	<!-- JavaScript -->
+	<script src="./js/jquery.js" type="text/javascript"></script>
+	<script src="./js/jquery-ui.js" type="text/javascript"></script>
+	<script src="./js/bootstrap.js" type="text/javascript"></script>
+	<script src="./js/map_styles.js" type="text/javascript"></script>
+	<script src="./js/location.js" type="text/javascript"></script>
+	<script src="./js/script.js" type="text/javascript"></script>
+
+	<!-- Google Maps Javascript API v3 -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyADkJKuWEou2-gPAgZoHB-y6tll-7C86ys&sensor=false"></script>
+	<script type="text/javascript" src="./js/map_scripts.js"></script> 
+	<script type="text/javascript" src="./js/customOverlay.js"></script>
+
+	<!-- fb -->
+	<script src="//connect.facebook.net/en_US/all.js"></script>
+	<script type="text/javascript" src="./js/fb.js"></script>
+	<!-- hotel data -->
+
+</head>
+<body>
+	<div class="primary container">
+
+		<header id="top-nav" class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+				<ul class="nav">
+					<a class="brand" href="#">differently</a>
+					<li class="divider-vertical"></li>
+
+					<li class="dropdown pull-right pull-right-hard">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="icon-user"></i>Login
+						<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu profile-dropdown" >
+							<li>
+			<!-- inline crime -->
+								<div style="width:80%;">
+									<input type="text" value="b.email address" class="">
+									<input type="text" value="password" class="">
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li><a href="#">View your profile</a></li>
+							<li><a href="#">Option 2</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Link to your networks</a></li>
+						</ul>
+					</li>
+
+				</ul><!-- .nav -->
+				</div><!-- .container -->
+			</div><!-- .navbar-inner -->
+		</header><!-- #top-nav.navbar -->
+
+		<div class="sf sf-container">
+			<div class="sf-inner centred">
+				<div class="sf-caption caption-top-right">
+					<h3 class="caption">
+						Prompt button
+						<!--We see the world <span class="brand-font">differently</span>--></h3>
+				</div>
+				<img class="sf-img current" src="./img/shop-imgs/map0.jpg" />
+				<div id="signup-prompt" class="sf-caption caption-bottom-left">
+					<h3 class="caption">
+						Prompt button
+						<!--We see the world <span class="brand-font">differently</span>--></h3>
+				</div>
+			</div>
+		</div><!-- .sf .container -->
+
+		<div id="signup" class="signup-container container">
+			<div class="signup signup-inner centred hero-unit">
+				<h2>Sign Up</h2>
+				<hr/>
+				<div class="fb-signup signup-option">
+					<p>
+						Quick and easy. The more you tell us about yourself, the more personalised your travel map will be.
+					</p>
+					<p>
+						Sign up using Facebook
+					</p>
+					<button class="btn btn-primary">
+						Connect with Facebook
+					</button>
+				</div>
+				<div class="email-signup signup-option">
+					<p>
+						Alternatively, sign up with your email address and choose which of your social networks you'd like to use to find your perfect holiday.
+					</p>
+					<input type="text" value="Barack" class="">
+					<input type="text" value="Obama" class="">
+					<input type="text" value="b.obama@thewhitehouse.org" class="">
+			<!-- inline crime -->
+					<button class="btn btn-primary" style="display:block">
+						Sign Up
+					</button>
+				</div>
+			</div><!-- signup-inner -->
+		</div><!-- .sign-up-container -->
+
+		<footer class="navbar navbar-bottom">
+			<div id="bottom-nav-inner"  class="navbar-inner">
+				<div class="container">
+				<ul class="nav">
+					<li><a>This bar only rises to allow access to the dev options. It would not rise in the live app</a></li>
+					<li class="divider-vertical pull-right-hard">
+					<li id="select-four" index=3 class="option-select pull-right-hard">
+						<div id="dev-options" class="btn-group dropup">
+							<button class="btn btn-inverse">Dev</button>
+							<button class="btn dropdown-toggle btn-inverse" data-toggle="dropdown">
+							<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+							<!-- dropdown menu links -->
+							<li class="theme-select" theme-index=0 ><a href="#">Default</a></li>
+							<li class="theme-select" theme-index=1 ><a href="#">Default (no labels)</a></li>
+							<li class="theme-select" theme-index=2 ><a href="#">Theme 2</a></li>
+							<li class="theme-select" theme-index=3 ><a href="#">Theme 2 (no labels)</a></li>
+							<li class="divider"></li>
+							<li class="bg-select" index=0><a href="#">Background 1</a></li>
+							<li class="bg-select" index=1><a href="#">Background 2</a></li>
+							<li class="bg-select" index=2><a href="#">Background 3</a></li>
+							<li class="bg-select" index=3><a href="#">Background 4</a></li>
+							<li class="bg-select" index=4><a href="#">Default</a></li>
+							<li class="bg-select" index=5 inverse=1 ><a href="#">Background 5</a></li>
+							<li class="bg-select" index=6 inverse=1 ><a href="#">Background 6</a></li>
+							<li class="bg-select" index=7 inverse=1 ><a href="#">Background 7</a></li>
+							<li class="bg-select" index=8 inverse=1 ><a href="#">Background 8</a></li>
+							<li class="bg-select" index=9 inverse=1 ><a href="#">Background 9</a></li>
+							<li class="bg-select" index=10 inverse=1 ><a href="#">Background 10</a></li>
+							</ul>
+						</div><!-- #dev-options -->
+					</li>
+				</ul><!-- .nav -->
+				</div><!-- .container -->
+			</div><!-- .navbar-inner -->
+		</footer><!-- #bottom-nav -->
+	</div><!-- #primary -->
+</body>
+</html>
