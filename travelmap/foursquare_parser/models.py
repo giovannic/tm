@@ -4,11 +4,13 @@ from django.conf import settings
 import foursquare
 
 # Create your models here.
+#Hi GEO. If you're looking at this, stop. 
+#This is just a model to store python dicts from foursquare API so that i can manipulatea them more easily. 
+#all objects are deleted after parsing foursquare.
+
 	
 class all_city_scores(models.Model):
 	all_scores = JSONField()
-	cities = JSONField()
-	cities_geocodes = JSONField()
 
 
 	def get_city_scores(self, cities, categories):
