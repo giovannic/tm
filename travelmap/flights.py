@@ -1,6 +1,10 @@
 import requests
+#<<<<<<< HEAD
 
-from cities.models import City, Flight, ExtUrl
+#from cities.models import City, Flight, ExtUrl
+#=======
+from props.models import City, Flight, DataSource
+#>>>>>>> 2d673994b5c3d1e371b7ae918392d83f9960f8c4
 
 
 def get_prices(leaving):
@@ -42,7 +46,7 @@ def load_flights():
   for place, price in fs[0].items():
     country=City.objects.filter(country=place)
     if len(country) > 0 and price != 'null':
-      link = ExtUrl(ref=fs[1][place])
+      link = DataSource(ref=fs[1][place])
       link.save()
       add = Flight(country=country[0],
 	  cost=price,

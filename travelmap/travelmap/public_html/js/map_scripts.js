@@ -313,6 +313,10 @@ function addMarker(city) {
 	markers.push(marker);
 }
 
+function getScoresForCity(city, callb) {
+  $.getJSON(getBaseURL() + city.resource_uri + '/?format=json', callb)
+}
+
 function getBaseURL () {
    return location.protocol + "//" + location.hostname + 
       (location.port && ":" + location.port) + "/";

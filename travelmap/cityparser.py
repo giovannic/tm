@@ -1,7 +1,7 @@
 
 # -*- coding: utf-8 -*-
 import csv
-from cities.models import City
+from props.models import City
 
 def get_cities():
   f = open('../country_capital.txt')
