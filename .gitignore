@@ -10,16 +10,22 @@
 .env*
 
 #db
-travelmap/travelmap/travelmap.db
+*travelmap.db
 
 #server
 .nohup.out
 run_aws.sh
 
-travelmap/travelmap/settings.py
+*settings.py
+.DS_Store
 
-travelmap/travelmap/settings.py
 
 *.sublime-project
 
 *.sublime-workspace
+>>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d
+=======
+travelmap/travelmap/public_html/.DS_Store
+>>>>>>> parent of f8c3ea9... modded .gitignore
+
+travelmap/travelmap/settings.py

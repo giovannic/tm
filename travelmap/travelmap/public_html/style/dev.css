@@ -1,0 +1,40 @@
+/*
+*
+*
+***** bg img change styles *****/
+
+body.bg0 {
+	background-image: url('../img/background-pngs/dark1.png');
+}
+body.bg1 {
+	background-image: url('../img/background-pngs/dark2.png');	
+}
+body.bg2 {
+	background-image: url('../img/background-pngs/dark3.png');	
+}
+body.bg3 {
+	background-image: url('../img/background-pngs/dark4.png');	
+}
+body.bg4 {
+	background-image: url('../img/background-pngs/dark5.png');	
+}
+body.bg5 {
+	background-image: url('../img/background-pngs/light1.png');	
+}
+body.bg6 {
+	background-image: url('../img/background-pngs/light2.png');	
+}
+body.bg7 {
+	background-image: url('../img/background-pngs/light3.png');	
+}
+body.bg8 {
+	background-image: url('../img/background-pngs/paper1.png');	
+}
+body.bg9 {
+	background-image: url('../img/background-pngs/paper2.png');	
+}
+body.bg10 {
+	background-image: url('../img/background-pngs/paper3.png');	
+}
+
+/********************************/

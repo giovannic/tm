@@ -1,11 +1,47 @@
+html {
+	height: 100%;
+}
+
 body {
-	padding-top: 40px;
-	padding-bottom: 40px; /* for the fixed nav bar*/
+	height: 100%;
+	min-width: 980px; /*	cannot get this to work - bootstrap responsive CSS is overriding icon:;*/
 	background-image: url('../img/background-pngs/dark5.png');
 }
 
 .dialog-open {
 	opacity: 0.5;
+}
+
+.primary {
+	width: 100%;
+	padding: 61px 0 0 0;
+}
+
+.primary .app {
+	width: 100%;
+	padding: 61px 0 40px 0;
+}
+
+
+
+/*
+*
+***** top nav bar *****/
+
+.navbar .brand {
+	font-size: 2.0em;
+	font-family: 'Baumans', cursive;
+}
+
+.navbar .mode-select {
+	display: inline;
+	width: 115px;
+}
+
+.navbar .container {
+	height:50px;
+	padding-top:10px;
+	font-size: 1.3em;
 }
 
 .navbar .brand {
@@ -16,20 +52,92 @@ ul.nav {
 	width: 100%;
 }
 
+.icon-user {
+	position: relative;
+	top:3px;
+	left:-8px;
+	opacity: 0.7;
+}
+
+.profile-dropdown {
+	min-width: 100%;
+}
+
+/*
+*
+***** helper classes ***/
+
 .pull-right-hard {
 	float: right !important;
 }
 
-.sm-img {
-	position: relative;
-	top: -4px;
-
-	-webkit-transition: -webkit-transform 0.4s;
+.pull-left-hard {
+	float: left !important;
 }
 
-.sm-img:hover {
-	-webkit-transition-property: top;
-	top: -7px;
+.centred {
+	margin: 0 auto;
+}
+
+.brand-font {
+	font-family: 'Baumans', cursive;
+}
+
+/*
+*
+***** bottom nav bar *****/
+
+footer.app-bottom-nav {
+	-moz-transition: bottom 0.4s;
+    -webkit-transition: bottom 0.4s;
+    -o-transition: bottom 0.4s;
+    -ms-transition: bottom 0.4s;
+    transition: bottom 0.4s;
+}
+
+footer.app-bottom-nav.not-showing {
+	bottom:-50px;
+}
+
+footer.app-bottom-nav:hover {
+	bottom:0px;
+}
+
+/*
+*
+***** .tab *****/
+
+.tab {
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+}
+
+#footer-tab {
+	position: relative;
+	bottom: -90px;
+	left: -60px;
+}
+
+#footer-tab.navbar-inverse {
+	background-color: rgba(0,113,160,0.8);
+	border: none;
+}
+
+.tab-img {
+	width: 50px;
+	position: relative;
+	left: 45px;
+}
+
+/*
+*
+*
+***** carousel styles *****/
+
+#carousel-wrapper {
+	width: 100%;
+	margin: 0 auto;
 }
 
 #app {
@@ -50,13 +158,16 @@ ul.nav {
 	min-width: 810px;
 	z-index: 50;
 	top: 30%;
-	left: 20%;
 	
 	padding: 20px;
 	margin: 0 auto;
 	overflow: hidden;
 
 	-webkit-box-shadow: 0px 33px 15px -20px rgba(0,0,0,0.85);
+	-moz-box-shadow: 0px 33px 15px -20px rgba(0,0,0,0.85);
+	-o-box-shadow: 0px 33px 15px -20px rgba(0,0,0,0.85);
+	-ms-box-shadow: 0px 33px 15px -20px rgba(0,0,0,0.85);
+	box-shadow: 0px 33px 15px -20px rgba(0,0,0,0.85);
 }
 
 #option-carousel .carousel-inner .item {
@@ -92,6 +203,14 @@ button.update {
 	height: 100px;
 }
 
+.tab-content {
+	overflow: hidden;
+}
+
+/*
+*
+***** sliders *****/
+
 .slider {
 	width: 300px;
 	height: 10px;
@@ -99,9 +218,24 @@ button.update {
 
 .ui-slider-handle {
 	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+
 	top: -13px !important;
 }
 
+.ui-slider-handle.alt-style { /* SEE HERE - work in progress */
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+
+	border-radius: 23px;
+	top: -8px !important;
+}
 .ui-slider-handle:hover {
 	cursor: pointer;
 }
@@ -114,6 +248,33 @@ p.amount {
 	margin: 20px;
 	line-height: 25px;
 
+}
+
+
+/*
+*
+***** overlay & map styles *****/
+
+.app-wrapper {
+	width: 100%;
+}
+
+#app {
+	width: 80%;
+	height: 480px;
+
+	padding-top: 20px;
+
+	-webkit-box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
+	-moz-box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
+	-o-box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
+	-ms-box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
+	box-shadow: 0px 30px 15px -20px rgba(255,255,255,0.25);
+}
+
+#map_canvas {
+	width: 100%;
+	height: 100%;
 }
 
 .navbar .mode-select {
@@ -129,7 +290,13 @@ p.amount {
 
 .cityOverlayContainer {
 	border-radius: 15px;
+
 	-webkit-border-bottom-left-radius: 0px;
+	-moz-border-bottomleft-radius: 0px;
+	-o-border-bottom-left-radius: 0px;
+	-ms-border-bottom-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+
 }
 
 .cityOverlay {
@@ -140,6 +307,7 @@ p.amount {
 .cityOverlay h3, .cityOverlay h4 {
 	line-height:0.75em;
 }
+
 .cityOverlay p {
 	display: inline;
 }
@@ -152,4 +320,98 @@ p.amount {
 	position: relative;
 	left:-25px;
 	-webkit-transform: rotate(0deg);
+}
+
+/*
+*
+*	CBA TO BREAK UP STYLESHEET JUST YET
+*
+*	NB: sf stands for shop front - I needed a class name
+*
+***** HOMEPAGE / SIGNUP STYLES *****/
+
+
+
+.sf {
+	width: 100%;
+	height: 580px;
+	margin-top: 40px;
+}
+
+.sf-container {
+	width:100%;
+	min-height: 600px;
+}
+
+.sf-inner {
+	max-width: 897px;
+	height: 582px;
+}
+
+.sf-caption {
+	width: 60%;
+	height: 60px;
+	position: relative;
+	z-index: 100;
+	
+	color:white;
+	background-color: rgba(0,0,0,0.65);
+}
+
+.sf-caption:hover {
+	background-color: rgba(89,168,15,0.65);
+	cursor: pointer;
+}
+
+.caption-bottom-left {
+	top: -120px;
+	float: left;
+	border-radius: 0px 30px 0px 0px;
+}
+
+.caption-top-right {
+/*	top:60px;	*/
+	float: right;
+	border-radius: 0px 0px 0px 30px;
+}
+
+
+h3.caption {
+	margin-left:10px;
+	margin-right: 10px;
+	font-weight: 100;
+}
+
+.sf-img {
+	position: relative;
+	top: -60px;
+	height:582px;	
+	margin: 0 auto;
+}
+
+.signup-container {
+	width: 100%;
+	margin-top:150px;
+	margin-bottom: 50px;
+}
+
+.signup-inner.hero-unit {
+	width: 777px; /* 897 - 2*60px of padding */
+	overflow: hidden;
+	background-image: url('../img/background-pngs/paper5.png');
+}
+
+.signup-option {
+	display: inline;
+	max-width: 40%;
+	margin: 0 auto;
+	text-align: justify;
+}
+
+.fb-signup {
+	float: left;
+}
+
+.email-signup {
+	float: right;
 }

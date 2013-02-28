@@ -62,4 +62,3 @@ class CityScore(models.Model):
 				venues[self.name].append(venue)
 				Venue.objects.get_or_create(**venue)
 		return venues		
-

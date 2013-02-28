@@ -7,6 +7,7 @@ var xmlreq2;
 
 // Global array of markers
 var markers;
+
 // foursquare
 var fsmarksers;
 
@@ -31,14 +32,15 @@ function mapping(name) {
         return "shopping";
     } else if (name === "Nightlife Spot") {
         return "nightlife";
-    } else if (name === "Otdoors & Recreation") {
+    } else if (name === "Outdoors & Recreation") {
         return "outdoor";
     } else if (name === "Arts & Entertainment") {
         return "arts";
     }
+    log(name);
 }
 
-/*
+
 function setScoreForCity(city, score) {
 	$.each(cities, function (key, value) {
 		if (value.name === city) {
@@ -54,26 +56,30 @@ function get_compatibilityScore(weights_object){
 		var city_objects = stuff.objects
 
 		$.each(city_objects	, function(index, data){
-			var data = city_objects[index].weighed_scores;
 
-			var data = data.replace(/u/g, "");
+
+			var data = city_objects[index].weighed_scores
+
+			var data = data.replace(/u\'/g, "\"");
 			var data = data.replace(/'/g, "\"");
-			var data = jQuery.parseJSON(data);
+			var data = jQuery.parseJSON(data);	
+			var dot_product = 0;
+			var scores_size = 0;
 			var score = 0;
-			var total = 0;
-			$.each(weights_object, function(index, val){
-				val = parseInt(val);
-				total += val;
-			})
+			console.log(data);
 
 			$.each(data, function(index, val){
-				score += Math.min(val,weights_object[mapping(index)]/total)
+				scores_size += val*val;
+				dot_product += val*(parseInt(weights_object[mapping(index)]))
+				
 			})
-
-			setScoreForCity(city_objects[index].name,score);
+			scores_size = Math.sqrt(scores_size);
+			score = dot_product/(scores_size*weights_size);
+			console.log('done cosine similarity', score);
+			setScoreForCity(city_objects[index].name, score);
 
 		})
-		// updateHeatMap();
+		updateHeatMap();
 	});
 }
 
@@ -145,13 +151,12 @@ function updateHeatMapForZoomLevel(zoom) {
 	if (zoom < 4) radius = 1.8;
 	else if (zoom < 7) radius = 1;
 	else radius = 0.5;
+
 }
 
 function updateHeatMap() {
 	updateHeatMapForZoomLevel(map.getZoom());
 }
- 
- */
 
 function log(msg) {
     setTimeout(function() {
@@ -190,7 +195,7 @@ function initialiseMap() {
 
 function sortCitiesByScore() {
     for (var key in cities) {
-        value = cities[key];
+        var value = cities[key];
         value.score = getOverallScore(getScoresForCity(value), getUserPreferences());
     }
     
@@ -207,8 +212,9 @@ function recieveCities(data, status, jqXHR) {
 	  cities[value.resource_uri] = value;
 	})
 	*/
+    updatePieCharts();
 }
-
+/*
 function recieveScores(data, status, jqXHR) {
     var scores = data.objects;
     
@@ -243,6 +249,7 @@ function mergeScoreWithCities(scores) {
         cityLoc.weighed_scores.flightCostFromCurrentLocation = flightAndHotelScores[cityLocKey].flightCost;
     }
 }
+*/
 
 function getFlightAndHotelScores(){
     var scores = {};
@@ -270,13 +277,13 @@ function recieveHotels(data, status, jqXHR) {
 }
 
 function getScoresForCity() {
-    var data = {"Food" : 0,
-                "Outdoors & Recreation" :0,
-                "Nightlife Spot" : 0,
-                "Arts & Entertainment" : 0,
-                "Shop & Service" : 0,
-                "averageHotelCostPerNight" :0,
-                "flightCostFromCurrentLocation" : 0
+    var data = {"Food" : Math.random()*80,
+                "Outdoors & Recreation" :Math.random()*80,
+                "Nightlife Spot" : Math.random()*80,
+                "Arts & Entertainment" : Math.random()*80,
+                "Shop & Service" : Math.random()*80,
+                "averageHotelCostPerNight" :Math.random()*150,
+                "flightCostFromCurrentLocation" : Math.random()*200
                 };
     return data;
 }
@@ -292,26 +299,14 @@ function addMarker(city) {
 	var cityBreakdown = getPercentageScores(cityData, usrData);
 	
 	var marker = new PieOverlay(longandlat, city.name, cityScore, cityBreakdown, map);
-	
-/*	google.maps.event.addListener(marker, 'click', function () {
-		var latitude = city.lat;
-		var longitude = city.long;
-		var location = new google.maps.LatLng(latitude, longitude);
-		if (overlay) overlay.setMap(null);
-		overlay = new USGSOverlay(location, city.name, city.score, map);
 
-		google.maps.event.addListener(map, 'click', function () {
-			overlay.setMap(null);
-		});
-	});
-*/
 	markers.push(marker);
 }
-
+/*
 function getScoresForCity(city, callb) {
   $.getJSON(getBaseURL() + city.resource_uri + '/?format=json', callb)
 }
-
+*/
 function getBaseURL () {
    return location.protocol + "//" + location.hostname + 
       (location.port && ":" + location.port) + "/";
@@ -331,5 +326,3 @@ function updatePieCharts() {
 	}
     
 }
-
-

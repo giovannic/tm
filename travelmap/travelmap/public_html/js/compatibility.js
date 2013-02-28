@@ -19,6 +19,12 @@ function getUserPreferences() {
 		todo[$(this).children('div').attr("pref")] = $(this).children('p').attr("data");
 	});
 
+	accom["hotel-price-min"] = accom["price-range-min"];
+	accom["hotel-price-max"] = accom["price-range-max"];
+
+	flights["flight-price-min"] = flights["price-range-min"];
+	flights["flight-price-max"] = flights["price-range-max"];
+
 	allprefs = jsonConcat(flights, accom);
 	allprefs = jsonConcat(allprefs, todo);
 
@@ -155,3 +161,4 @@ function getNightlifeScore(cityData, userData) {
 	return nightlifeScore;
 }
 
+/* >>>>>>> a02dd6a345d46ae5e05ba70a41df80098ea9ab0d */

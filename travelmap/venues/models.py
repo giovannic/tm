@@ -12,7 +12,7 @@ class Venue(models.Model):
 	checkinsCount = models.IntegerField()
 	city = models.ForeignKey(City, related_name = "venues", blank=True ,null = True)
 	category = models.ForeignKey(Category, blank = True, null = True, related_name = "venues")
-	dataSource = models.OneToOneField(DataSource, blank = True, null = True, related_name = "venue") 
+	dataSource = models.ForeignKey(DataSource, blank = True, null = True, related_name = "venue") 
 
 	def __unicode__(self):
 		return self.name+","+self.city.name
