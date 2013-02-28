@@ -151,12 +151,12 @@ function showLabels(theOverlay) {
 
 function animateGrow(theOverlay, first) {
 	var currentScale = theOverlay.scale_
-	// If 500 px wide then stop and add the labels
-	if ((theOverlay.score_ * currentScale / 1.5) >= 500) {
+	// If 300 px wide then stop and add the labels
+	if ((theOverlay.score_ * currentScale / 1.5) >= 300) {
 		showLabels(theOverlay);
 		return;
 	}
-	theOverlay.scale_ = currentScale + 1;
+	theOverlay.scale_ = currentScale + 0.1;
 	theOverlay.draw();
 	// On first iteration remove and re-add to map to bring to front
 	if (first) {
@@ -168,15 +168,15 @@ function animateGrow(theOverlay, first) {
 	// In 1 milli second grow a bit more
 	setTimeout(function() {
 		animateGrow(theOverlay, false)
-	},1);
+	},2);
 }
 
 function animateShrink(theOverlay) {
 	var currentScale = theOverlay.scale_
 	if (currentScale <= 1) return;
-	theOverlay.scale_ = currentScale - 1;
+	theOverlay.scale_ = currentScale - 0.1;
 	theOverlay.draw();
 	setTimeout(function() {
 		animateShrink(theOverlay)
-	},1);
+	},2);
 }
