@@ -1,7 +1,7 @@
 var thePieOverlays = new Array();
 PieOverlay.prototype = new google.maps.OverlayView();
 
-var thresholds = [95,95,85,80,70,60,40,20,10,0,0,0,0];
+var thresholds = [99.99,99.9,99,97,94,88,85,70,60,50,30,10,0];
 //var thresholds = [100,100,100,100,100,100,100,100,100,100,100,100];
 //var thresholds = [0,0,0,0,0,0,0,0,0,0,0,0];
 
@@ -116,6 +116,9 @@ PieOverlay.prototype.onRemove = function() {
 
 // Variable to hold currently open pie
 var currentlyOpenIndex;
+var maxPieSize = 250;
+var stepSize = 1.2;
+var stepTime = 20;
 
 // Function called when a pie chart is clicked
 function openCloseDetails(index) {
@@ -152,11 +155,11 @@ function showLabels(theOverlay) {
 function animateGrow(theOverlay, first) {
 	var currentScale = theOverlay.scale_
 	// If 300 px wide then stop and add the labels
-	if ((theOverlay.score_ * currentScale / 1.5) >= 300) {
+	if ((theOverlay.score_ * currentScale / 1.5) >= maxPieSize) {
 		showLabels(theOverlay);
 		return;
 	}
-	theOverlay.scale_ = currentScale + 0.1;
+	theOverlay.scale_ = currentScale * stepSize;
 	theOverlay.draw();
 	// On first iteration remove and re-add to map to bring to front
 	if (first) {
@@ -168,15 +171,15 @@ function animateGrow(theOverlay, first) {
 	// In 1 milli second grow a bit more
 	setTimeout(function() {
 		animateGrow(theOverlay, false)
-	},2);
+	},stepTime);
 }
 
 function animateShrink(theOverlay) {
 	var currentScale = theOverlay.scale_
 	if (currentScale <= 1) return;
-	theOverlay.scale_ = currentScale - 0.1;
+	theOverlay.scale_ = currentScale * ( 1 / stepSize);
 	theOverlay.draw();
 	setTimeout(function() {
 		animateShrink(theOverlay)
-	},2);
+	},stepTime);
 }

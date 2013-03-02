@@ -106,8 +106,8 @@ function drawLabel(theSvg, x, y, segPositions, radius, text, percent) {
 
 	
 	// Calculate text width
-	var width = $('<span></span>').css({display:'none',whiteSpace:'nowrap',fontSize:'14'}).appendTo($('body')).text(text).width();
-	var height = $('<span></span>').css({display:'none',whiteSpace:'nowrap',fontSize:'14'}).appendTo($('body')).text(text).height();
+	var width = $('<span></span>').css({display:'none',whiteSpace:'nowrap',fontSize:'12'}).appendTo($('body')).text(text).width();
+	var height = $('<span></span>').css({display:'none',whiteSpace:'nowrap',fontSize:'12'}).appendTo($('body')).text(text).height();
 	
 	var bbox = segment.getBBox();
 	var labelx = segPositions.labelX - (width/4);
@@ -117,14 +117,14 @@ function drawLabel(theSvg, x, y, segPositions, radius, text, percent) {
 	var label = document.createElementNS("http://www.w3.org/2000/svg", "text");
 	label.setAttribute("x", labelx);
 	label.setAttribute("y", labely);
-	label.setAttribute("font-size", 14);
+	label.setAttribute("font-size", 12);
 	label.textContent = text;
 	theSvg.appendChild(label);
 
 	var percentLbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
 	percentLbl.setAttribute("x", labelx);
 	percentLbl.setAttribute("y", percenty);
-	percentLbl.setAttribute("font-size", 14);
+	percentLbl.setAttribute("font-size", 12);
 	percentLbl.textContent = percent.toFixed(2) + "%";
 	theSvg.appendChild(percentLbl);	
 	
